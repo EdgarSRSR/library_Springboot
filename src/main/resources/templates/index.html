@@ -2,28 +2,87 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+
+
+
     <title>Twitter Bootstrap Example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen"/>
+    <!-- Bootstrap -->
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet"> -->
 
+    <link th:href="@{/bootstrap-3.3.7-dist/css/bootstrap.min.css}"
+        rel="stylesheet" media="screen"/>
 
-    <script th:src="@{/jquery/jquery.min.js}"></script>
-    <script th:src="@{/popper/popper.min.js}"></script>
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 
 </head>
 
 <body>
 
+<!--navbar.html   -->
+<div th:replace="fragments/navbar :: navbar"></div>
+<!--sidebar.html   -->
+<div th:replace="fragments/sidebar :: sidebar" ></div>
+<div  class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
 <h2>Hello Twitter Bootstrap</h2>
 
-<div class="btn-group">
+
+
+<div class="btn-group  ">
     <button type="button" class="btn btn-success">This is a success button</button>
     <button type="button" class="btn btn-warning">This is a warning button</button>
     <button type="button" class="btn btn-danger">This is a danger button</button>
 </div>
+
+<table class="table   ">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+    </tr>
+    </tbody>
+</table>
+
+
+</div>
+<div th:replace="fragments/footer :: footer" ></div>
+<!--<footer class="footer-no-nav navbar-fixed-bottom  navbar-default navbar-custom" role="contentinfo">
+
+    <div class=" text-center text-muted container bg-secondary">
+        <p class="bg-secondary">Footer</p>
+    </div>
+</footer>-->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- <script src="/webjars/jquery/jquery.min.js"></script>-->
+ <!--<script th:src="@{/jquery/jquery.min.js}"></script>-->
+ <!-- Include all compiled plugins (below), or include individual files as needed -->
+ <!-- <script th:src="@{/popper/popper.min.js}"></script>-->
+<!--<script th:src="@{/bootstrap-3.3.7.dist/js/bootstrap.min.js}"></script>-->
+<script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
