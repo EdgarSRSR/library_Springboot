@@ -1,10 +1,8 @@
-package ru.gkarmada.project.service;
+package ru.gkarmada.project.users;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.gkarmada.project.model.Users;
-import ru.gkarmada.project.repository.UsersRepository;
 
 // Gets the users services dependencies
 @Service

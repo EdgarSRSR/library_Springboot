@@ -1,4 +1,4 @@
-package ru.gkarmada.project.controller;
+package ru.gkarmada.project.books;
 
 import java.util.List;
 import org.slf4j.Logger;
@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ru.gkarmada.project.ProjectApplication;
-import ru.gkarmada.project.model.Books;
-import ru.gkarmada.project.repository.BooksRepository;
-import ru.gkarmada.project.service.BooksService;
 // Controls the creation of book table and table database
 
 @Controller

@@ -1,4 +1,4 @@
-package ru.gkarmada.project.model;
+package ru.gkarmada.project.users;
 
 //  Configures variables for getting data from the users table
 

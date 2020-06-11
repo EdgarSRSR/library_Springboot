@@ -1,12 +1,10 @@
-package ru.gkarmada.project.repository;
+package ru.gkarmada.project.users;
 
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
-import ru.gkarmada.project.model.Users;
-import ru.gkarmada.project.repository.UsersRepository;
 
 @Repository
 public abstract class JpaUsersRepository implements UsersRepository {

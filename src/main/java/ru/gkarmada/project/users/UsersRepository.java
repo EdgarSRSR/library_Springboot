@@ -1,9 +1,8 @@
-package ru.gkarmada.project.repository;
+package ru.gkarmada.project.users;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.gkarmada.project.model.Users;
 
 // Calls the JPA dependencies for the employees
 @Repository

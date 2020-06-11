@@ -1,10 +1,8 @@
-package ru.gkarmada.project.controller;
+package ru.gkarmada.project.users;
 
 // This class is in charge of implementing changes in  the Employees table located in the admin page
 
 import java.util.List;
-import java.util.logging.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ru.gkarmada.project.ProjectApplication;
-import ru.gkarmada.project.model.Users;
-import ru.gkarmada.project.repository.UsersRepository;
-import ru.gkarmada.project.service.UsersService;
+import ru.gkarmada.project.users.Users;
+import ru.gkarmada.project.users.UsersRepository;
+import ru.gkarmada.project.users.UsersService;
 
 // controls CRUD table of employees
 @Controller
