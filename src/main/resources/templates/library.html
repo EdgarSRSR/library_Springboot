@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
   <title>Library</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
 
   <!-- Bootstrap -->
   <link th:href="@{/bootstrap-3.3.7-dist/css/bootstrap.min.css}"
@@ -24,7 +25,7 @@
   <a href="/new_book">Add new Book</a>
   <br/><br/>
 
-  <table class="table   ">
+  <table class="table" >
     <thead>
     <tr>
       <th scope="col">Book ID</th>
@@ -53,7 +54,7 @@
     </tbody>
   </table>
   <br>
-  <a th:href="@{/index}">Click here to log out</a>
+  <a th:href="@{/}">Click here to log out</a>
   <br>
   <a th:href="@{/users}">Go to users</a>
   <br>

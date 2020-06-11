@@ -18,5 +18,5 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
   Users findByUserid(Long id);
 
   // Creates methods to save a new user to the database
-  Users save(Users user);
+  Users save(Users users);
 }

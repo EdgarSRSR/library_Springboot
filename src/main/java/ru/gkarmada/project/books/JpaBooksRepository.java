@@ -5,8 +5,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
-import ru.gkarmada.project.books.Books;
-import ru.gkarmada.project.books.BooksRepository;
 
 @Repository
 public abstract class JpaBooksRepository implements BooksRepository {

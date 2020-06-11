@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-// This class declares the parameters contained in the user data base
+// This class declares the parameters contained in the books data base
 @Entity
 @Table(name="books")
 public class Books {

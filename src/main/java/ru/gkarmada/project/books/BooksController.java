@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ru.gkarmada.project.ProjectApplication;
 // Controls the creation of book table and table database
 
+
 @Controller
 public class BooksController {
 
@@ -27,12 +28,12 @@ public class BooksController {
     this.bookrepo = bookrepo;
   }
 
+  // get logger to log to the console
+  final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
+
   // Method that fills the the Table of the Books for the admins
   @RequestMapping("/library")
   public String viewBooks(Model model) {
-
-    // get logger to log to the console
-   final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
 
     System.out.println("XXXXXXXXXXXXXX");
     log.info("XXXXXXXXXXXXXX");
@@ -41,20 +42,13 @@ public class BooksController {
     for (Books book : bookrepo.findAll()) {
       log.info(book.toString());
     }
-    //log.info("XXXXXXXXXXXXXX");
-    //log.info(String.valueOf(listBooks));
-    //bookservice.listAll().forEach(books -> log.info("{}", bookservice));
+    log.info("XXXXXXXXXXXXXX");
+    log.info(String.valueOf(listBooks));
+    bookservice.listAll().forEach(books -> log.info("{}", bookservice));
     model.addAttribute("listBooks", listBooks);
     return "library";
   }
 
-  // Method that fills the the Table of the Books for the clients
- /* @RequestMapping("/books_client")
-  public String viewBooksClients(Model model) {
-    List<Books> listBooks = bookservice.listAll();
-    model.addAttribute("listBooks", listBooks);
-    return "books_client";
-  }*/
 
   //Method to add new Books
   @RequestMapping("/new_book")
@@ -78,13 +72,6 @@ public class BooksController {
     bookservice.save(book);
     return "redirect:/books";
   }
-  //method to implement rent or return book client
-  /*@RequestMapping(value = "/rentreturn_client", method = RequestMethod.POST)
-  public String rentreturnBookClient(@ModelAttribute("book") Books book) {
-
-    bookservice.save(book);
-    return "redirect:/books_client";
-  }*/
 
   // Method to create page for renting or returning a book
   @RequestMapping("/rent/{bookid}")
@@ -98,20 +85,7 @@ public class BooksController {
 
     return mav;
   }
-  // Method to create page for renting or returning a book for client
-  /*@RequestMapping("/rent_client/{bookid}")
-  public ModelAndView showRentBookClientPage(@PathVariable(name = "bookid") Long bookid) {
-    ModelAndView mav = new ModelAndView("rentbook_client");
-    Books book = bookservice.get(bookid);
-    final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
-    log.info("---------------rent books----------------");
-    //log.info(String.valueOf(book.bookid));
-    mav.addObject("book", book);
 
-    return mav;
-  }
-
-   */
   // method to delete a book
   @RequestMapping("/delete/{bookid}")
   public String deleteBook(@PathVariable(name = "bookid") Long bookid) {
