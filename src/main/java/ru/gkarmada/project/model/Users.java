@@ -26,7 +26,7 @@ public class Users {
   private String email;
   private Boolean admin;
 
-  protected Users(){}
+  public Users(){}
 
   public Users(Long userid, String fio, String telephone, String jobpos, String department,
       String email,Boolean admin){

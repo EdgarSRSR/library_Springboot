@@ -31,7 +31,7 @@ public class Books {
   @Column(name = "availability")
   private Boolean availability;
 
-  protected Books(){}
+  public Books(){}
 
   public Books(Long bookid, String title, String author, String isbn, int yearpub,
       String publisher, Boolean availability){

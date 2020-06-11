@@ -1,8 +1,10 @@
-package ru.gkarmada.project.model;
+package ru.gkarmada.project.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.gkarmada.project.model.Books;
+import ru.gkarmada.project.repository.BooksRepository;
 
 // Gets the book services for the table and data base manipulation
 @Service

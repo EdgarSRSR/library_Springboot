@@ -18,43 +18,46 @@
 <div th:replace="fragments/sidebar :: sidebar" ></div>
 
 <div  class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
-  <h2>Library</h2>
-  <div class="btn-group  ">
-    <button type="button" class="btn btn-success">This is a success button</button>
-    <button type="button" class="btn btn-warning">This is a warning button</button>
-    <button type="button" class="btn btn-danger">This is a danger button</button>
-  </div>
+  <h1>Library</h1>
+  <h2>Rent, Return, Modify and Update Books</h2>
+  <br/><br/>
+  <a href="/new_book">Add new Book</a>
+  <br/><br/>
 
   <table class="table   ">
     <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Book ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">ISBN</th>
+      <th scope="col">Year of Publication</th>
+      <th scope="col">Publisher</th>
+      <th scope="col">Availability</th>
+      <th scope="col">Rent and RETURN</th>
+      <th scope="col">Remove</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
+    <tr th:each="books: ${listBooks}">
+      <td th:text="${books.bookid}">Book ID</td>
+      <td th:text="${books.title}">Title</td>
+      <td th:text="${books.author}">Author</td>
+      <td th:text="${books.isbn}">ISBN</td>
+      <td th:text="${books.yearpub}">Year of Publication</td>
+      <td th:text="${books.publisher}">Publisher</td>
+      <td th:text="${books.availability}">Availability</td>
+      <td><a th:href="@{'/rent/' + ${books.bookid}}">Rent</a></td>
+      <td><a th:href="@{'/delete/' + ${books.bookid}}">Delete</a></td>
     </tr>
     </tbody>
   </table>
+  <br>
+  <a th:href="@{/index}">Click here to log out</a>
+  <br>
+  <a th:href="@{/users}">Go to users</a>
+  <br>
+
 </div>
 <div th:replace="fragments/footer :: footer" ></div>
 
