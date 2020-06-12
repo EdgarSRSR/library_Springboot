@@ -62,7 +62,7 @@ public class BooksController {
   public String saveBook(@ModelAttribute("book") Books book) {
     bookservice.save(book);
 
-    return "redirect:/books";
+    return "redirect:/library";
   }
 
   //method to implement rent or return book
@@ -70,7 +70,7 @@ public class BooksController {
   public String rentreturnBook(@ModelAttribute("book") Books book) {
 
     bookservice.save(book);
-    return "redirect:/books";
+    return "redirect:/library";
   }
 
   // Method to create page for renting or returning a book
@@ -90,7 +90,7 @@ public class BooksController {
   @RequestMapping("/delete/{bookid}")
   public String deleteBook(@PathVariable(name = "bookid") Long bookid) {
     bookservice.delete(bookid);
-    return "redirect:/books";
+    return "redirect:/library";
   }
 
 
