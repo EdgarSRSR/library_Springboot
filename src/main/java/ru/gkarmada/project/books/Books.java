@@ -9,10 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 // This class declares the parameters contained in the books data base
 @Entity
+// lombok implementation
+@Getter @Setter @NoArgsConstructor // <--- THIS is it
 @Table(name="books")
 public class Books {
 
@@ -33,7 +36,6 @@ public class Books {
   @Column(name = "availability")
   private Boolean availability;
 
-  public Books(){}
 
   public Books(Long bookid, String title, String author, String isbn, int yearpub,
       String publisher, Boolean availability){
@@ -54,62 +56,4 @@ public class Books {
         bookid, title, author, isbn, yearpub, publisher, availability);
   }
 
-  // Getters and Setters
-
-
-  public Long getBookid() {
-    return bookid;
-  }
-
-  public void setBookid(Long bookid) {
-    this.bookid = bookid;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-  public String getIsbn() {
-    return isbn;
-  }
-
-  public void setIsbn(String isbn) {
-    this.isbn = isbn;
-  }
-
-  public int getYearpub() {
-    return yearpub;
-  }
-
-  public void setYearpub(int yearpub) {
-    this.yearpub = yearpub;
-  }
-
-  public String getPublisher() {
-    return publisher;
-  }
-
-  public void setPublisher(String publisher) {
-    this.publisher = publisher;
-  }
-
-  public Boolean getAvailability() {
-    return availability;
-  }
-
-  public void setAvailability(Boolean availability) {
-    this.availability = availability;
-  }
 }

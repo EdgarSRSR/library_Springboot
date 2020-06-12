@@ -41,7 +41,12 @@
       </tr>
       <tr>
         <td>Availability:</td>
-        <td><input type="text" th:field="*{availability}" /></td>
+        <td>
+          <select class="form-control" th:field="*{availability}">
+            <option th:value="false" >False</option>
+            <option th:value="true" >True</option>
+          </select>
+        </td>
       </tr>
       <tr>
         <td colspan="2"><button type="submit">Save</button> </td>

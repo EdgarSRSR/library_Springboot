@@ -8,9 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 // This class declares the parameters contained in the users data base
 @Entity
+// lombok implementation
+@Getter  @Setter @NoArgsConstructor // <--- THIS is it
 @Table(name="users")
 public class Users {
 
@@ -26,7 +31,6 @@ public class Users {
   private String email;
   private Boolean admin;
 
-  public Users(){}
 
   public Users(Long userid, String fio, String telephone, String jobpos, String department,
       String email,Boolean admin){
@@ -47,63 +51,4 @@ public class Users {
         userid, fio, telephone, jobpos, department, email, admin);
   }
 
-  // Setters and Getters
-  // Specifies that UserId is the primary key
-
-
-  public Long getUserid() {
-    return userid;
-  }
-
-  public void setUserid(Long userid) {
-    this.userid = userid;
-  }
-
-  public String getFio() {
-    return fio;
-  }
-
-  public void setFio(String fio) {
-    this.fio = fio;
-  }
-
-  public String getTelephone() {
-    return telephone;
-  }
-
-  public void setTelephone(String telephone) {
-    this.telephone = telephone;
-  }
-
-  public String getJobpos() {
-    return jobpos;
-  }
-
-  public void setJobpos(String jobpos) {
-    this.jobpos = jobpos;
-  }
-
-  public String getDepartment() {
-    return department;
-  }
-
-  public void setDepartment(String department) {
-    this.department = department;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public Boolean getAdmin() {
-    return admin;
-  }
-
-  public void setAdmin(Boolean admin) {
-    this.admin = admin;
-  }
 }
