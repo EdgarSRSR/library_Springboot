@@ -1,29 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8"/>
-
-
-
-    <title>Twitter Bootstrap Example</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <!-- Bootstrap -->
-    <!--<link href="css/bootstrap.min.css" rel="stylesheet"> -->
-
-    <link th:href="@{/bootstrap-3.3.7-dist/css/bootstrap.min.css}"
-        rel="stylesheet" media="screen"/>
-
-
+    <div th:replace="fragments/header :: header"></div>
+    <title>Index title</title>
 </head>
 
 <body>
 
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
-<!--sidebar.html   -->
+<!--sidebar.html
 <div th:replace="fragments/sidebar :: sidebar" ></div>
 <div  class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
+  -->
     <h2> Project Application </h2>
     <h1> Project Application </h1>
 
@@ -34,12 +24,9 @@
     <button type="button" class="btn btn-danger">This is a danger button</button>
 </div>
 
-</div>
+
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer" ></div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
