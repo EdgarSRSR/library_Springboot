@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://thymeleaf.org">
-<!-- Bootstrap -->
-<link th:href="@{/bootstrap-3.3.7-dist/css/bootstrap.min.css}"
-      rel="stylesheet" media="screen"/>
 <head>
-  <meta charset="utf-8" />
-  <!-- Admins can add new employees  -->
+  <div th:replace="fragments/header :: header"></div>
   <title>New User</title>
 </head>
 <body>
@@ -56,8 +52,5 @@
 </div>
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer" ></div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 </html>
