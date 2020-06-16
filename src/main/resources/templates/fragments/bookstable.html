@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+
+<th:block th:fragment="bookstable">
+
+  <table
+      id="table"
+      data-toolbar="#toolbar"
+      data-toggle="table"
+      data-search="true"
+      data-show-columns="true"
+      data-show-pagination-switch="true"
+      data-pagination="true"
+      data-show-extended-pagination="true"
+      data-pagination-loop="true"
+      data-id-field="id"
+      data-page-list="[3, 5, 10, all]"
+      data-response-handler="responseHandler">
+    <thead>
+    <tr>
+      <th data-sortable="true" scope="col">Title</th>
+      <th data-sortable="true" scope="col">Author</th>
+      <th scope="col">ISBN</th>
+      <th scope="col">Year of Publication</th>
+      <th scope="col">Publisher</th>
+      <th data-sortable="true" scope="col">Availability</th>
+      <th scope="col">Rent and Return</th>
+      <th scope="col">Remove</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table" data-object='{"key": "value"}' th:each="books: ${listBooks}">
+      <td id="td-id-1" class="td-class-1" data-title="bootstrap table" th:text="${books.title}">Title</td>
+      <td id="td-id-2" class="td-class-1" data-title="bootstrap table" th:text="${books.author}">Author</td>
+      <td id="td-id-3" class="td-class-1" data-title="bootstrap table" th:text="${books.isbn}">ISBN</td>
+      <td id="td-id-4" class="td-class-1" data-title="bootstrap table" th:text="${books.yearpub}">Year of Publication</td>
+      <td id="td-id-5" class="td-class-1" data-title="bootstrap table" th:text="${books.publisher}">Publisher</td>
+      <td id="td-id-6" class="td-class-1" data-title="bootstrap table" th:text="${books.availability}">Availability</td>
+      <td id="td-id-7" class="td-class-1" data-title="bootstrap table"><a th:href="@{'/rent/' + ${books.bookid}}">Rent</a></td>
+      <td id="td-id-8" class="td-class-1" data-title="bootstrap table"> <a th:href="@{'/delete/' + ${books.bookid}}">Delete</a></td>
+    </tr>
+    </tbody>
+  </table>
+
+
+
+
+</th:block>
