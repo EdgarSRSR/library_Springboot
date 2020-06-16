@@ -14,15 +14,4 @@ public class HomeController {
         return "index";
     }
 
-    // go to library
-    /*@RequestMapping( value="/library", method = RequestMethod.GET)
-    public String getLibrary(){
-        return "library";
-    }
-
-    // go to users
-    @RequestMapping( value="/users", method = RequestMethod.GET)
-    public String getUsers(){
-        return "users";
-    }*/
 }
