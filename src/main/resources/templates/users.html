@@ -13,7 +13,9 @@
 <div  class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
   <h1>Users</h1>
   <br/><br/>
-  <a href="/new_user">Add User</a>
+  <div class="btn-group">
+    <a href="/new_user" class="btn btn-success">Add New User</a>
+  </div>
   <br/><br/>
   <table class="table   ">
     <thead>
@@ -44,10 +46,6 @@
 
     </tbody>
   </table>
-  <br>
-  <a th:href="@{/}">Click here to exit</a>
-  <br>
-  <a th:href="@{/library}">Go to Books</a>
 
 </div>
 <div th:replace="fragments/footer :: footer" ></div>
