@@ -2,12 +2,9 @@
 <html lang="en">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://thymeleaf.org">
-<!-- Bootstrap -->
-<link th:href="@{/bootstrap-3.3.7-dist/css/bootstrap.min.css}"
-      rel="stylesheet" media="screen"/>
+
 <head>
-  <meta charset="utf-8" />
-  <!-- Admins can change the information from the employees -->
+  <div th:replace="fragments/header :: header"></div>
   <title>Edit User</title>
 </head>
 <body>
@@ -44,10 +41,13 @@
         <td>Email:</td>
         <td><input type="text" th:field="*{email}" /></td>
       </tr>
-      <tr>
-        <td>Admin:</td>
-        <td><input type="text" th:field="*{admin}" /></td>
-      </tr>
+      <td>Admin Rights:</td>
+      <td>
+        <select class="form-control" th:field="*{admin}">
+          <option th:value="false" >False</option>
+          <option th:value="true" >True</option>
+        </select>
+      </td>
       <tr>
         <td colspan="2"><button type="submit">Save</button> </td>
       </tr>
