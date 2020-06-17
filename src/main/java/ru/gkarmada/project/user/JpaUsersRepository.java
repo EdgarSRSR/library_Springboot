@@ -1,4 +1,4 @@
-package ru.gkarmada.project.users;
+package ru.gkarmada.project.user;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -15,16 +15,16 @@ public abstract class JpaUsersRepository implements UsersRepository {
   // This methods helps for calling the information from the database to populate the html tables
 
   @Override
-  public List<Users> findAll(){
-    TypedQuery<Users> query = em.createQuery("SELECT e from users", Users.class);
+  public List<User> findAll(){
+    TypedQuery<User> query = em.createQuery("SELECT e from users", User.class);
     return ((TypedQuery) query).getResultList();
   }
 
   // Methods to save a user to database
   @Override
-  public Users save(Users users){
-    em.persist(users);
-    return users;
+  public User save(User user){
+    em.persist(user);
+    return user;
   }
 
 }

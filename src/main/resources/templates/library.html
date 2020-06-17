@@ -39,15 +39,15 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:each="books: ${listBooks}">
-        <td th:text="${books.title}">Title</td>
-        <td th:text="${books.author}">Author</td>
-        <td th:text="${books.isbn}">ISBN</td>
-        <td th:text="${books.yearpub}">Year of Publication</td>
-        <td th:text="${books.publisher}">Publisher</td>
-        <td th:text="${books.availability}">Availability</td>
-        <td><a th:href="@{'/rent/' + ${books.bookid}}">Rent</a></td>
-        <td><a th:href="@{'/delete/' + ${books.bookid}}">Delete</a></td>
+      <tr th:each="book: ${listBooks}">
+        <td th:text="${book.title}">Title</td>
+        <td th:text="${book.author}">Author</td>
+        <td th:text="${book.isbn}">ISBN</td>
+        <td th:text="${book.yearpub}">Year of Publication</td>
+        <td th:text="${book.publisher}">Publisher</td>
+        <td th:text="${book.availability}">Availability</td>
+        <td><a th:href="@{'/rent/' + ${book.bookid}}">Rent</a></td>
+        <td><a th:href="@{'/delete/' + ${book.bookid}}">Delete</a></td>
       </tr>
       </tbody>
     </table>-->

@@ -1,4 +1,4 @@
-package ru.gkarmada.project.users;
+package ru.gkarmada.project.user;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +13,17 @@ public class UsersService {
   private UsersRepository userepo;
 
   // Creates a list of employees from the database
-  public List<Users> listAll(){
+  public List<User> listAll(){
     return userepo.findAll();
   }
 
   // Saves a new employee to the Database
-  public void save(Users users){
-    userepo.save(users);
+  public void save(User user){
+    userepo.save(user);
   }
 
   // Get an user from id
-  public Users get(Long id){
+  public User get(Long id){
     return userepo.findById(id).get();
   }
 

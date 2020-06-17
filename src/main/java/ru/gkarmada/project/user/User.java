@@ -1,4 +1,4 @@
-package ru.gkarmada.project.users;
+package ru.gkarmada.project.user;
 
 //  Configures variables for getting data from the users table
 
@@ -17,9 +17,9 @@ import lombok.Setter;
 // lombok implementation
 @Getter  @Setter @NoArgsConstructor // <--- THIS is it
 @Table(name="users")
-public class Users {
+public class User {
 
-  // Users object gets the information from the database
+  // User object gets the information from the database
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name= "userid")
@@ -32,7 +32,7 @@ public class Users {
   private Boolean admin;
 
 
-  public Users(Long userid, String fio, String telephone, String jobpos, String department,
+  public User(Long userid, String fio, String telephone, String jobpos, String department,
       String email,Boolean admin){
     this.userid = userid;
     this.fio = fio;

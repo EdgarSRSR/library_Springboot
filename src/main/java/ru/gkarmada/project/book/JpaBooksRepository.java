@@ -1,4 +1,4 @@
-package ru.gkarmada.project.books;
+package ru.gkarmada.project.book;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,14 +14,14 @@ public abstract class JpaBooksRepository implements BooksRepository {
 
   // this method helps for calling the information from the database to populate the html tables
   @Override
-  public List<Books> findAll(){
-    TypedQuery<Books> query = em.createQuery("SELECT e from books", Books.class);
+  public List<Book> findAll(){
+    TypedQuery<Book> query = em.createQuery("SELECT e from books", Book.class);
     return ((TypedQuery) query).getResultList();
   }
 
   // Methods to save a book to Database
   @Override
-  public Books save(Books book){
+  public Book save(Book book){
     em.persist(book);
     return book;
   }

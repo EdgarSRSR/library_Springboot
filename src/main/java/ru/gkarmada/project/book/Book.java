@@ -1,4 +1,4 @@
-package ru.gkarmada.project.books;
+package ru.gkarmada.project.book;
 
 //  Configures variables for getting data from the books table
 
@@ -17,7 +17,7 @@ import lombok.Setter;
 // lombok implementation
 @Getter @Setter @NoArgsConstructor // <--- THIS is it
 @Table(name="books")
-public class Books {
+public class Book {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +37,7 @@ public class Books {
   private Boolean availability;
 
 
-  public Books(Long bookid, String title, String author, String isbn, int yearpub,
+  public Book(Long bookid, String title, String author, String isbn, int yearpub,
       String publisher, Boolean availability){
     this.bookid = bookid;
     this.title = title;

@@ -1,4 +1,4 @@
-package ru.gkarmada.project.books;
+package ru.gkarmada.project.book;
 
 import java.util.List;
 import org.slf4j.Logger;
@@ -31,35 +31,35 @@ public class BooksController {
   // get logger to log to the console
   final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
 
-  // Method that fills the the Table of the Books for the admins
+  // Method that fills the the Table of the Book for the admins
   @RequestMapping("/library")
   public String viewBooks(Model model) {
 
     System.out.println("XXXXXXXXXXXXXX");
     log.info("XXXXXXXXXXXXXX");
-    List<Books> listBooks = bookservice.listAll();
+    List<Book> listBooks = bookservice.listAll();
     log.info("-------------------------------");
-    for (Books book : bookrepo.findAll()) {
+    for (Book book : bookrepo.findAll()) {
       log.info(book.toString());
     }
     log.info("XXXXXXXXXXXXXX");
     log.info(String.valueOf(listBooks));
-    bookservice.listAll().forEach(books -> log.info("{}", bookservice));
+    bookservice.listAll().forEach(book -> log.info("{}", bookservice));
     model.addAttribute("listBooks", listBooks);
     return "library";
   }
 
 
-  //Method to add new Books
+  //Method to add new Book
   @RequestMapping("/new_book")
   public String showNewBookForm(Model model){
-    Books book = new Books();
+    Book book = new Book();
     model.addAttribute("book", book);
     return "new_book";
   }
   //method that saves changes to books
   @RequestMapping(value = "/save", method = RequestMethod.POST)
-  public String saveBook(@ModelAttribute("book") Books book) {
+  public String saveBook(@ModelAttribute("book") Book book) {
     bookservice.save(book);
 
     return "redirect:/library";
@@ -67,7 +67,7 @@ public class BooksController {
 
   //method to implement rent or return book
   @RequestMapping(value = "/rentreturn", method = RequestMethod.POST)
-  public String rentreturnBook(@ModelAttribute("book") Books book) {
+  public String rentreturnBook(@ModelAttribute("book") Book book) {
 
     bookservice.save(book);
     return "redirect:/library";
@@ -77,7 +77,7 @@ public class BooksController {
   @RequestMapping("/rent/{bookid}")
   public ModelAndView showRentBookPPage(@PathVariable(name = "bookid") Long bookid) {
     ModelAndView mav = new ModelAndView("rent_book");
-    Books book = bookservice.get(bookid);
+    Book book = bookservice.get(bookid);
     final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
     log.info("---------------rent books----------------");
     //log.info(String.valueOf(book.bookid));

@@ -1,4 +1,4 @@
-package ru.gkarmada.project.books;
+package ru.gkarmada.project.book;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +13,17 @@ public class BooksService {
   private BooksRepository bookrepo;
 
   // Method that lists all book from the table
-  public List<Books> listAll(){
+  public List<Book> listAll(){
     return bookrepo.findAll();
   }
 
   // Method that saves a new book to the data base
-  public void save(Books book){
+  public void save(Book book){
     bookrepo.save(book);
   }
 
   // Method that gets a book from the database
-  public Books get(Long bookid){
+  public Book get(Long bookid){
     return bookrepo.findById(bookid).get();
   }
 
