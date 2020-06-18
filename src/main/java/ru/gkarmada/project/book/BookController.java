@@ -34,18 +34,18 @@ import ru.gkarmada.project.exception.ResourceNotFoundException;
 
 @Controller
 //@RequestMapping("/api")
-public class BooksController {
+public class BookController {
 
   // injects book services
   @Autowired
-  private BooksService bookservice;
+  private BookService bookservice;
 
-  private final BooksRepository bookrepo;
+  private final BookRepository bookrepo;
 
   // uri change
   private final int ROW_PER_PAGE = 5;
 
-  BooksController(BooksRepository bookrepo) {
+  BookController(BookRepository bookrepo) {
     this.bookrepo = bookrepo;
   }
 
@@ -67,16 +67,16 @@ public class BooksController {
     log.info(String.valueOf(listBooks));
     bookservice.listAll().forEach(book -> log.info("{}", bookservice));
     model.addAttribute("listBooks", listBooks);
-    return "library";
+    return "library/list";
   }
 
 
   //Method to add new Book
-  @RequestMapping("/new_book")
+  @RequestMapping("library/new")
   public String showNewBookForm(Model model){
     Book book = new Book();
     model.addAttribute("book", book);
-    return "new_book";
+    return "library/new";
   }
 
   //method that saves changes to books
@@ -115,7 +115,7 @@ public class BooksController {
   @RequestMapping("/delete/{bookid}")
   public String deleteBook(@PathVariable(name = "bookid") Long bookid) {
     bookservice.delete(bookid);
-    return "redirect:/library";
+    return "redirect:/library/list";
   }
 
   //////// URI RESTRUCTURE //////////

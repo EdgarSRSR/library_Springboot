@@ -13,11 +13,11 @@ import ru.gkarmada.project.exception.ResourceNotFoundException;
 
 // Gets the book services for the table and data base manipulation
 @Service
-public class BooksService {
+public class BookService {
 
   // Create a book repo to create a book object
   @Autowired
-  private BooksRepository bookrepo;
+  private BookRepository bookrepo;
 
   // Method that lists all book from the table
   public List<Book> listAll(){

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 // Book repository that gets the JPA Dependencies
-public interface BooksRepository extends PagingAndSortingRepository<Book, Long>, JpaRepository<Book, Long>,
+public interface BookRepository extends PagingAndSortingRepository<Book, Long>, JpaRepository<Book, Long>,
     JpaSpecificationExecutor<Book> {
 
 }

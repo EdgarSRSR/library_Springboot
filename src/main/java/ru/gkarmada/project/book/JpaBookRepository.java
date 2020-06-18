@@ -7,7 +7,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public abstract class JpaBooksRepository implements BooksRepository {
+public abstract class JpaBookRepository implements BookRepository {
 
   @PersistenceContext
   private EntityManager em;
