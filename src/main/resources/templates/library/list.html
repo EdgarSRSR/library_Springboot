@@ -25,32 +25,6 @@
   <div th:replace="library/fragments/bookstable :: bookstable"></div>
   <br/><br/>
 
-  <!--<table class="table">
-      <thead>
-      <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Author</th>
-        <th scope="col">ISBN</th>
-        <th scope="col">Year of Publication</th>
-        <th scope="col">Publisher</th>
-        <th scope="col">Availability</th>
-        <th scope="col">Rent and Return</th>
-        <th scope="col">Remove</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="book: ${listBooks}">
-        <td th:text="${book.title}">Title</td>
-        <td th:text="${book.author}">Author</td>
-        <td th:text="${book.isbn}">ISBN</td>
-        <td th:text="${book.yearpub}">Year of Publication</td>
-        <td th:text="${book.publisher}">Publisher</td>
-        <td th:text="${book.availability}">Availability</td>
-        <td><a th:href="@{'/rent/' + ${book.bookid}}">Rent</a></td>
-        <td><a th:href="@{'/delete/' + ${book.bookid}}">Delete</a></td>
-      </tr>
-      </tbody>
-    </table>-->
   <br/><br/>
 
 </div>

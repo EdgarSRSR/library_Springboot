@@ -98,9 +98,9 @@ public class BookController {
   }
 
   // Method to create page for renting or returning a book
-  @RequestMapping("/rent/{bookid}")
+  @RequestMapping("/library/rent/{bookid}")
   public ModelAndView showRentBookPage(@PathVariable(name = "bookid") Long bookid) {
-    ModelAndView mav = new ModelAndView("rent_book");
+    ModelAndView mav = new ModelAndView("/library/rent");
     Book book = bookservice.get(bookid);
     final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
     log.info("---------------rent books----------------");
@@ -115,7 +115,7 @@ public class BookController {
   @RequestMapping("/delete/{bookid}")
   public String deleteBook(@PathVariable(name = "bookid") Long bookid) {
     bookservice.delete(bookid);
-    return "redirect:/library/list";
+    return "redirect:/library";
   }
 
   //////// URI RESTRUCTURE //////////
@@ -181,9 +181,9 @@ public class BookController {
     }
   }*/
 
-
+  /*
   @DeleteMapping(path="/library/{bookid}")
-  public ResponseEntity<Void> deleteBookById(@PathVariable long bookid) {
+  public ResponseEntity<Void> deleteBookById(@PathVariable(name = "bookid") Long bookid) {
     try {
       bookservice.deleteById(bookid);
       return ResponseEntity.ok().build();
@@ -191,5 +191,5 @@ public class BookController {
       log.error(ex.getMessage());
       return ResponseEntity.notFound().build();
     }
-  }
+  }*/
 }
