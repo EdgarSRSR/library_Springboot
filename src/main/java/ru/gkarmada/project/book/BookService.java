@@ -24,12 +24,6 @@ public class BookService {
     return bookrepo.findAll();
   }
 
-  // Method that saves a new book to the data base
-  //uri change
-  //public void save(Book book){
-  //  bookrepo.save(book);
-  //}
-
   // Method that gets a book from the database
   public Book get(Long bookid){
     return bookrepo.findById(bookid).get();
@@ -55,21 +49,24 @@ public class BookService {
     else return book;
   }
 
+  // create a list of all books
   public List<Book> findAll(int pageNumber, int rowPerPage) {
     List<Book> books = new ArrayList<>();
     bookrepo.findAll(PageRequest.of(pageNumber - 1, rowPerPage)).forEach(books::add);
     return books;
   }
 
+  // find books by title
   public List<Book> findAllByTitle(String title, int pageNumber, int rowPerPage) {
     Book filter = new Book();
     filter.setTitle(title);
     Specification<Book> spec = new BookSpecification(filter);
-
     List<Book> books = new ArrayList<>();
     bookrepo.findAll(spec, PageRequest.of(pageNumber - 1, rowPerPage)).forEach(books::add);
     return books;
   }
+
+  // save book
 
   public Book save(Book book) throws BadResourceException, ResourceAlreadyExistsException {
     if (!StringUtils.isEmpty(book.getTitle())) {
@@ -86,6 +83,7 @@ public class BookService {
     }
   }
 
+  // update book
   public void update(Book book)
       throws BadResourceException, ResourceNotFoundException {
     if (!StringUtils.isEmpty(book.getTitle())) {
@@ -101,7 +99,7 @@ public class BookService {
     }
   }
 
-
+ // delete a book by Id
   public void deleteById(Long id) throws ResourceNotFoundException {
     if (!existsById(id)) {
       throw new ResourceNotFoundException("Cannot find book with id: " + id);
@@ -111,6 +109,7 @@ public class BookService {
     }
   }
 
+  // count book
   public Long count() {
     return bookrepo.count();
   }

@@ -19,11 +19,6 @@ public abstract class JpaBookRepository implements BookRepository {
     return ((TypedQuery) query).getResultList();
   }
 
-  // Methods to save a book to Database
-  @Override
-  public Book save(Book book){
-    em.persist(book);
-    return book;
-  }
+  
 
 }

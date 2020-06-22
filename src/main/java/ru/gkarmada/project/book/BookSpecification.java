@@ -21,15 +21,6 @@ public class BookSpecification implements Specification<Book> {
 
     Predicate p = (Predicate) cb.disjunction();
 
-    /*
-    if (filter.getTitle() != null) {
-      p.getExpressions().add(cb.like(root.get("title"), "%" + filter.getTitle() + "%"));
-    }
-
-    if (filter.getAuthor()!= null) {
-      p.getExpressions().add(cb.like(root.get("author"), "%" + filter.getAuthor() + "%"));
-    }*/
-
     return (javax.persistence.criteria.Predicate) p;
   }
 

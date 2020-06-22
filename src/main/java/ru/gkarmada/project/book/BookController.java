@@ -42,9 +42,6 @@ public class BookController {
 
   private final BookRepository bookrepo;
 
-  // uri change
-  private final int ROW_PER_PAGE = 5;
-
   BookController(BookRepository bookrepo) {
     this.bookrepo = bookrepo;
   }
@@ -56,16 +53,10 @@ public class BookController {
   @GetMapping("/library")
   public String viewBooks(Model model) {
 
-    System.out.println("XXXXXXXXXXXXXX");
-    log.info("XXXXXXXXXXXXXX");
     List<Book> listBooks = bookservice.listAll();
-    log.info("-------------------------------");
     for (Book book : bookrepo.findAll()) {
       log.info(book.toString());
     }
-    log.info("XXXXXXXXXXXXXX");
-    log.info(String.valueOf(listBooks));
-    bookservice.listAll().forEach(book -> log.info("{}", bookservice));
     model.addAttribute("listBooks", listBooks);
     return "library/list";
   }
@@ -84,7 +75,6 @@ public class BookController {
   public String saveBook(@ModelAttribute("book") Book book)
       throws BadResourceException, ResourceAlreadyExistsException {
     bookservice.save(book);
-
     return "redirect:/library";
   }
 
@@ -92,7 +82,6 @@ public class BookController {
   @PostMapping(value = "/rentreturn")
   public String rentreturnBook(@ModelAttribute("book") Book book)
       throws BadResourceException, ResourceAlreadyExistsException, ResourceNotFoundException {
-
     bookservice.update(book);
     return "redirect:/library";
   }
@@ -104,92 +93,16 @@ public class BookController {
     Book book = bookservice.get(bookid);
     final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
     log.info("---------------rent books----------------");
-    //log.info(String.valueOf(book.bookid));
     mav.addObject("book", book);
 
     return mav;
   }
 
   // method to delete a book
-
   @RequestMapping("/delete/{bookid}")
   public String deleteBook(@PathVariable(name = "bookid") Long bookid) {
     bookservice.delete(bookid);
     return "redirect:/library";
   }
 
-  //////// URI RESTRUCTURE //////////
-
-
-  @GetMapping(value = "/library", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<List<Book>> findAll(
-      @RequestParam(value="page", defaultValue="1") int pageNumber,
-      @RequestParam(required=false) String title) {
-    if (StringUtils.isEmpty(title)) {
-      return ResponseEntity.ok(bookservice.findAll(pageNumber, ROW_PER_PAGE));
-    }
-    else {
-      return ResponseEntity.ok(bookservice.findAllByTitle(title, pageNumber, ROW_PER_PAGE));
-    }
-  }
-
-  // Find Book By Id
-  @GetMapping(value = "/library/{bookId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Book> findBookById(@PathVariable long BookId) {
-    try {
-      Book book = bookservice.findById(BookId);
-      return ResponseEntity.ok(book);  // return 200, with json body
-    } catch ( ResourceNotFoundException ex) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // return 404, with null body
-    }
-  }
-
-  @PostMapping(value = "/library")
-  public ResponseEntity<Book> addBook( @RequestBody Book book)
-      throws URISyntaxException {
-    try {
-      Book newBook = bookservice.save(book);
-      return ResponseEntity.created(new URI("/api/library/" + newBook.getBookid()))
-          .body(book);
-    } catch (ResourceAlreadyExistsException ex) {
-      // log exception first, then return Conflict (409)
-      log.error(ex.getMessage());
-      return ResponseEntity.status(HttpStatus.CONFLICT).build();
-    } catch (BadResourceException ex) {
-      // log exception first, then return Bad Request (400)
-      log.error(ex.getMessage());
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-    }
-  }
-
-  /*
-  @PutMapping(value = "/library/{bookid}")
-  public ResponseEntity<Book> updateBook( @RequestBody Book book,
-      @PathVariable long bookid) {
-    try {
-      book.setBookid(bookid);
-      bookservice.update(book);
-      return ResponseEntity.ok().build();
-    } catch (ResourceNotFoundException ex) {
-      // log exception first, then return Not Found (404)
-      log.error(ex.getMessage());
-      return ResponseEntity.notFound().build();
-    } catch (BadResourceException ex) {
-      // log exception first, then return Bad Request (400)
-      log.error(ex.getMessage());
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-    }
-  }*/
-
-  /*
-  @DeleteMapping(path="/library/{bookid}")
-  public ResponseEntity<Void> deleteBookById(@PathVariable(name = "bookid") Long bookid) {
-    try {
-      bookservice.deleteById(bookid);
-      return ResponseEntity.ok().build();
-    } catch (ResourceNotFoundException ex) {
-      log.error(ex.getMessage());
-      return ResponseEntity.notFound().build();
-    }
-  }*/
 }
