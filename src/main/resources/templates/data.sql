@@ -16,6 +16,7 @@ CREATE TABLE books (
     bookid INT AUTO_INCREMENT  PRIMARY KEY,
     title VARCHAR(60) NOT NULL,
     author VARCHAR(50) NOT NULL,
+    genre VARCHAR(50) NOT NULL,
     isbn VARCHAR(30) NOT NULL,
     yearpub int(4),
     publisher VARCHAR(50),
@@ -28,7 +29,7 @@ INSERT INTO users (fio, telephone, jobpos, department, email, admin) VALUES
   ('Sergeyev Sergey Sergeyevich', '666666666666', 'Recruiter', 'HR', 'neo_matrix@yandex.com',false);
 
 
-INSERT INTO books (title, author, isbn, yearpub, publisher, availability) VALUES
-    ('Crime and Punishment', 'Dostoyevsky', '978-0-86819-593-3', '1880', 'Books Inc.', true),
-    ('War and Peace', 'Tolstoy', '978-0-89919-593-4', '2005', 'Tomsk Publishing', false),
-    ('Pride and Prejudice', 'Jane Austen', '888-0-89919-593-4', '1978', 'Books Inc.', false);
+INSERT INTO books (title, author, genre, isbn, yearpub, publisher, availability) VALUES
+    ('Crime and Punishment', 'Dostoyevsky', 'Fiction', '978-0-86819-593-3', '1880', 'Books Inc.', true),
+    ('War and Peace', 'Tolstoy', 'Fiction', '978-0-89919-593-4', '2005', 'Tomsk Publishing', false),
+    ('Pride and Prejudice', 'Jane Austen', 'Fiction', '888-0-89919-593-4', '1978', 'Books Inc.', false);

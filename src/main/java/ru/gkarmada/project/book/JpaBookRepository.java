@@ -19,6 +19,5 @@ public abstract class JpaBookRepository implements BookRepository {
     return ((TypedQuery) query).getResultList();
   }
 
-  
 
 }

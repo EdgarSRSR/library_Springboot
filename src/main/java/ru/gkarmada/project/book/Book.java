@@ -27,6 +27,8 @@ public class Book {
   private String title;
   @Column(name = "author")
   private String author;
+  @Column(name = "genre")
+  private String genre;
   @Column(name = "isbn")
   private String isbn;
   @Column(name = "yearpub")
@@ -37,11 +39,12 @@ public class Book {
   private Boolean availability;
 
 
-  public Book(Long bookid, String title, String author, String isbn, int yearpub,
+  public Book(Long bookid, String title, String author, String genre, String isbn, int yearpub,
       String publisher, Boolean availability){
     this.bookid = bookid;
     this.title = title;
     this.author = author;
+    this.author = genre;
     this.isbn = isbn;
     this.yearpub = yearpub;
     this.publisher = publisher;
@@ -52,8 +55,8 @@ public class Book {
   @Override
   public String toString(){
     return String.format(
-        "[ bookid=%d, title='%s', author='%s', isbn='%s', yearpub='%d', publisher='%s', availability='%b']",
-        bookid, title, author, isbn, yearpub, publisher, availability);
+        "[ bookid=%d, title='%s', author='%s', genre='%s', isbn='%s', yearpub='%d', publisher='%s', availability='%b']",
+        bookid, title, author, genre, isbn, yearpub, publisher, availability);
   }
 
 }
