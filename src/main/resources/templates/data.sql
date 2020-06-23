@@ -33,3 +33,20 @@ INSERT INTO books (title, author, genre, isbn, yearpub, publisher, availability)
     ('Crime and Punishment', 'Dostoyevsky', 'Fiction', '978-0-86819-593-3', '1880', 'Books Inc.', true),
     ('War and Peace', 'Tolstoy', 'Fiction', '978-0-89919-593-4', '2005', 'Tomsk Publishing', false),
     ('Pride and Prejudice', 'Jane Austen', 'Fiction', '888-0-89919-593-4', '1978', 'Books Inc.', false);
+
+CREATE TABLE author (
+  authorid INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  lastname VARCHAR(50) NOT NULL,
+  secondname VARCHAR(50),
+  description VARCHAR(250)
+  );
+
+  CREATE TABLE genre (
+    genreid INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+    );
+
+
+
+
