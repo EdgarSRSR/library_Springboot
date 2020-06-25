@@ -8,15 +8,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.gkarmada.project.book.Book;
 
 @Data
+// lombok implementation
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class Genre {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int genreid;
+  private Long genreid;
 
   private String name;
 
