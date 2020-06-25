@@ -38,11 +38,11 @@ public class AuthorController {
 
 
   //Method to add new Author
-  @RequestMapping("library/new_author")
+  @RequestMapping("author/new")
   public String showNewAuthorForm(Model model){
     Author author = new Author();
     model.addAttribute("author", author);
-    return "library/new_author";
+    return "author/new";
   }
 
   //method that saves changes to author
