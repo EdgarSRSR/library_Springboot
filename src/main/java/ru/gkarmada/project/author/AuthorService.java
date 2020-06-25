@@ -38,8 +38,8 @@ public class AuthorService {
   }
 
   // save author
-  public Author save(Author author) throws BadResourceException, ResourceAlreadyExistsException {
-    if (!StringUtils.isEmpty(author.getAuthorid())) {
+  public Author saveAuthor(Author author) throws BadResourceException, ResourceAlreadyExistsException {
+    if (!StringUtils.isEmpty(author.getName())) {
       if (author.getAuthorid() != null && existsById(author.getAuthorid())) {
         throw new ResourceAlreadyExistsException("Author with id: " + author.getAuthorid() +
             " already exists");
