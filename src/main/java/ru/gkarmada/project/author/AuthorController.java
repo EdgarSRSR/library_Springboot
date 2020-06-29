@@ -36,6 +36,21 @@ public class AuthorController {
   // get logger to log to the console
   final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
 
+  // Method that fills the the Table of the Author for the admins
+  @GetMapping("/author/list")
+  public String viewAuthors(Model model) {
+    //
+    //List<Author> listAuthors = authorservice.listAll();
+    List<Author> listAuthors = authorservice.listAll();
+    for (Author author : authrepo.findAll()) {
+      log.info(author.toString());
+    }
+    //
+    //model.addAttribute("authors", book.getAuthors());
+    model.addAttribute("listAuthors", listAuthors);
+    return "author/list";
+  }
+
 
   //Method to add new Author
   @RequestMapping("author/new")
@@ -50,16 +65,38 @@ public class AuthorController {
   @PostMapping(value = "/author_save")
   public String saveAuthor(@ModelAttribute("author") Author author)
       throws BadResourceException, ResourceAlreadyExistsException {
-    authorservice.saveAuthor(author);
-    return "redirect:/library/new";
+    authorservice.save(author);
+    for (Author author1: authrepo.findAll()) {
+      log.info(author.toString());
+    }
+    return "redirect:/author/list";
   }
 
-
-  // method to delete a book
-  @RequestMapping("/deleteauthor/{authorid}")
+  // method to delete an author
+  @RequestMapping("/delete_author/{authorid}")
   public String deleteAuthor(@PathVariable(name = "authorid") Long authorid) {
     authorservice.deleteAuthor(authorid);
-    return "redirect:/library";
+    return "redirect:/author/list";
+  }
+
+  //method to update
+  @PostMapping(value = "author/update")
+  public String updateAuthor(@ModelAttribute("author") Author author)
+      throws BadResourceException, ResourceAlreadyExistsException, ResourceNotFoundException {
+    authorservice.update(author);
+    return "redirect:/author/list";
+  }
+
+  // Method to create page for updating author
+  @RequestMapping("/author/update/{authorid}")
+  public ModelAndView showUpdateAuthorPage(@PathVariable(name = "authorid") Long authorid) {
+    ModelAndView mav = new ModelAndView("/author/update");
+    Author author = authorservice.getAuthor(authorid);
+    final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
+    log.info("---------------update author----------------");
+    mav.addObject("author", author);
+
+    return mav;
   }
 
 }

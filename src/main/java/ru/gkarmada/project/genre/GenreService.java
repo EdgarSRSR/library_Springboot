@@ -39,7 +39,7 @@ public class GenreService {
 
   // save genre
   public Genre save(Genre genre) throws BadResourceException, ResourceAlreadyExistsException {
-    if (!StringUtils.isEmpty(genre.getGenreid())) {
+    if (!StringUtils.isEmpty(genre.getName())) {
       if (genre.getGenreid() != null && existsById(genre.getGenreid())) {
         throw new ResourceAlreadyExistsException("Genre with id: " + genre.getGenreid() +
             " already exists");

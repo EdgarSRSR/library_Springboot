@@ -20,7 +20,8 @@ CREATE TABLE books (
     isbn VARCHAR(30) NOT NULL,
     yearpub int(4),
     publisher VARCHAR(50),
-    availability BOOLEAN NOT NULL
+    availability BOOLEAN NOT NULL,
+    description VARCHAR(250)
     );
 
 INSERT INTO users (fio, telephone, jobpos, department, email, admin) VALUES
@@ -29,10 +30,10 @@ INSERT INTO users (fio, telephone, jobpos, department, email, admin) VALUES
   ('Sergeyev Sergey Sergeyevich', '666666666666', 'Recruiter', 'HR', 'neo_matrix@yandex.com',false);
 
 
-INSERT INTO books (title, author, genre, isbn, yearpub, publisher, availability) VALUES
-    ('Crime and Punishment', 'Dostoyevsky', 'Fiction', '978-0-86819-593-3', '1880', 'Books Inc.', true),
-    ('War and Peace', 'Tolstoy', 'Fiction', '978-0-89919-593-4', '2005', 'Tomsk Publishing', false),
-    ('Pride and Prejudice', 'Jane Austen', 'Fiction', '888-0-89919-593-4', '1978', 'Books Inc.', false);
+INSERT INTO books (title, author, genre, isbn, yearpub, publisher, availability, description) VALUES
+    ('Crime and Punishment', 'Dostoyevsky', 'Fiction', '978-0-86819-593-3', '1880', 'Books Inc.', true, 'a book'),
+    ('War and Peace', 'Tolstoy', 'Fiction', '978-0-89919-593-4', '2005', 'Tomsk Publishing', false, 'a book'),
+    ('Pride and Prejudice', 'Jane Austen', 'Fiction', '888-0-89919-593-4', '1978', 'Books Inc.', false, 'a book');
 
 CREATE TABLE author (
   authorid INT AUTO_INCREMENT PRIMARY KEY,
@@ -44,7 +45,8 @@ CREATE TABLE author (
 
   CREATE TABLE genre (
     genreid INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(250)
     );
 
 

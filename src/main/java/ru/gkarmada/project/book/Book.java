@@ -2,6 +2,7 @@ package ru.gkarmada.project.book;
 
 //  Configures variables for getting data from the books table
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -50,15 +51,20 @@ public class Book {
   private String publisher;
   @Column(name = "availability")
   private Boolean availability;
+  @Column(name = "description")
+  private String description;
 
-  @ManyToMany(cascade = CascadeType.ALL)
+  /*@ManyToMany(cascade = CascadeType.ALL)
   @JoinTable
-  private Set<Author> author;
-  @ManyToMany(cascade = CascadeType.ALL)
+  private Set<Author> author;*/
+  /*@ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "book_author",
       joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "bookid"),
       inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "authorid"))
-  private Set<Author> authors;
+  private Set<Author> authors;*/
+  @ManyToMany
+  private List<Author> authors;
+
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable
@@ -70,7 +76,7 @@ public class Book {
   private Set<Genre> genres;
 
   public Book(Long bookid, String title, Genre genre, String isbn, int yearpub,
-      String publisher, Boolean availability, Author authors){
+      String publisher, Boolean availability, String description, Author authors){
     this.bookid = bookid;
     this.title = title;
     //this.author = author;
@@ -79,8 +85,9 @@ public class Book {
     this.yearpub = yearpub;
     this.publisher = publisher;
     this.availability = availability;
-    this.authors = Stream.of(authors).collect(Collectors.toSet());
-    this.authors.forEach(x -> x.getBooks().add(this));
+    this.description = description;
+    /*this.authors = Stream.of(authors).collect(Collectors.toSet());
+    this.authors.forEach(x -> x.getBooks().add(this));*/
     this.genres = Stream.of(genre).collect(Collectors.toSet());
     this.genres.forEach(x -> x.getBooks().add(this));
   }
@@ -89,8 +96,8 @@ public class Book {
   @Override
   public String toString(){
     return String.format(
-        "[ bookid=%d, title='%s', author='%s', genre='%s', isbn='%s', yearpub='%d', publisher='%s', availability='%b']",
-        bookid, title, author, genre, isbn, yearpub, publisher, availability);
+        "[ bookid=%d, title='%s', authors='%s', genre='%s', isbn='%s', yearpub='%d', publisher='%s', availability='%b', publisher='%s']",
+        bookid, title, authors, genre, isbn, yearpub, publisher, availability, description);
   }
 
 }

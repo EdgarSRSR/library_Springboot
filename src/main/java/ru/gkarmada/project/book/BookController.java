@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ru.gkarmada.project.ProjectApplication;
+import ru.gkarmada.project.author.Author;
+import ru.gkarmada.project.author.AuthorService;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
 import ru.gkarmada.project.exception.ResourceNotFoundException;
@@ -40,6 +42,10 @@ public class BookController {
   @Autowired
   private BookService bookservice;
 
+  //
+  @Autowired
+  private AuthorService authorservice;
+
   private final BookRepository bookrepo;
 
   BookController(BookRepository bookrepo) {
@@ -53,10 +59,15 @@ public class BookController {
   @GetMapping("/library")
   public String viewBooks(Model model) {
 
+
+    //
+    //List<Author> listAuthors = authorservice.listAll();
     List<Book> listBooks = bookservice.listAll();
     for (Book book : bookrepo.findAll()) {
       log.info(book.toString());
     }
+    //
+    //model.addAttribute("authors", book.getAuthors());
     model.addAttribute("listBooks", listBooks);
     return "library/list";
   }

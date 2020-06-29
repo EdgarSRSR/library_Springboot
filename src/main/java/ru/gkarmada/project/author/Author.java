@@ -1,6 +1,7 @@
 package ru.gkarmada.project.author;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,13 +31,21 @@ public class Author {
   String description;
 
   @ManyToMany(mappedBy = "authors")
-  private Set<Book> books = new HashSet<>();
+  private List<Book> books;
 
   public  Author(String name, String lastname, String secondname, String description){
     this.name = name;
     this.secondname = secondname;
     this.lastname = lastname;
     this.description = description;
+  }
+
+  // String Methods
+  @Override
+  public String toString(){
+    return String.format(
+        "[ authorid=%d, name='%s', secondname='%s', lastname='%s', description='%s']",
+        authorid, name, secondname, lastname, description);
   }
 
 

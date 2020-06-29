@@ -23,15 +23,24 @@ public class Genre {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long genreid;
-
-  private String name;
-
+  Long genreid;
+  String name;
+  String description;
   @ManyToMany(mappedBy = "genres")
   private Set<Book> books = new HashSet<>();
 
-  public Genre(String name) {
+
+  public Genre(String name, String description) {
     this.name = name;
+    this.description = description;
+  }
+
+  // String Methods
+  @Override
+  public String toString(){
+    return String.format(
+        "[ genreid=%d, name='%s', description='%s']",
+        genreid, name, description);
   }
 
 }
