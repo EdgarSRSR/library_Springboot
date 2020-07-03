@@ -45,6 +45,17 @@
         <!--<form action="form-inline">
           <td><input type="text" th:field="*{genre}" /></td>
         </form>-->
+        <td>
+          <div class="col-lg-6" th:object="${genres}">
+            <select class="form-control-sm">
+
+              <option>Select Genre</option>
+              <option th:each="genre : ${listGenres}"
+                      th:value="${genre.name}"
+                      th:text="${authors.name}"></option>
+            </select>
+          </div>
+        </td>
       </tr>
       <tr>
         <td>ISBN:</td>

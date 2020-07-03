@@ -31,6 +31,8 @@ import ru.gkarmada.project.author.AuthorService;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
 import ru.gkarmada.project.exception.ResourceNotFoundException;
+import ru.gkarmada.project.genre.Genre;
+import ru.gkarmada.project.genre.GenreService;
 // Controls the creation of book table and table database
 
 
@@ -45,6 +47,10 @@ public class BookController {
   //
   @Autowired
   private AuthorService authorservice;
+
+  // genre service
+  @Autowired
+  private GenreService genreservice;
 
   private final BookRepository bookrepo;
 
@@ -61,13 +67,14 @@ public class BookController {
 
 
     //
-    //List<Author> listAuthors = authorservice.listAll();
+    List<Genre> listGenres = genreservice.listAll();
     List<Book> listBooks = bookservice.listAll();
     for (Book book : bookrepo.findAll()) {
       log.info(book.toString());
     }
     //
     //model.addAttribute("authors", book.getAuthors());
+    model.addAttribute("listGenres", listGenres);
     model.addAttribute("listBooks", listBooks);
     return "library/list";
   }

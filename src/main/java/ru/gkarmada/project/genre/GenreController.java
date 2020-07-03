@@ -42,7 +42,6 @@ public class GenreController {
     for (Genre genre : genrerepo.findAll()) {
       log.info(genre.toString());
     }
-    //model.addAttribute("authors", book.getAuthors());
     model.addAttribute("listGenres", listGenres);
     return "genre/list";
   }

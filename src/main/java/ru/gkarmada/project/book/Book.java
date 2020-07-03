@@ -65,10 +65,6 @@ public class Book {
   @ManyToMany
   private List<Author> authors;
 
-
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable
-  private Set<Genre> genre;
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "book_genre",
       joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "bookid"),
@@ -96,8 +92,8 @@ public class Book {
   @Override
   public String toString(){
     return String.format(
-        "[ bookid=%d, title='%s', authors='%s', genre='%s', isbn='%s', yearpub='%d', publisher='%s', availability='%b', publisher='%s']",
-        bookid, title, authors, genre, isbn, yearpub, publisher, availability, description);
+        "[ bookid=%d, title='%s', authors='%s', genres='%s', isbn='%s', yearpub='%d', publisher='%s', availability='%b', publisher='%s']",
+        bookid, title, authors, genres, isbn, yearpub, publisher, availability, description);
   }
 
 }
