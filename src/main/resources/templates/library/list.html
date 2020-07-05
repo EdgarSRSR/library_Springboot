@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="fragments/header :: header"></div>
+  <title>Library</title>
+
+</head>
+
+<body>
+
+<!--navbar.html   -->
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div  class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
+  <h1>Library</h1>
+  <h2>Rent, Return, Modify and Update Books</h2>
+  <br/>
+  <div>
+    <a href="/author/list" class="btn btn-success">authors</a>
+    <a href="/genre/list" class="btn btn-success">genres</a>
+  </div>
+  <br/>
+  <div class="btn-group">
+    <a href="library/new" class="btn btn-success">Add new Book</a>
+  </div>
+
+  <br/><br/>
+  <br/><br/>
+  <!--bookstable.html   -->
+  <div th:replace="library/fragments/bookstable :: bookstable"></div>
+  <br/><br/>
+
+  <br/><br/>
+
+</div>
+<div th:replace="fragments/footer :: footer" ></div>
+
+</body>
+</html>
