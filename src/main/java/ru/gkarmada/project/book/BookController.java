@@ -3,6 +3,7 @@ package ru.gkarmada.project.book;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,11 +68,13 @@ public class BookController {
 
 
     //
+    List<Author> authors= authorservice.listAll();
     List<Genre> listGenres = genreservice.listAll();
     List<Book> listBooks = bookservice.listAll();
     for (Book book : bookrepo.findAll()) {
       log.info(book.toString());
     }
+
     //
     //model.addAttribute("authors", book.getAuthors());
     model.addAttribute("listGenres", listGenres);
@@ -83,8 +86,15 @@ public class BookController {
   //Method to add new Book
   @RequestMapping("library/new")
   public String showNewBookForm(Model model){
+    List<Genre> genres= genreservice.listAll();
+    List<Author> authors= authorservice.listAll();
     Book book = new Book();
     model.addAttribute("book", book);
+    model.addAttribute("genres", genres);
+    model.addAttribute("authors", authors);
+    log.info("x2");
+    log.info("boo"+ authors);
+    log.info(String.valueOf(book));
     return "library/new";
   }
 
@@ -109,9 +119,13 @@ public class BookController {
   public ModelAndView showRentBookPage(@PathVariable(name = "bookid") Long bookid) {
     ModelAndView mav = new ModelAndView("/library/rent");
     Book book = bookservice.get(bookid);
+
+    //Set<Author> auth = (Set<Author>) authorservice.getAuthor(bookservice.getAuthID(bookid));
     final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
     log.info("---------------rent books----------------");
     mav.addObject("book", book);
+    //log.info("sex" + String.valueOf(auth));
+    //mav.addObject("author", auth);
 
     return mav;
   }

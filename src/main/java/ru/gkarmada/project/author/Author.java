@@ -1,6 +1,7 @@
 package ru.gkarmada.project.author;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ import ru.gkarmada.project.book.Book;
 public class Author {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "authorid")
   Long authorid;
   @Column(name = "name")
@@ -38,7 +39,7 @@ public class Author {
   String description;
 
   @ManyToMany(mappedBy = "authors")
-  private List<Book> books;
+  private Set<Book> books;
 
   public  Author(String name, String lastname, String secondname, String description){
     this.name = name;
@@ -50,10 +51,27 @@ public class Author {
   // String Methods
   @Override
   public String toString(){
+//    return String.format(
+//        "[ authorid=%d, name='%s', secondname='%s', lastname='%s', description='%s']",
+//        authorid, name, secondname, lastname, description);
     return String.format(
-        "[ authorid=%d, name='%s', secondname='%s', lastname='%s', description='%s']",
-        authorid, name, secondname, lastname, description);
+        "%s",
+        name);
+  }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Author author = (Author) o;
+    return Objects.equals(authorid, author.authorid);
   }
 
-
+  @Override
+  public int hashCode() {
+    return Objects.hash(authorid);
+  }
 }
