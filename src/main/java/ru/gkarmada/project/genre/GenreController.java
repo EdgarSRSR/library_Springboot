@@ -85,7 +85,7 @@ public class GenreController {
     // Method to create page for updating a genre
     @RequestMapping("genre/edit/{genre_id}")
     public ModelAndView showUpdateGenrePage(@PathVariable(name = "genre_id") Long genre_id) {
-        ModelAndView mav = new ModelAndView("/genre/update");
+        ModelAndView mav = new ModelAndView("/genre/edit");
         Genre genre = genreservice.get(genre_id);
 //        final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
 //        log.info("---------------update author----------------");

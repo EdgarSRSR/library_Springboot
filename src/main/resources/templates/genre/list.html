@@ -55,7 +55,7 @@
                 <td id="td-id-1" class="td-class-1" data-title="bootstrap table" th:text="${genre.name}">Name</td>
                 <td id="td-id-4" class="td-class-1" data-title="bootstrap table" th:text="${genre.description}">Description</td>
                 <td id="td-id-8" class="td-class-1" data-title="bootstrap table">
-                    <a th:href="@{'/genre/update/' + ${genre.genre_id}}">
+                    <a th:href="@{'/genre/edit/' + ${genre.genre_id}}">
                         <button type="button" class="btn btn-info">Update</button>
                     </a>
                 </td>
