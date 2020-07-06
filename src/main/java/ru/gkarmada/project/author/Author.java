@@ -24,36 +24,39 @@ import ru.gkarmada.project.book.Book;
 @NoArgsConstructor
 public class Author {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "authorid")
-  Long authorid;
-  @Column(name = "name")
-  String name;
-  @Column(name = "lastname")
-  String lastname;
-  @Column(name = "secondname")
-  String secondname;
-  @Column(name = "description")
-  String description;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long author_id;
 
-  @ManyToMany(mappedBy = "authors")
-  private List<Book> books;
+    @Column
+    String firstname;
 
-  public  Author(String name, String lastname, String secondname, String description){
-    this.name = name;
-    this.secondname = secondname;
-    this.lastname = lastname;
-    this.description = description;
-  }
+    @Column
+    String lastname;
 
-  // String Methods
-  @Override
-  public String toString(){
-    return String.format(
-        "[ authorid=%d, name='%s', secondname='%s', lastname='%s', description='%s']",
-        authorid, name, secondname, lastname, description);
-  }
+    @Column
+    String secondname;
+
+    @Column
+    String description;
+
+    @ManyToMany(mappedBy = "authors")
+    private List<Book> books;
+
+    public  Author(String firstname, String lastname, String secondname, String description){
+        this.firstname = firstname;
+        this.secondname = secondname;
+        this.lastname = lastname;
+        this.description = description;
+    }
+
+    // String Methods
+    @Override
+    public String toString(){
+        return String.format(
+                "[ authorid=%d, firstname='%s', secondname='%s', lastname='%s', description='%s']",
+                author_id, firstname, secondname, lastname, description);
+    }
 
 
 }

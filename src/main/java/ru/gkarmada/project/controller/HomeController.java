@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 
     // got to index
-    @RequestMapping("/")
+    @RequestMapping(value={"/", "/index"})
     public String home(Model model){
         return "index";
     }
