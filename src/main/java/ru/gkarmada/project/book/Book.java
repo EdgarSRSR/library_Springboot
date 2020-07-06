@@ -3,7 +3,6 @@ package ru.gkarmada.project.book;
 //  Configures variables for getting data from the books table
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -35,7 +34,7 @@ import ru.gkarmada.project.genre.Genre;
 public class Book {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "bookid")
   private Long bookid;
   @Column(name = "title")
@@ -58,11 +57,13 @@ public class Book {
   /*@ManyToMany(cascade = CascadeType.ALL)
   @JoinTable
   private Set<Author> author;*/
-  @ManyToMany(cascade = CascadeType.ALL)
+  /*@ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "book_author",
-      joinColumns = @JoinColumn(name = "bookid", referencedColumnName = "bookid"),
-      inverseJoinColumns = @JoinColumn(name = "id", referencedColumnName = "authorid"))
-  public Set<Author> authors;
+      joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "bookid"),
+      inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "authorid"))
+  private Set<Author> authors;*/
+  @ManyToMany
+  private List<Author> authors;
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "book_genre",
@@ -83,31 +84,16 @@ public class Book {
     this.description = description;
     /*this.authors = Stream.of(authors).collect(Collectors.toSet());
     this.authors.forEach(x -> x.getBooks().add(this));*/
-    /*this.genres = Stream.of(genre).collect(Collectors.toSet());
-    this.genres.forEach(x -> x.getBooks().add(this));*/
+    this.genres = Stream.of(genre).collect(Collectors.toSet());
+    this.genres.forEach(x -> x.getBooks().add(this));
   }
 
   // String Methods
   @Override
   public String toString(){
     return String.format(
-        "%s",title);
+        "[ bookid=%d, title='%s', authors='%s', genres='%s', isbn='%s', yearpub='%d', publisher='%s', availability='%b', publisher='%s']",
+        bookid, title, authors, genres, isbn, yearpub, publisher, availability, description);
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Book book = (Book) o;
-    return Objects.equals(bookid, book.bookid);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(bookid);
-  }
 }
