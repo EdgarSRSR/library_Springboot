@@ -2,13 +2,11 @@ package ru.gkarmada.project.book;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import ru.gkarmada.project.author.Author;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
 import ru.gkarmada.project.exception.ResourceNotFoundException;
@@ -30,13 +28,6 @@ public class BookService {
   public Book get(Long bookid){
     return bookrepo.findById(bookid).get();
   }
-
-//  public Set<Author> getAuthID(Long bookid){
-//    Book book = bookrepo.findById(bookid).get();
-//
-//
-//    return book.authors;
-//  }
 
   // Method to delete a book from the database
   public void delete(Long id){

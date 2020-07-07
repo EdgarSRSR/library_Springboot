@@ -39,8 +39,8 @@ public class Genre {
   @Override
   public String toString(){
     return String.format(
-        "%s",
-        name);
+        "[ genreid=%d, name='%s', description='%s']",
+        genreid, name, description);
   }
 
 }
