@@ -74,16 +74,12 @@
                     Description
                 </td>
                 <td id="td-id-8" class="td-class-1" data-title="bootstrap table">
-                    <a th:href="@{genre/{id}(id=${genre.genre_id})}">
-                        <button type="button" class="btn btn-info editGenreBtn"
-                                genre_id=th:text="${genre.name}"
-                            >
+                        <button type="button" class="btn btn-info editGenreBtn" th:href="@{/genre/{id}(id=${genre.id})}">
                             <i class="fas fa-pencil-alt"></i>edit
                         </button>
-                    </a>
                 </td>
                 <td id="td-id-9" class="td-class-1" data-title="bootstrap table">
-                    <form action="#" th:action="@{'/genre/delete/{id}'(id=${genre.genre_id})}" th:method="delete">
+                    <form action="#" th:action="@{'/genre/delete/{id}'(id=${genre.id})}" th:method="delete">
                         <input type="hidden" name="_method" value="delete"/>
                         <button type="submit" id="submitButton" class="btn btn-danger"><i class="fas fa-trash-alt"></i>delete</button>
                     </form>

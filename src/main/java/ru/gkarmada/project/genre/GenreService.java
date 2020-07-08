@@ -2,11 +2,12 @@ package ru.gkarmada.project.genre;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import ru.gkarmada.project.ProjectApplication;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
 import ru.gkarmada.project.exception.ResourceNotFoundException;
@@ -23,13 +24,18 @@ public class GenreService {
         return genreRepository.findAll();
     }
 
+    public Genre getGenre(Long genreId) {
+        return genreRepository.getOne(genreId);
+    }
+
     // Method that gets an Genre from the database
-    public Genre get(Long genreId) throws ResourceNotFoundException {
+    public Genre findById(Long genreId) throws ResourceNotFoundException {
         Optional<Genre> genreOptional = genreRepository.findById(genreId);
+
         if(genreOptional.isEmpty()) {
             throw new ResourceNotFoundException("Cannot find genre with id: " + genreId);
         }
-        return genreOptional.get();
+        return genreRepository.getOne(genreId);
     }
 
     // Method to delete a genre from the database
@@ -45,8 +51,8 @@ public class GenreService {
     // save genre
     public Genre save(Genre genre) throws BadResourceException, ResourceAlreadyExistsException {
         if (!StringUtils.isEmpty(genre.getName())) {
-            if (genre.getGenre_id() != null && existsById(genre.getGenre_id())) {
-                throw new ResourceAlreadyExistsException("Genre Id: " + genre.getGenre_id() +
+            if (genre.getId() != null && existsById(genre.getId())) {
+                throw new ResourceAlreadyExistsException("Genre Id: " + genre.getId() +
                         " already exists");
             }
             return genreRepository.save(genre);
@@ -61,8 +67,8 @@ public class GenreService {
     public void update(Genre genre)
             throws BadResourceException, ResourceNotFoundException {
         if (!StringUtils.isEmpty(genre.getName())) {
-            if (!existsById(genre.getGenre_id())) {
-                throw new ResourceNotFoundException("Cannot find genre with id: " + genre.getGenre_id());
+            if (!existsById(genre.getId())) {
+                throw new ResourceNotFoundException("Cannot find genre with id: " + genre.getId());
             }
             genreRepository.save(genre);
         } else {

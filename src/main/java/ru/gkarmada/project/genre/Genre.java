@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+
 @Entity
 @Getter
 @Setter
@@ -16,11 +17,13 @@ import lombok.Setter;
 public class Genre {
 
     @Id
+    @Column(name="genre_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long genre_id;
+    Long id;
 
-    String name;
-    String description;
+    private String name;
+
+    private String description;
 
     @ManyToMany(mappedBy = "genres")
     Set<Book> books;
@@ -36,7 +39,7 @@ public class Genre {
     public String toString() {
         return String.format(
                 "[ id=%d, name='%s', description='%s']",
-                genre_id, name, description);
+                id, name, description);
     }
 
 }

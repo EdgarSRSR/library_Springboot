@@ -4,16 +4,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -64,8 +55,8 @@ public class Book {
     @ManyToMany
     private List<Author> authors;
 
-    @ManyToMany
-    Set<Genre> genres;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<Genre> genres;
 
     public Book(Long book_id, String title, Genre genre, String isbn, int published,
                 String publisher, Boolean availability, String description, Author authors) {

@@ -80,7 +80,7 @@ public class GenreController {
     @RequestMapping("/genre/edit/{id}")
     public ModelAndView showUpdateGenrePage(@PathVariable(name = "id") Long genreId) throws ResourceNotFoundException {
         ModelAndView mav = new ModelAndView("/genre/edit");
-        Genre genre = genreService.get(genreId);
+        Genre genre = genreService.findById(genreId);
 //        final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
 //        log.info("---------------update author----------------");
         mav.addObject("genre", genre);
@@ -90,7 +90,7 @@ public class GenreController {
     @RequestMapping("/genre/{id}")
     @ResponseBody
     public Genre findGenre(@PathVariable("id") Long genreId) throws ResourceNotFoundException {
-        return genreService.get(genreId);
+        return genreService.findById(genreId);
     }
 
 }
