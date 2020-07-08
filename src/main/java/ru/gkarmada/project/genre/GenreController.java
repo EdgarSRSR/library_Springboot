@@ -1,21 +1,15 @@
 package ru.gkarmada.project.genre;
 
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.gkarmada.project.ProjectApplication;
-import ru.gkarmada.project.author.Author;
-import ru.gkarmada.project.author.AuthorRepository;
-import ru.gkarmada.project.author.AuthorService;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
 import ru.gkarmada.project.exception.ResourceNotFoundException;
@@ -24,12 +18,12 @@ import ru.gkarmada.project.exception.ResourceNotFoundException;
 public class GenreController {
     // injects author services
     @Autowired
-    private GenreService genreservice;
+    private GenreService genreService;
 
-    private final GenreRepository genrerepo;
+    private final GenreRepository genreRepository;
 
-    GenreController(GenreRepository genrerepo) {
-        this.genrerepo = genrerepo;
+    GenreController(GenreRepository genreRepository) {
+        this.genreRepository = genreRepository;
     }
 
     // get logger to log to the console
@@ -38,8 +32,8 @@ public class GenreController {
     // Method that fills the the Table of the Author for the admins
     @GetMapping("genre/list")
     public String viewGenre(Model model) {
-        List<Genre> listGenres = genreservice.listAll();
-        for (Genre genre : genrerepo.findAll()) {
+        List<Genre> listGenres = genreService.listAll();
+        for (Genre genre : genreRepository.findAll()) {
             log.info(genre.toString());
         }
         model.addAttribute("listGenres", listGenres);
@@ -48,7 +42,7 @@ public class GenreController {
 
     //Method to add new a genre
     @RequestMapping("genre/new")
-    public String showNewGenreForm(Model model){
+    public String showNewGenreForm(Model model) {
         Genre genre = new Genre();
         model.addAttribute("genre", genre);
         return "genre/new";
@@ -59,8 +53,8 @@ public class GenreController {
     @PostMapping(value = "genre/save")
     public String saveGenre(@ModelAttribute("genre") Genre genre)
             throws BadResourceException, ResourceAlreadyExistsException {
-        genreservice.save(genre);
-        for (Genre genre1: genrerepo.findAll()) {
+        genreService.save(genre);
+        for (Genre genre1 : genreRepository.findAll()) {
             log.info(genre.toString());
         }
         return "redirect:/genre/list";
@@ -68,29 +62,35 @@ public class GenreController {
 
 
     // method to delete a genre
-    @RequestMapping("genre/delete/{genre_id}")
-    public String deleteGenre(@PathVariable(name = "genre_id") Long genre_id) {
-        genreservice.delete(genre_id);
+    @RequestMapping("/genre/delete/{id}")
+    public String deleteGenre(@PathVariable(name = "id") Long genreId) {
+        genreService.delete(genreId);
         return "redirect:/genre/list";
     }
 
     //method to update
-    @PostMapping(value = "genre/update")
+    @PostMapping(value = {"/genre/update"})
     public String updateGenre(@ModelAttribute("genre") Genre genre)
             throws BadResourceException, ResourceAlreadyExistsException, ResourceNotFoundException {
-        genreservice.update(genre);
+        genreService.update(genre);
         return "redirect:/genre/list";
     }
 
     // Method to create page for updating a genre
-    @RequestMapping("genre/edit/{genre_id}")
-    public ModelAndView showUpdateGenrePage(@PathVariable(name = "genre_id") Long genre_id) {
+    @RequestMapping("/genre/edit/{id}")
+    public ModelAndView showUpdateGenrePage(@PathVariable(name = "id") Long genreId) throws ResourceNotFoundException {
         ModelAndView mav = new ModelAndView("/genre/edit");
-        Genre genre = genreservice.get(genre_id);
+        Genre genre = genreService.get(genreId);
 //        final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
 //        log.info("---------------update author----------------");
         mav.addObject("genre", genre);
         return mav;
+    }
+
+    @RequestMapping("/genre/{id}")
+    @ResponseBody
+    public Genre findGenre(@PathVariable("id") Long genreId) throws ResourceNotFoundException {
+        return genreService.get(genreId);
     }
 
 }

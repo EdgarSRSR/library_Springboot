@@ -1,6 +1,6 @@
 package ru.gkarmada.project.exception;
 
-public class ResourceNotFoundException extends  Exception{
+public class ResourceNotFoundException extends Exception {
 
     public ResourceNotFoundException() {
     }

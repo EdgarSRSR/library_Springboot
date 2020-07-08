@@ -1,7 +1,5 @@
 package ru.gkarmada.project.book;
 
-//  Configures variables for getting data from the books table
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,11 +24,11 @@ import ru.gkarmada.project.author.Author;
 import ru.gkarmada.project.genre.Genre;
 
 @Data
-// This class declares the parameters contained in the books data base
 @Entity
 @EqualsAndHashCode(exclude = "authors")
-// lombok implementation
-@Getter @Setter @NoArgsConstructor // <--- THIS is it
+@Getter
+@Setter
+@NoArgsConstructor
 public class Book {
 
     @Id
@@ -69,7 +68,7 @@ public class Book {
     Set<Genre> genres;
 
     public Book(Long book_id, String title, Genre genre, String isbn, int published,
-                String publisher, Boolean availability, String description, Author authors){
+                String publisher, Boolean availability, String description, Author authors) {
         this.book_id = book_id;
         this.title = title;
         this.isbn = isbn;
@@ -85,7 +84,7 @@ public class Book {
 
     // String Methods
     @Override
-    public String toString(){
+    public String toString() {
         return String.format(
                 "[ book_id=%d, title='%s', authors='%s', genres='%s', isbn='%s', published='%d', publisher='%s', availability='%b', description='%s']",
                 book_id, title, authors, genres, isbn, published, publisher, availability, description);

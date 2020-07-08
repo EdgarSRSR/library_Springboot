@@ -2,6 +2,7 @@ package ru.gkarmada.project.book;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -20,17 +21,17 @@ public class BookService {
     private BookRepository bookrepo;
 
     // Method that lists all book from the table
-    public List<Book> listAll(){
+    public List<Book> listAll() {
         return bookrepo.findAll();
     }
 
     // Method that gets a book from the database
-    public Book get(Long bookid){
+    public Book get(Long bookid) {
         return bookrepo.findById(bookid).get();
     }
 
     // Method to delete a book from the database
-    public void delete(Long id){
+    public void delete(Long id) {
         bookrepo.deleteById(id);
     }
 
@@ -43,10 +44,9 @@ public class BookService {
     // find by id
     public Book findById(Long bookid) throws ResourceNotFoundException {
         Book book = bookrepo.findById(bookid).orElse(null);
-        if(book == null){
+        if (book == null) {
             throw new ResourceNotFoundException("no book with id " + bookid);
-        }
-        else return book;
+        } else return book;
     }
 
     // create a list of all books
@@ -75,8 +75,7 @@ public class BookService {
                         " already exists");
             }
             return bookrepo.save(book);
-        }
-        else {
+        } else {
             BadResourceException exc = new BadResourceException("Failed to save book");
             exc.addErrorMessage("Book is null or empty");
             throw exc;
@@ -91,8 +90,7 @@ public class BookService {
                 throw new ResourceNotFoundException("Cannot find book with id: " + book.getBook_id());
             }
             bookrepo.save(book);
-        }
-        else {
+        } else {
             BadResourceException exc = new BadResourceException("Failed to save book");
             exc.addErrorMessage("Book is null or empty");
             throw exc;
@@ -103,8 +101,7 @@ public class BookService {
     public void deleteById(Long id) throws ResourceNotFoundException {
         if (!existsById(id)) {
             throw new ResourceNotFoundException("Cannot find book with id: " + id);
-        }
-        else {
+        } else {
             bookrepo.deleteById(id);
         }
     }

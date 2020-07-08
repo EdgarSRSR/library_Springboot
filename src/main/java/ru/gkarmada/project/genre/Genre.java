@@ -4,7 +4,6 @@ import ru.gkarmada.project.book.Book;
 
 import java.util.Set;
 import javax.persistence.*;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,7 +33,7 @@ public class Genre {
 
     // String Methods
     @Override
-    public String toString(){
+    public String toString() {
         return String.format(
                 "[ id=%d, name='%s', description='%s']",
                 genre_id, name, description);

@@ -1,0 +1,28 @@
+<!--new genre Modal-->
+<script>
+    $(document).ready(function(){
+        $('.newGenreBtn').on('click', function(event){
+            $('.newGenreForm #id').val('');
+            $('.newGenreForm #name').val('');
+            $('.newGenreForm #description').val('');
+            $('.newGenreForm #newGenreModal').modal();
+        });
+    });
+</script>
+
+<!-- edit genre modal-->
+<script>
+    $(document).ready(function(){
+        $('.editGenreBtn').on('click', function(event){
+            //prevents redirection to blank page with JSON-Task-Object
+            event.preventDefault();
+            var href = $(this).attr('href');
+            $.get(href, function(task){
+                $('.editGenreForm #id').val(genre.genre_id);
+                $('.editGenreForm #name').val(genre.name);
+                $('.editGenreForm #description').val(genre.description);
+            });
+            $('.myForm #editModal').modal();
+        });
+    });
+</script>

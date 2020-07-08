@@ -14,7 +14,7 @@
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<div  class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
+<div class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
     <h1>Genres</h1>
     <br/>
     <div>
@@ -22,9 +22,21 @@
         <a href="/author/list" class="btn btn-success">Authors</a>
     </div>
     <br/>
-    <div class="btn-group">
-        <a href="/genre/new" class="btn btn-primary">Add New Genre</a>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary newGenreBtn">
+                    <i class="fas fa-plus-circle"></i>New genre
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <th:block th:include="genre/newModal"></th:block>
+        </div>
     </div>
+
 
     <br/><br/>
     <br/><br/>
@@ -51,18 +63,21 @@
             </tr>
             </thead>
             <tbody>
-            <tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table" data-object='{"key": "value"}' th:each="genre: ${listGenres}">
+            <tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table" data-object='{"key": "value"}'
+                th:each="genre: ${listGenres}">
                 <td id="td-id-1" class="td-class-1" data-title="bootstrap table" th:text="${genre.name}">Name</td>
-                <td id="td-id-4" class="td-class-1" data-title="bootstrap table" th:text="${genre.description}">Description</td>
+                <td id="td-id-4" class="td-class-1" data-title="bootstrap table" th:text="${genre.description}">
+                    Description
+                </td>
                 <td id="td-id-8" class="td-class-1" data-title="bootstrap table">
                     <a th:href="@{'/genre/edit/' + ${genre.genre_id}}">
-                        <button type="button" class="btn btn-info">Update</button>
+                        <button type="button" class="btn btn-info"><i class="fas fa-pencil-alt"></i>edit</button>
                     </a>
                 </td>
                 <td id="td-id-9" class="td-class-1" data-title="bootstrap table">
-                    <form action="#" th:action="@{'/genre/delete/{id}'(id=${genre.genre_id})}" th:method="delete" >
-                        <input type="hidden" name="_method" value="delete" />
-                        <button type="submit" id="submitButton" class="btn btn-danger">Delete</button>
+                    <form action="#" th:action="@{'/genre/delete/{id}'(id=${genre.genre_id})}" th:method="delete">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" id="submitButton" class="btn btn-danger"><i class="fas fa-trash-alt"></i>delete</button>
                     </form>
                 </td>
             </tr>
@@ -74,7 +89,7 @@
     <br/><br/>
 
 </div>
-<div th:replace="fragments/footer :: footer" ></div>
+<div th:replace="fragments/footer :: footer"></div>
 
 </body>
 </html>
