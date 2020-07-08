@@ -35,6 +35,10 @@
         <div class="row">
             <th:block th:include="genre/newModal"></th:block>
         </div>
+
+        <div class="row">
+            <th:block th:include="genre/editModal"></th:block>
+        </div>
     </div>
 
 
@@ -70,8 +74,12 @@
                     Description
                 </td>
                 <td id="td-id-8" class="td-class-1" data-title="bootstrap table">
-                    <a th:href="@{'/genre/edit/' + ${genre.genre_id}}">
-                        <button type="button" class="btn btn-info"><i class="fas fa-pencil-alt"></i>edit</button>
+                    <a th:href="@{genre/{id}(id=${genre.genre_id})}">
+                        <button type="button" class="btn btn-info editGenreBtn"
+                                genre_id=th:text="${genre.name}"
+                            >
+                            <i class="fas fa-pencil-alt"></i>edit
+                        </button>
                     </a>
                 </td>
                 <td id="td-id-9" class="td-class-1" data-title="bootstrap table">

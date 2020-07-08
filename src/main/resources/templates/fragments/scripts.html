@@ -17,12 +17,14 @@
             //prevents redirection to blank page with JSON-Task-Object
             event.preventDefault();
             var href = $(this).attr('href');
-            $.get(href, function(task){
+            var cla = $(this).attr('genre_id');
+            $('.editGenreForm #description').val('value');
+            $.get(href, function(genre){
                 $('.editGenreForm #id').val(genre.genre_id);
                 $('.editGenreForm #name').val(genre.name);
-                $('.editGenreForm #description').val(genre.description);
+                $('.editGenreForm #description').val(genre_id);
             });
-            $('.myForm #editModal').modal();
+            $('.editGenreForm #editModal').modal();
         });
     });
 </script>
