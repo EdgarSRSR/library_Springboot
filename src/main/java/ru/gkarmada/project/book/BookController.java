@@ -68,6 +68,7 @@ public class BookController {
 
 
         //
+        List<Author> authors= authorservice.listAll();
         List<Genre> listGenres = genreservice.listAll();
         List<Book> listBooks = bookservice.listAll();
         for (Book book : bookrepo.findAll()) {
@@ -85,7 +86,11 @@ public class BookController {
     @RequestMapping("library/new")
     public String showNewBookForm(Model model) {
         Book book = new Book();
+        List<Genre> genres= genreservice.listAll();
+        List<Author> authors= authorservice.listAll();
         model.addAttribute("book", book);
+        model.addAttribute("genres", genres);
+        model.addAttribute("authors", authors);
         return "library/new";
     }
 

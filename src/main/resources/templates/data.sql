@@ -13,7 +13,7 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS books;
 
 CREATE TABLE books (
-    bookid INT AUTO_INCREMENT  PRIMARY KEY,
+    book_id INT AUTO_INCREMENT  PRIMARY KEY,
     title VARCHAR(60) NOT NULL,
     author VARCHAR(50) NOT NULL,
     genre VARCHAR(50) NOT NULL,
@@ -36,7 +36,7 @@ INSERT INTO books (title, author, genre, isbn, yearpub, publisher, availability,
     ('Pride and Prejudice', 'Jane Austen', 'Fiction', '888-0-89919-593-4', '1978', 'Books Inc.', false, 'a book');
 
 CREATE TABLE author (
-  authorid INT AUTO_INCREMENT PRIMARY KEY,
+  author_id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   lastname VARCHAR(50) NOT NULL,
   secondname VARCHAR(50),
@@ -44,7 +44,7 @@ CREATE TABLE author (
   );
 
   CREATE TABLE genre (
-    genreid INT AUTO_INCREMENT PRIMARY KEY,
+    genre_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(250)
     );

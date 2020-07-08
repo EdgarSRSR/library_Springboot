@@ -3,13 +3,13 @@
       xmlns:th="http://thymeleaf.org">
 <head>
   <div th:replace="fragments/header :: header"></div>
-  <title>Update Genre</title>
+  <title>Edit Genre</title>
 </head>
 <body>
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
 <div align="center">
-  <h1>Update Genre</h1>
+  <h1>Edit Genre</h1>
 
   <br />
   <form action="#" th:action="@{/genre/update}" th:object="${genre}"
@@ -19,7 +19,7 @@
 
       <tr>
         <td>Author ID:</td>
-        <td><input type="number" th:field="*{genreid}" readonly="readonly" /></td>
+        <td><input type="number" th:field="*{genre_id}" readonly="readonly" /></td>
       </tr>
       <tr>
         <td>Name:</td>
