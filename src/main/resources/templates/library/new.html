@@ -22,7 +22,7 @@
       <tr>
         <td>Author:</td>
         <td>
-          <select class="form-control-sm" th:object="${book}" th:field="*{authors}">
+          <select multiple class="form-control selectpicker" data-live-search="true" th:object="${book}" th:field="*{authors}">
 
             <option value="">Select Author</option>
             <option th:each="author : ${authors}"
@@ -35,7 +35,7 @@
       <tr>
         <td>Genre:</td>
         <td>
-          <select class="form-control-sm" th:object="${book}" th:field="*{genres}">
+          <select multiple class="form-control selectpicker"  data-live-search="true" th:object="${book}" th:field="*{genres}">
 
             <option value="">Select Genre</option>
             <option th:each="genre : ${genres}"
