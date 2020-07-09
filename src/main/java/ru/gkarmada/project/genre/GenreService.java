@@ -24,10 +24,6 @@ public class GenreService {
         return genreRepository.findAll();
     }
 
-    public Genre getGenre(Long genreId) {
-        return genreRepository.getOne(genreId);
-    }
-
     // Method that gets an Genre from the database
     public Genre findById(Long genreId) throws ResourceNotFoundException {
         Optional<Genre> genreOptional = genreRepository.findById(genreId);
@@ -39,13 +35,13 @@ public class GenreService {
     }
 
     // Method to delete a genre from the database
-    public void delete(Long genre_id) {
-        genreRepository.deleteById(genre_id);
+    public void delete(Long genreId) {
+        genreRepository.deleteById(genreId);
     }
 
     //  Check Id to see if genre exists
-    private boolean existsById(Long genre_id) {
-        return genreRepository.existsById(genre_id);
+    private boolean existsById(Long genreId) {
+        return genreRepository.existsById(genreId);
     }
 
     // save genre
