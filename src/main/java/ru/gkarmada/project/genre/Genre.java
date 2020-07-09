@@ -1,5 +1,6 @@
 package ru.gkarmada.project.genre;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import ru.gkarmada.project.book.Book;
 
 import java.util.Set;
@@ -25,6 +26,8 @@ public class Genre {
 
     private String description;
 
+    // TODO: use JsonManagedReference, JsonBackReference to allow books list of the genre in json
+    @JsonIgnore
     @ManyToMany(mappedBy = "genres")
     Set<Book> books;
 

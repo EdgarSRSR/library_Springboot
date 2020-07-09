@@ -39,7 +39,7 @@
 
             <option value="">Select Genre</option>
             <option th:each="genre : ${genres}"
-                    th:value="${genre.genre_id}"
+                    th:value="${genre.id}"
                     th:text="${genre.name}"></option>
           </select>
         </td>
