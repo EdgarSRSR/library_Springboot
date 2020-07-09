@@ -5,10 +5,10 @@ import ru.gkarmada.project.book.Book;
 
 import java.util.Set;
 import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 
 @Entity
@@ -18,7 +18,7 @@ import lombok.Setter;
 public class Genre {
 
     @Id
-    @Column(name="genre_id")
+    @Column(name = "genre_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
