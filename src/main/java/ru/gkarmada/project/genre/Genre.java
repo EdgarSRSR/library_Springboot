@@ -1,15 +1,14 @@
 package ru.gkarmada.project.genre;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import ru.gkarmada.project.book.Book;
 
 import java.util.Set;
 import javax.persistence.*;
-
+import javax.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Getter
@@ -22,8 +21,10 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @NotEmpty
     private String name;
 
+    @NotEmpty
     private String description;
 
     // TODO: use JsonManagedReference, JsonBackReference to allow books list of the genre in json

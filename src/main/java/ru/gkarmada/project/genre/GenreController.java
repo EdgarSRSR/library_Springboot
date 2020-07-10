@@ -49,8 +49,7 @@ public class GenreController {
     }
 
     //method that saves changes to author
-
-    @PostMapping(value = "genre/save")
+    @PostMapping(value = {"genre/save", "/genre"})
     public String saveGenre(@ModelAttribute("genre") Genre genre)
             throws BadResourceException, ResourceAlreadyExistsException {
         genreService.save(genre);
@@ -71,7 +70,7 @@ public class GenreController {
     //method to update
     @PostMapping(value = {"/genre/update"})
     public String updateGenre(@ModelAttribute("genre") Genre genre)
-            throws BadResourceException, ResourceAlreadyExistsException, ResourceNotFoundException {
+            throws BadResourceException, ResourceNotFoundException {
         genreService.update(genre);
         return "redirect:/genre/list";
     }

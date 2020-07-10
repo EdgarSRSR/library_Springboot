@@ -22,14 +22,14 @@
             data-response-handler="responseHandler">
         <thead>
         <tr>
-            <th data-sortable="true" scope="col">Title</th>
-            <th data-sortable="true" scope="col">Author</th>
-            <th data-sortable="true" scope="col">Genre</th>
+            <th data-sortable="true" scope="col"><span th:text="#{book.title}" /></th>
+            <th data-sortable="true" scope="col"><span th:text="#{book.author}" /></th>
+            <th data-sortable="true" scope="col"><span th:text="#{book.genre}" /></th>
             <th scope="col">ISBN</th>
             <th scope="col">Year of Publication</th>
             <th scope="col">Publisher</th>
             <th data-sortable="true" scope="col">Availability</th>
-            <th scope="col">Description</th>
+            <th scope="col"><span th:text="#{book.description}" /></th>
             <th scope="col">Rent and Return</th>
             <th scope="col">Remove</th>
         </tr>
