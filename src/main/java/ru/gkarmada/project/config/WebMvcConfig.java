@@ -9,12 +9,18 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.thymeleaf.dialect.springdata.SpringDataDialect;
 
 @Configuration
 @EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer {
 
     private ApplicationContext applicationContext;
+
+    @Bean
+    public SpringDataDialect springDataDialect() {
+        return new SpringDataDialect();
+    }
 
     @Bean
     @Description("Spring Message Resolver")

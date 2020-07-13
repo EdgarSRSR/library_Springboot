@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.gkarmada.project.ProjectApplication;
@@ -62,8 +63,14 @@ public class GenreController {
 
     // method to delete a genre
     @RequestMapping("/genre/delete/{id}")
-    public String deleteGenre(@PathVariable(name = "id") Long genreId) {
-        genreService.delete(genreId);
+    public String deleteGenre(@PathVariable(name = "id") Long genreId, Model model) {
+
+        try {
+            genreService.delete(genreId);
+
+        } catch (Exception ex) {
+            model.addAttribute("error", ex);
+        }
         return "redirect:/genre/list";
     }
 

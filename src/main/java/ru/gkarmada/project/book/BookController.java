@@ -1,5 +1,6 @@
 package ru.gkarmada.project.book;
 
+import java.awt.print.Pageable;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -7,11 +8,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -64,7 +67,7 @@ public class BookController {
 
     // Method that fills the the Table of the Book for the admins
     @GetMapping("/library")
-    public String viewBooks(Model model) {
+    public String viewBooks(Model model, ModelMap mmodel, @SortDefault("title") Pageable pageable) {
 
 
         //
@@ -76,6 +79,7 @@ public class BookController {
         }
         //
         //model.addAttribute("authors", book.getAuthors());
+        mmodel.addAttribute("page", bookrepo.findAll());
         model.addAttribute("listGenres", listGenres);
         model.addAttribute("listBooks", listBooks);
         return "library/list";

@@ -1,13 +1,16 @@
 package ru.gkarmada.project.book;
 
+import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.thymeleaf.dialect.springdata.SpringDataDialect;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
 import ru.gkarmada.project.exception.ResourceNotFoundException;
@@ -111,5 +114,8 @@ public class BookService {
         return bookrepo.count();
     }
 
-
+    /*public Object find(Pageable pageable) {
+        List<Book> books = new ArrayList<>();
+        return books;
+    }*/
 }
