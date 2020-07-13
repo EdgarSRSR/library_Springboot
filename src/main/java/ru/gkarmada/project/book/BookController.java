@@ -1,8 +1,5 @@
 package ru.gkarmada.project.book;
 
-//import java.awt.print.Pageable;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,25 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.SortDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ru.gkarmada.project.ProjectApplication;
 import ru.gkarmada.project.author.Author;
@@ -47,20 +33,20 @@ public class BookController {
 
     // injects book services
     @Autowired
-    private BookService bookservice;
+    private BookService bookService;
 
     //
     @Autowired
-    private AuthorService authorservice;
+    private AuthorService authorService;
 
     // genre service
     @Autowired
-    private GenreService genreservice;
+    private GenreService genreService;
 
-    private final BookRepository bookrepo;
+    private final BookRepository bookRepository;
 
-    BookController(BookRepository bookrepo) {
-        this.bookrepo = bookrepo;
+    BookController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
     // get logger to log to the console
@@ -68,19 +54,18 @@ public class BookController {
 
     // Method that fills the the Table of the Book for the admins
     @GetMapping("/library")
-    public String viewBooks(Model model, ModelMap mmodel, @SortDefault("title") Pageable pageable) {
-
+    public String viewBooks(ModelMap model, @SortDefault("title") Pageable pageable) {
 
         //
-        List<Author> authors= authorservice.listAll();
-        List<Genre> listGenres = genreservice.listAll();
-        List<Book> listBooks = bookservice.listAll();
-        for (Book book : bookrepo.findAll()) {
+        List<Author> authors= authorService.listAll();
+        List<Genre> listGenres = genreService.listAll();
+        List<Book> listBooks = bookService.listAll();
+        for (Book book : bookRepository.findAll()) {
             log.info(book.toString());
         }
         //
-        //model.addAttribute("authors", book.getAuthors());
-        mmodel.addAttribute("page", bookrepo.findAll());
+
+        model.addAttribute("page", bookService.find(pageable));
         model.addAttribute("listGenres", listGenres);
         model.addAttribute("listBooks", listBooks);
         return "library/list";
@@ -91,8 +76,8 @@ public class BookController {
     @RequestMapping("library/new")
     public String showNewBookForm(Model model) {
         Book book = new Book();
-        List<Genre> genres= genreservice.listAll();
-        List<Author> authors= authorservice.listAll();
+        List<Genre> genres= genreService.listAll();
+        List<Author> authors= authorService.listAll();
         model.addAttribute("book", book);
         model.addAttribute("genres", genres);
         model.addAttribute("authors", authors);
@@ -103,7 +88,7 @@ public class BookController {
     @PostMapping(value = "/save")
     public String saveBook(@ModelAttribute("book") Book book)
             throws BadResourceException, ResourceAlreadyExistsException {
-        bookservice.save(book);
+        bookService.save(book);
         return "redirect:/library";
     }
 
@@ -111,7 +96,7 @@ public class BookController {
     @PostMapping(value = "/rentreturn")
     public String rentreturnBook(@ModelAttribute("book") Book book)
             throws BadResourceException, ResourceAlreadyExistsException, ResourceNotFoundException {
-        bookservice.update(book);
+        bookService.update(book);
         return "redirect:/library";
     }
 
@@ -119,7 +104,7 @@ public class BookController {
     @RequestMapping("/library/rent/{bookid}")
     public ModelAndView showRentBookPage(@PathVariable(name = "bookid") Long bookid) {
         ModelAndView mav = new ModelAndView("/library/rent");
-        Book book = bookservice.get(bookid);
+        Book book = bookService.get(bookid);
         final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
         log.info("---------------rent books----------------");
         mav.addObject("book", book);
@@ -130,7 +115,7 @@ public class BookController {
     // method to delete a book
     @RequestMapping("/delete/{bookid}")
     public String deleteBook(@PathVariable(name = "bookid") Long bookid) {
-        bookservice.delete(bookid);
+        bookService.delete(bookid);
         return "redirect:/library";
     }
 
