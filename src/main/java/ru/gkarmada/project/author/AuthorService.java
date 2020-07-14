@@ -1,5 +1,6 @@
 package ru.gkarmada.project.author;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class AuthorService {
     public List<Author> listAll() {
         return authorRepository.findAll();
     }
+
 
     // Method that gets an Author from the database
     public Author getAuthor(Long authorid) {

@@ -38,12 +38,13 @@ public class Genre {
         this.description = description;
     }
 
-    // String Methods
+
     @Override
     public String toString() {
         return String.format(
-                "[ id=%d, name='%s', description='%s']",
-                id, name, description);
+            "id=%d, name='%s', description='%s'",
+            id, name, description);
     }
+
 
 }
