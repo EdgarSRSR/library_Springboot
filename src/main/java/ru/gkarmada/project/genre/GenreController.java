@@ -41,15 +41,8 @@ public class GenreController {
         return "genre/list";
     }
 
-    //Method to add new a genre
-    @RequestMapping("genre/new")
-    public String showNewGenreForm(Model model) {
-        Genre genre = new Genre();
-        model.addAttribute("genre", genre);
-        return "genre/new";
-    }
 
-    //method that saves changes to author
+    //method that saves changes to genre
     @PostMapping(value = {"genre/save", "/genre"})
     public String saveGenre(@ModelAttribute("genre") Genre genre)
             throws BadResourceException, ResourceAlreadyExistsException {
