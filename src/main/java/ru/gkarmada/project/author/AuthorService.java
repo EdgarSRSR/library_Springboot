@@ -40,9 +40,9 @@ public class AuthorService {
 
     // save author
     public Author save(Author author) throws BadResourceException, ResourceAlreadyExistsException {
-        if (!StringUtils.isEmpty(author.getFirstname())) {
-            if (author.getAuthor_id() != null && existsById(author.getAuthor_id())) {
-                throw new ResourceAlreadyExistsException("Author with id: " + author.getAuthor_id() +
+        if (!StringUtils.isEmpty(author.getFirstName())) {
+            if (author.getId() != null && existsById(author.getId())) {
+                throw new ResourceAlreadyExistsException("Author with id: " + author.getId() +
                         " already exists");
             }
             return authorRepository.save(author);
@@ -56,9 +56,9 @@ public class AuthorService {
     // update book
     public void update(Author author)
             throws BadResourceException, ResourceNotFoundException {
-        if (!StringUtils.isEmpty(author.getAuthor_id())) {
-            if (!existsById(author.getAuthor_id())) {
-                throw new ResourceNotFoundException("Cannot find author with id: " + author.getAuthor_id());
+        if (!StringUtils.isEmpty(author.getId())) {
+            if (!existsById(author.getId())) {
+                throw new ResourceNotFoundException("Cannot find author with id: " + author.getId());
             }
             authorRepository.save(author);
         } else {
