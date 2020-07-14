@@ -1,20 +1,19 @@
 package ru.gkarmada.project.author;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.core.SpringVersion;
 import ru.gkarmada.project.book.Book;
 
 @Data
@@ -25,28 +24,31 @@ import ru.gkarmada.project.book.Book;
 public class Author {
 
     @Id
+    @Column(name = "author_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long author_id;
+    private Long id;
 
     @Column
-    String firstname;
+    @NotEmpty
+    private String firstName;
 
     @Column
-    String lastname;
+    @NotEmpty
+    private String lastName;
 
     @Column
-    String secondname;
+    private String secondName;
 
     @Column
-    String description;
+    private String description;
 
     @ManyToMany(mappedBy = "authors")
     private List<Book> books;
 
-    public Author(String firstname, String lastname, String secondname, String description) {
-        this.firstname = firstname;
-        this.secondname = secondname;
-        this.lastname = lastname;
+    public Author(String firstName, String lastName, String secondName, String description) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.lastName = lastName;
         this.description = description;
     }
 
@@ -55,7 +57,7 @@ public class Author {
     public String toString() {
         return String.format(
                 "[ authorid=%d, firstname='%s', secondname='%s', lastname='%s', description='%s']",
-                author_id, firstname, secondname, lastname, description);
+                id, firstName, secondName, lastName, description);
     }
 
 }
