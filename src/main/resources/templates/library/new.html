@@ -23,12 +23,12 @@
                 <td>Author:</td>
                 <td>
                     <select multiple class="form-control selectpicker" data-live-search="true" th:object="${book}"
-                            th:field="*{authors}">
+                            th:field="*{authors}" path="authors.author_id">
 
                         <option value="">Select Author</option>
                         <option th:each="author : ${authors}"
                                 th:value="${author.author_id}"
-                                th:text="${author.lastname}"></option>
+                                th:label="${author.lastname}"></option>
                     </select>
                 </td>
 

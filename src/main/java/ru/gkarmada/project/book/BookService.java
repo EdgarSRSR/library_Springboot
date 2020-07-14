@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import ru.gkarmada.project.author.Author;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
 import ru.gkarmada.project.exception.ResourceNotFoundException;
@@ -26,6 +27,10 @@ public class BookService {
     public List<Book> listAll() {
         return bookRepository.findAll();
     }
+
+    /*public List<Author> listAuthor(String author) {
+        return bookRepository.findAll();
+    }*/
 
     // Method that gets a book from the database
     public Book get(Long id) {

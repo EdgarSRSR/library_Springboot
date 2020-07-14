@@ -86,8 +86,9 @@ public class BookController {
 
     //method that saves changes to books
     @PostMapping(value = "/save")
-    public String saveBook(@ModelAttribute("book") Book book)
+    public String saveBook(@ModelAttribute("book") Book book, @ModelAttribute("authors") Author author,@ModelAttribute("genres") Genre genre)
             throws BadResourceException, ResourceAlreadyExistsException {
+        bookService.listAll();
         bookService.save(book);
         return "redirect:/library";
     }
