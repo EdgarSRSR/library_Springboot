@@ -71,9 +71,14 @@ public class AuthorController {
     }
 
     // method to delete an author
-    @RequestMapping("/delete_author/{authorid}")
-    public String deleteAuthor(@PathVariable(name = "authorid") Long authorid) {
-        authorservice.deleteAuthor(authorid);
+    @RequestMapping("/delete_author/{id}")
+    public String deleteAuthor(@PathVariable(name = "id") Long id, Model model) {
+
+        try {
+        authorservice.deleteAuthor(id);
+        } catch (Exception ex) {
+            model.addAttribute("error", ex);
+        }
         return "redirect:/author/list";
     }
 
@@ -86,10 +91,10 @@ public class AuthorController {
     }
 
     // Method to create page for updating author
-    @RequestMapping("/author/update/{authorid}")
-    public ModelAndView showUpdateAuthorPage(@PathVariable(name = "authorid") Long authorid) {
+    @RequestMapping("/author/update/{id}")
+    public ModelAndView showUpdateAuthorPage(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("/author/update");
-        Author author = authorservice.getAuthor(authorid);
+        Author author = authorservice.getAuthor(id);
         final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
         log.info("---------------update author----------------");
         mav.addObject("author", author);
