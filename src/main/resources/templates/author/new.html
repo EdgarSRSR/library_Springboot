@@ -9,28 +9,52 @@
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<tr align="center">
-    <h1>New Author</h1>
-    <form action="#" th:action="@{/author_save}" th:object="${author}" method="post" class="form-horizontal">
+<div align="center">
+
+        <h1>New Author</h1>
+
+    <form action="#" th:action="@{/author_save}" th:object="${author}" method="post" >
         <div class="form-group has-feedback">
+            <table border="0" cellpadding="10">
+                <tr>
+                <td>
             <input
                     th:replace="~{fragments/inputField :: input ('First Name', 'firstName', 'text')}" />
+                </td>
+                </tr>
+                <tr>
+                <td>
             <input
                     th:replace="~{fragments/inputField :: input ('Last Name', 'lastName', 'text')}" />
+                </td>
+                </tr>
+                <tr>
+                <td>
             <input
                     th:replace="~{fragments/inputField :: input ('second Name', 'secondName', 'text')}" />
+                </td>
+                </tr>
+                <tr>
+                <td>
             <input
                     th:replace="~{fragments/inputField :: input ('description', 'description', 'text')}" />
-        </div>
+                </td>
+                </tr>
+                <tr>
+                <td>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button
-                        class="btn btn-default" type="submit">Add Author
-                </button>
+                <button type="submit">Add Author </button>
             </div>
         </div>
-
+                </td>
+                </tr>
+            </table>
     </form>
+</div>
+
+
+
 
     <!-- Footer -->
     <div th:replace="fragments/footer :: footer"></div>
