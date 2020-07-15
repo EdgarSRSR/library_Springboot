@@ -34,12 +34,16 @@
 
             </tr>
             <tr>
-                <td><form:label path = "genre">Genre</form:label></td>
+                <td>Genre:</td>
                 <td>
-                    <form:select path = "genre">
-                        <form:option value = "NONE" label = "Select"/>
-                        <form:options items = "${genres}" />
-                    </form:select>
+                    <select multiple class="form-control selectpicker" data-live-search="true" th:object="${book}"
+                            th:field="*{genres}" path="genres.id">
+
+                        <option value="">Select Genre</option>
+                        <option th:each="genre : ${genres}"
+                                th:value="${genre.id}"
+                                th:label="${genre.name}"></option>
+                    </select>
                 </td>
             </tr>
             <tr>
