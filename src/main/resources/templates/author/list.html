@@ -22,9 +22,13 @@
     <a href="/genre/list" class="btn btn-success">genres</a>
   </div>
   <br/>
-  <div class="btn-group">
-    <a href="/author/new" class="btn btn-primary">Add New Author</a>
-  </div>
+  <div class="container-fluid">
+    <div class="btn-group">
+      <a href="/author/new" class="btn btn-primary">Add New Author</a>
+    </div>
+    <div class="row">
+      <th:block th:include="author/editModal"></th:block>
+    </div>
 
   <br/><br/>
   <br/><br/>
@@ -66,6 +70,11 @@
         </td>
         <td id="td-id-4" class="td-class-1" data-title="bootstrap table"
             th:text="${author.description}">Description
+        </td>
+        <td id="td-id-5" class="td-class-1" data-title="bootstrap table">
+          <button type="button" class="btn btn-info editAuthorBtn" th:href="@{/author/{id}(id=${author.id})}">
+            <i class="fas fa-pencil-alt"></i>edit
+          </button>
         </td>
         <td id="td-id-8" class="td-class-1" data-title="bootstrap table"><a
             th:href="@{'/author/update/' + ${author.id}}">Update</a></td>

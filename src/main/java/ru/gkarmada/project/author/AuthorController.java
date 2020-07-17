@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import ru.gkarmada.project.ProjectApplication;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
 import ru.gkarmada.project.exception.ResourceNotFoundException;
+import ru.gkarmada.project.genre.Genre;
 
 @Controller
 public class AuthorController {
@@ -100,6 +102,13 @@ public class AuthorController {
         mav.addObject("author", author);
 
         return mav;
+    }
+
+
+    @RequestMapping("/author/{id}")
+    @ResponseBody
+    public Author findAuthor(@PathVariable("id") Long id) throws ResourceNotFoundException {
+        return authorservice.getAuthor(id);
     }
 
 }

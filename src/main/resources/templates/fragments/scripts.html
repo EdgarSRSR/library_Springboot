@@ -11,6 +11,27 @@
 
 </script>
 
+<!-- edit author modal-->
+<script>
+    $(document).ready(function(){
+        $('.editAuthorBtn').on('click', function(event){
+            //prevents redirection to blank page with JSON-Task-Object
+            event.preventDefault();
+            var href = $(this).attr('href');
+            $.get(href, function(author){
+                $('.editAuthorForm #id').val(author.id);
+                $('.editAuthorForm #firstName').val(author.firsrName);
+                $('.editAuthorForm #lastName').val(author.lastName);
+                $('.editAuthorForm #secondName').val(author.secondName);
+                $('.editAuthorForm #description').val(author.description);
+                $('.editAuthorForm #editModal').modal();
+            });
+        });
+    });
+
+</script>
+
+
 <!-- edit genre modal-->
 <script>
     $(document).ready(function(){

@@ -23,12 +23,12 @@
                 <td>Author:</td>
                 <td>
                     <select multiple class="form-control selectpicker" data-live-search="true" th:object="${book}"
-                            th:field="*{authors}" path="authors.id">
+                            th:field="*{authors}" path="author.id">
 
                         <option value="">Select Author</option>
-                        <option th:each="author : ${authors}"
-                                th:value="${author.id}"
-                                th:label="${author.lastName}"></option>
+                        <option th:each="authors : ${authors}"
+                                th:value="${authors.Id}"
+                                th:label="${authors.lastName}"></option>
                     </select>
                 </td>
 
@@ -37,12 +37,13 @@
                 <td>Genre:</td>
                 <td>
                     <select multiple class="form-control selectpicker" data-live-search="true" th:object="${book}"
-                            th:field="*{genres}" path="genres.id">
+
+                            th:field="*{genres}" path="genre.id">
 
                         <option value="">Select Genre</option>
-                        <option th:each="genre : ${genres}"
-                                th:value="${genre.id}"
-                                th:label="${genre.name}"></option>
+                        <option th:each="genres : ${genres}"
+                                th:value="${genres.getId()}"
+                                th:label="${genres.name}"></option>
                     </select>
                 </td>
             </tr>
