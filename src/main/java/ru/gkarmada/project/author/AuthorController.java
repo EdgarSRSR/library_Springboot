@@ -73,7 +73,7 @@ public class AuthorController {
     }
 
     // method to delete an author
-    @RequestMapping("/delete_author/{id}")
+    @RequestMapping("/author/delete/{id}")
     public String deleteAuthor(@PathVariable(name = "id") Long id, Model model) {
 
         try {
