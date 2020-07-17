@@ -52,19 +52,12 @@ public class AuthorController {
     }
 
 
-    //Method to add new Author
-    @RequestMapping("author/new")
-    public String showNewAuthorForm(Model model) {
-        Author author = new Author();
-        model.addAttribute("author", author);
-        return "author/new";
-    }
-
     //method that saves changes to author
 
-    @PostMapping(value = "/author_save")
+    //method that saves changes to genre
+    @PostMapping(value = {"author/save", "/author"})
     public String saveAuthor(@ModelAttribute("author") Author author)
-            throws BadResourceException, ResourceAlreadyExistsException {
+        throws BadResourceException, ResourceAlreadyExistsException {
         authorservice.save(author);
         for (Author author1 : authorRepository.findAll()) {
             log.info(author.toString());

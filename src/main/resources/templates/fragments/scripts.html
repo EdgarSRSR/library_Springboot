@@ -11,6 +11,21 @@
 
 </script>
 
+<!--new Author Modal-->
+<script>
+    $(document).ready(function(){
+        $('.newAuthorBtn').on('click', function(event){
+            $('.newAuthorForm #id').val('');
+            $('.newAuthorForm #firstName').val('');
+            $('.newAuthorForm #lastName').val('');
+            $('.newAuthorForm #secondName').val('');
+            $('.newAuthorForm #description').val('');
+            $('.newAuthorForm #newAuthorModal').modal();
+        });
+    });
+
+</script>
+
 <!-- edit author modal-->
 <script>
     $(document).ready(function(){

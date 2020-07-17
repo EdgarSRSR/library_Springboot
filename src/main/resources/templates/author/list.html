@@ -23,8 +23,15 @@
   </div>
   <br/>
   <div class="container-fluid">
-    <div class="btn-group">
-      <a href="/author/new" class="btn btn-primary">Add New Author</a>
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary newAuthorBtn">
+          <i class="fas fa-plus-circle"></i>New Author
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <th:block th:include="author/newModal"></th:block>
     </div>
     <div class="row">
       <th:block th:include="author/editModal"></th:block>
