@@ -69,7 +69,4 @@ public class AuthorService {
         }
     }
 
-  public Author getAuthorByLastName(Set<Author> lastname) {
-        return authorRepository.findByLastName(lastname);
-  }
 }
