@@ -1,6 +1,7 @@
 package ru.gkarmada.project.author;
 
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +44,10 @@ public class Author {
     private String description;
 
     @ManyToMany(mappedBy = "authors")
-    private List<Book> books;
+    private Set<Book> books;
+
+
+
 
     public Author(String firstName, String lastName, String secondName, String description) {
         this.firstName = firstName;

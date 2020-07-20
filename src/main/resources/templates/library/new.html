@@ -10,6 +10,12 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 <div align="center">
     <h1>New Book</h1>
+    <!--<div class="row">
+        <th:block th:include="library/fragments/authorsModal"></th:block>
+    </div>
+    <div class="row">
+        <th:block th:include="library/genres/editModal"></th:block>
+    </div>-->
     <br/>
     <form action="#" th:action="@{/save}" th:object="${book}"
           method="post">

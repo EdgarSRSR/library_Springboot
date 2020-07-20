@@ -53,7 +53,7 @@ public class Book {
       inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "authorid"))
   private Set<Author> authors;*/
     @ManyToMany
-    private List<Author> authors;
+    private Set<Author> authors;
 
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Genre> genres;

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+  <div th:replace="fragments/header :: header"></div>
+  <title>Update Author</title>
+</head>
+<body>
+<!--navbar.html   -->
+<div th:replace="fragments/navbar :: navbar"></div>
+<div align="center">
+  <h1>Update Author</h1>
+
+  <br />
+  <form action="#" th:action="@{/author/update}" th:object="${author}"
+        method="post">
+
+    <table border="0" cellpadding="10">
+
+      <tr>
+        <td>Author ID:</td>
+        <td><input type="number" th:field="*{id}" readonly="readonly" /></td>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" th:field="*{firstName}"  /></td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td><input type="text" th:field="*{lastName}" /></td>
+      </tr>
+      <tr>
+        <td>Second Name</td>
+        <td><input type="text" th:field="*{secondName}" /></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><input type="text" th:field="*{description}" /></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button type="submit">Save</button> </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer" ></div>
+</body>
+</html>

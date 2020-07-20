@@ -1,7 +1,10 @@
 package ru.gkarmada.project.book;
 
+import java.util.HashSet;
 import java.util.List;
 
+import java.util.Set;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +13,15 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import ru.gkarmada.project.ProjectApplication;
 import ru.gkarmada.project.author.Author;
@@ -112,6 +119,35 @@ public class BookController {
 
         return mav;
     }
+
+    //add author to book
+    /*@RequestMapping(value="/library/fragments/authorsModal", method= RequestMethod.POST)
+    public String addAuthor(@Valid @ModelAttribute Book book,
+        BindingResult result,
+        @RequestParam("authors") String authors,
+        Model model,
+        SessionStatus status) throws BadResourceException, ResourceAlreadyExistsException {
+        if (result.hasErrors()){
+            return "library/new";
+        }
+        else {
+            Set<Author> authorSet = new HashSet();
+
+            for (String auth: authors.split(",")){
+
+                    Author authObj = authorService.getAuthor(auth);
+                    }
+                    authorSet.add(authObj);
+            }
+            book.setAuthors(authorSet);
+            bookService.save(book);
+
+            status.setComplete();
+
+            return "redirect:/library/new";
+
+        }*/
+
 
     // method to delete a book
     @RequestMapping("/delete/{bookid}")
