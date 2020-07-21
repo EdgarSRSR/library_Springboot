@@ -151,8 +151,12 @@ public class BookController {
 
     // method to delete a book
     @RequestMapping("/delete/{bookid}")
-    public String deleteBook(@PathVariable(name = "bookid") Long bookid) {
-        bookService.delete(bookid);
+    public String deleteBook(@PathVariable(name = "bookid") Long bookid, Model model) {
+        try {
+            bookService.delete(bookid);
+        } catch (Exception ex) {
+            model.addAttribute("error", ex);
+        }
         return "redirect:/library";
     }
 

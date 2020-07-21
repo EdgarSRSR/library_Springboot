@@ -2,6 +2,7 @@ package ru.gkarmada.project.genre;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,15 +57,14 @@ public class GenreController {
 
     // method to delete a genre
     @RequestMapping("/genre/delete/{id}")
-    public String deleteGenre(@PathVariable(name = "id") Long genreId, Model model) {
+    public String deleteGenre(@PathVariable(name = "id") Long genreId, @Valid Genre genre, BindingResult result) {
 
-        try {
+        if(result.hasErrors()){
+            return "genre/errorModal";
+        }else{
             genreService.delete(genreId);
-
-        } catch (Exception ex) {
-            model.addAttribute("error", ex);
+            return "redirect:/genre/list";
         }
-        return "redirect:/genre/list";
     }
 
     //method to update
@@ -91,5 +91,7 @@ public class GenreController {
     public Genre findGenre(@PathVariable("id") Long genreId) throws ResourceNotFoundException {
         return genreService.findById(genreId);
     }
+
+
 
 }
