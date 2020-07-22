@@ -121,7 +121,7 @@ public class BookController {
     }
 
     //add author to book
-    /*@RequestMapping(value="/library/fragments/authorsModal", method= RequestMethod.POST)
+    @RequestMapping(value="/library/fragments/authorsModal", method= RequestMethod.POST)
     public String addAuthor(@Valid @ModelAttribute Book book,
         BindingResult result,
         @RequestParam("authors") String authors,
@@ -131,33 +131,19 @@ public class BookController {
             return "library/new";
         }
         else {
-            Set<Author> authorSet = new HashSet();
-
-            for (String auth: authors.split(",")){
-
-                    Author authObj = authorService.getAuthor(auth);
-                    }
-                    authorSet.add(authObj);
-            }
-            book.setAuthors(authorSet);
-            bookService.save(book);
-
-            status.setComplete();
 
             return "redirect:/library/new";
 
-        }*/
-
+        }
+    }
 
     // method to delete a book
     @RequestMapping("/delete/{bookid}")
-    public String deleteBook(@PathVariable(name = "bookid") Long bookid, Model model) {
-        try {
-            bookService.delete(bookid);
-        } catch (Exception ex) {
-            model.addAttribute("error", ex);
-        }
+    public String deleteBook(@PathVariable(name = "bookid") Long bookid) {
+        bookService.delete(bookid);
         return "redirect:/library";
     }
+
+
 
 }
