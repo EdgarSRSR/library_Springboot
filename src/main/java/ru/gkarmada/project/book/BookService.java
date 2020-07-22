@@ -37,6 +37,11 @@ public class BookService {
         return bookRepository.findById(id).get();
     }
 
+    // Method that gets a book from the database
+    public Book getBook(Long book_id) {
+        return bookRepository.findById(book_id).get();
+    }
+
     // Method to delete a book from the database
     public void delete(Long id) {
         bookRepository.deleteById(id);

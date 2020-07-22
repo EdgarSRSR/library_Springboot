@@ -144,6 +144,35 @@ public class BookController {
         return "redirect:/library";
     }
 
+    //method to add authors to book
+    @PostMapping(value = "library/addAuthors")
+    public String addAuthors(@ModelAttribute("author") Author author, Model model)
+        throws BadResourceException, ResourceAlreadyExistsException, ResourceNotFoundException {
+        List<Author> authors= authorService.listAll();
+        model.addAttribute("authors", authors);
+        return "redirect:/author/new";
+    }
+
+     // Method to create page for adding authors to book
+    @RequestMapping("/library/addAuthors/{id}")
+    public ModelAndView showAddAuthorsPage(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("library/addAuthors");
+        Book book = bookService.getBook(id);
+        final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
+        log.info("---------------add authors----------------");
+        mav.addObject("book", book);
+        return mav;
+    }
+
+/*
+    //method to update
+    @PostMapping(value = "library/addGenres")
+    public String addGenres(@ModelAttribute("author") Author author)
+        throws BadResourceException, ResourceAlreadyExistsException, ResourceNotFoundException {
+        List<Genre> genres= genreService.listAll();
+        return "redirect:/author/list";
+    }*/
+
 
 
 }

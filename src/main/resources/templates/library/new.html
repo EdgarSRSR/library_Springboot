@@ -14,7 +14,7 @@
         <th:block th:include="library/fragments/authorsModal"></th:block>
     </div>
     <div class="row">
-        <th:block th:include="library/genres/editModal"></th:block>
+        <th:block th:include="library/fragments/genresModal"></th:block>
     </div>-->
     <br/>
     <form action="#" th:action="@{/save}" th:object="${book}"
@@ -27,6 +27,16 @@
             </tr>
             <tr>
                 <td>Author:</td>
+                <!--
+                <td colspan="2">
+                    <button type="">Authors</button>
+                </td>-->
+                <td id="td-id-5" class="td-class-1" data-title="bootstrap table">
+                    <button type="button" class="btn btn-info addAuthorsBtn" th:href="@{/book/{id}(id=${book.book_id})}">
+                        <i class="fas fa-pencil-alt"></i>Add Authors
+                    </button>
+                </td>
+                <!--
                 <td>
                     <select multiple class="form-control selectpicker" data-live-search="true" th:object="${book}"
                             th:field="*{authors}" path="author.id">
@@ -36,11 +46,21 @@
                                 th:value="${authors.Id}"
                                 th:label="${authors.lastName}"></option>
                     </select>
-                </td>
+                </td>-->
 
             </tr>
             <tr>
                 <td>Genre:</td>
+                <!--
+                <td colspan="2">
+                    <button type="">Genres</button>
+                </td>-->
+                <td id="td-id-5" class="td-class-1" data-title="bootstrap table">
+                    <button type="button" class="btn btn-info addGenresBtn" th:href="@{/book/{id}(id=${book.book_id})}">
+                        <i class="fas fa-pencil-alt"></i>Add Genre
+                    </button>
+                </td>
+                <!--
                 <td>
                     <select multiple class="form-control selectpicker" data-live-search="true" th:object="${book}"
 
@@ -51,7 +71,7 @@
                                 th:value="${genres.getId()}"
                                 th:label="${genres.name}"></option>
                     </select>
-                </td>
+                </td>-->
             </tr>
             <tr>
                 <td>ISBN:</td>
