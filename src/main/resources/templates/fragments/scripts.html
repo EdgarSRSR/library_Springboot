@@ -29,16 +29,9 @@
 <!--Add Authors to Book -->
 <script>
     $(document).ready(function(){
-        $('.addAuthorsBtn').on('click', function(event){
-            //prevents redirection to blank page with JSON-Task-Object
-            event.preventDefault();
-            $('.addAuthorsForm #id').val('');
-            $('.addAuthorsForm #firstName').val('');
-            $('.addAuthorsForm #lastName').val('');
-            $('.addAuthorsForm #secondName').val('');
-            $('.addAuthorsForm #description').val('');
-            $('.addAuthorsForm #newAuthorModal').modal();
-        });
+      $(".addAuthorsBtn").on('click', function(event){
+        $("#addAuthors").modal();
+      });
     });
 </script>
 
@@ -99,10 +92,12 @@
 
 <!--error Genre Modal-->
 <script>
-function errorModal(title, body) {
-  // Display error message to the user in a modal
-  $('#error-modal-title').html(title);
-  $('#error-modal-body').html(body);
-  $('#error-modal').modal('show');
-}
+    $(document).ready(function(){
+        $('.deleteGenreBtn').on('click', function(event){
+           $('#delete-modal').modal();
+            $.get(href, function(genre){
+                $('.deleteGenreForm #id').val(genre.id);
+            });
+        });
+    });
 </script>

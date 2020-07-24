@@ -56,15 +56,16 @@ public class GenreController {
 
 
     // method to delete a genre
-    @RequestMapping("/genre/delete/{id}")
-    public String deleteGenre(@PathVariable(name = "id") Long genreId, @Valid Genre genre, BindingResult result) {
+    @RequestMapping(value={"/genre/delete"})
+    public String deleteGenre(Model model, @ModelAttribute("genre") Genre genre) {
 
-        if(result.hasErrors()){
-            return "genre/errorModal";
-        }else{
-            genreService.delete(genreId);
-            return "redirect:/genre/list";
+        try {
+            genreService.delete(genre);
+        } catch (Exception ex) {
+            model.addAttribute("error", ex);
         }
+            return "redirect:/genre/list";
+
     }
 
     //method to update

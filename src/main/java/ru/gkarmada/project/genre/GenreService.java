@@ -35,8 +35,8 @@ public class GenreService {
     }
 
     // Method to delete a genre from the database
-    public void delete(Long genreId) {
-        genreRepository.deleteById(genreId);
+    public void delete(Genre genre) {
+        genreRepository.deleteById(genre.getId());
     }
 
     //  Check Id to see if genre exists

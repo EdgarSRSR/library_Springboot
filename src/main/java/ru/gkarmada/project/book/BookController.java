@@ -152,6 +152,7 @@ public class BookController {
         model.addAttribute("authors", authors);
         return "redirect:/author/new";
     }
+/*
 
      // Method to create page for adding authors to book
     @RequestMapping("/library/addAuthors/{id}")
@@ -164,7 +165,7 @@ public class BookController {
         return mav;
     }
 
-/*
+
     //method to update
     @PostMapping(value = "library/addGenres")
     public String addGenres(@ModelAttribute("author") Author author)
