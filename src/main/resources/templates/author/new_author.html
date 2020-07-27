@@ -13,31 +13,23 @@
 
         <h1>New Author</h1>
 
-    <form action="#" th:action="@{/author_save}" th:object="${author}" method="post" >
+    <form action="#" th:object="${author}" method="post" >
         <div class="form-group has-feedback">
             <table border="0" cellpadding="10">
                 <tr>
-                <td>
-            <input
-                    th:replace="~{fragments/inputField :: input ('First Name', 'firstName', 'text')}" />
+                <td><input type="text" th:field="*{firstName}"/><label> First Name</label>
                 </td>
                 </tr>
                 <tr>
-                <td>
-            <input
-                    th:replace="~{fragments/inputField :: input ('Last Name', 'lastName', 'text')}" />
+                <td><input type="text" th:field="*{lastName}" /><label>Last Name</label>
                 </td>
                 </tr>
                 <tr>
-                <td>
-            <input
-                    th:replace="~{fragments/inputField :: input ('second Name', 'secondName', 'text')}" />
+                <td><input type="text" th:field="*{secondName}" /><label>Second Name</label>
                 </td>
                 </tr>
                 <tr>
-                <td>
-            <input
-                    th:replace="~{fragments/inputField :: input ('description', 'description', 'text')}" />
+                <td><input type="text" th:field="*{description}" /><label>Description</label>
                 </td>
                 </tr>
                 <tr>
@@ -52,9 +44,6 @@
             </table>
     </form>
 </div>
-
-
-
 
     <!-- Footer -->
     <div th:replace="fragments/footer :: footer"></div>

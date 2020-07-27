@@ -65,6 +65,17 @@ public class AuthorController {
         return "redirect:/author/list";
     }
 
+    //method to add new author from new book form
+   /* @PostMapping("author/new")
+    public String newAuthor(@ModelAttribute("author") Author author)
+        throws BadResourceException, ResourceAlreadyExistsException {
+        authorservice.save(author);
+        for (Author author1 : authorRepository.findAll()) {
+            log.info(author.toString());
+        }
+        return "redirect:/library/new ";
+    }*/
+
     // method to delete an author
     @RequestMapping("/author/delete/{id}")
     public String deleteAuthor(@PathVariable(name = "id") Long id, Model model) {
