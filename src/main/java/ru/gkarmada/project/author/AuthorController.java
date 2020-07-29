@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import ru.gkarmada.project.ProjectApplication;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
 import ru.gkarmada.project.exception.ResourceNotFoundException;
+import ru.gkarmada.project.genre.Genre;
 
 @Controller
 public class AuthorController {
@@ -50,19 +52,12 @@ public class AuthorController {
     }
 
 
-    //Method to add new Author
-    @RequestMapping("author/new")
-    public String showNewAuthorForm(Model model) {
-        Author author = new Author();
-        model.addAttribute("author", author);
-        return "author/new";
-    }
-
     //method that saves changes to author
 
-    @PostMapping(value = "/author_save")
+    //method that saves changes to genre
+    @PostMapping(value = {"author/save", "/author"})
     public String saveAuthor(@ModelAttribute("author") Author author)
-            throws BadResourceException, ResourceAlreadyExistsException {
+        throws BadResourceException, ResourceAlreadyExistsException {
         authorservice.save(author);
         for (Author author1 : authorRepository.findAll()) {
             log.info(author.toString());
@@ -70,10 +65,26 @@ public class AuthorController {
         return "redirect:/author/list";
     }
 
+    //method to add new author from new book form
+   /* @PostMapping("author/new")
+    public String newAuthor(@ModelAttribute("author") Author author)
+        throws BadResourceException, ResourceAlreadyExistsException {
+        authorservice.save(author);
+        for (Author author1 : authorRepository.findAll()) {
+            log.info(author.toString());
+        }
+        return "redirect:/library/new ";
+    }*/
+
     // method to delete an author
-    @RequestMapping("/delete_author/{authorid}")
-    public String deleteAuthor(@PathVariable(name = "authorid") Long authorid) {
-        authorservice.deleteAuthor(authorid);
+    @RequestMapping("/author/delete/{id}")
+    public String deleteAuthor(@PathVariable(name = "id") Long id, Model model) {
+
+        try {
+        authorservice.deleteAuthor(id);
+        } catch (Exception ex) {
+            model.addAttribute("error", ex);
+        }
         return "redirect:/author/list";
     }
 
@@ -86,15 +97,22 @@ public class AuthorController {
     }
 
     // Method to create page for updating author
-    @RequestMapping("/author/update/{authorid}")
-    public ModelAndView showUpdateAuthorPage(@PathVariable(name = "authorid") Long authorid) {
+    @RequestMapping("/author/update/{id}")
+    public ModelAndView showUpdateAuthorPage(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("/author/update");
-        Author author = authorservice.getAuthor(authorid);
+        Author author = authorservice.getAuthor(id);
         final Logger log = LoggerFactory.getLogger(ProjectApplication.class);
         log.info("---------------update author----------------");
         mav.addObject("author", author);
 
         return mav;
+    }
+
+
+    @RequestMapping("/author/{id}")
+    @ResponseBody
+    public Author findAuthor(@PathVariable("id") Long id) throws ResourceNotFoundException {
+        return authorservice.getAuthor(id);
     }
 
 }

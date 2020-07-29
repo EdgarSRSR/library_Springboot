@@ -11,6 +11,67 @@
 
 </script>
 
+<!--new Author Modal-->
+<script>
+    $(document).ready(function(){
+        $('.newAuthorBtn').on('click', function(event){
+            $('.newAuthorForm #id').val('');
+            $('.newAuthorForm #firstName').val('');
+            $('.newAuthorForm #lastName').val('');
+            $('.newAuthorForm #secondName').val('');
+            $('.newAuthorForm #description').val('');
+            $('.newAuthorForm #newAuthorModal').modal();
+        });
+    });
+
+</script>
+
+<!--Add Authors to Book -->
+<script>
+    $(document).ready(function(){
+      $(".addAuthorsBtn").on('click', function(event){
+        $("#addAuthors").modal();
+      });
+    });
+</script>
+
+<!--Add Genres to Book -->
+<script>
+    $(document).ready(function(){
+        $('.addGenresBtn').on('click', function(event){
+            //prevents redirection to blank page with JSON-Task-Object
+            event.preventDefault();
+            $('.addGenresForm #id').val('');
+            $('.addGenresForm #firstName').val('');
+            $('.addGenresForm #lastName').val('');
+            $('.addGenresForm #secondName').val('');
+            $('.addGenresForm #description').val('');
+            $('.addGenresForm #newAuthorModal').modal();
+        });
+    });
+</script>
+
+<!-- edit author modal-->
+<script>
+    $(document).ready(function(){
+        $('.editAuthorBtn').on('click', function(event){
+            //prevents redirection to blank page with JSON-Task-Object
+            event.preventDefault();
+            var href = $(this).attr('href');
+            $.get(href, function(author){
+                $('.editAuthorForm #id').val(author.id);
+                $('.editAuthorForm #firstName').val(author.firsrName);
+                $('.editAuthorForm #lastName').val(author.lastName);
+                $('.editAuthorForm #secondName').val(author.secondName);
+                $('.editAuthorForm #description').val(author.description);
+                $('.editAuthorForm #editModal').modal();
+            });
+        });
+    });
+
+</script>
+
+
 <!-- edit genre modal-->
 <script>
     $(document).ready(function(){
@@ -27,4 +88,16 @@
         });
     });
 
+</script>
+
+<!--error Genre Modal-->
+<script>
+    $(document).ready(function(){
+        $('.deleteGenreBtn').on('click', function(event){
+           $('#delete-modal').modal();
+            $.get(href, function(genre){
+                $('.deleteGenreForm #id').val(genre.id);
+            });
+        });
+    });
 </script>

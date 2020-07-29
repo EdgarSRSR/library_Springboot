@@ -2,6 +2,7 @@ package ru.gkarmada.project.genre;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,15 +42,8 @@ public class GenreController {
         return "genre/list";
     }
 
-    //Method to add new a genre
-    @RequestMapping("genre/new")
-    public String showNewGenreForm(Model model) {
-        Genre genre = new Genre();
-        model.addAttribute("genre", genre);
-        return "genre/new";
-    }
 
-    //method that saves changes to author
+    //method that saves changes to genre
     @PostMapping(value = {"genre/save", "/genre"})
     public String saveGenre(@ModelAttribute("genre") Genre genre)
             throws BadResourceException, ResourceAlreadyExistsException {
@@ -62,16 +56,16 @@ public class GenreController {
 
 
     // method to delete a genre
-    @RequestMapping("/genre/delete/{id}")
-    public String deleteGenre(@PathVariable(name = "id") Long genreId, Model model) {
+    @RequestMapping(value={"/genre/delete"})
+    public String deleteGenre(Model model, @ModelAttribute("genre") Genre genre) {
 
         try {
-            genreService.delete(genreId);
-
+            genreService.delete(genre);
         } catch (Exception ex) {
             model.addAttribute("error", ex);
         }
-        return "redirect:/genre/list";
+            return "redirect:/genre/list";
+
     }
 
     //method to update
@@ -98,5 +92,7 @@ public class GenreController {
     public Genre findGenre(@PathVariable("id") Long genreId) throws ResourceNotFoundException {
         return genreService.findById(genreId);
     }
+
+
 
 }
