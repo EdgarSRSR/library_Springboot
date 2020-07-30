@@ -48,8 +48,6 @@ public class Author {
     private List<Book> books;
 
 
-
-
     public Author(String firstName, String lastName, String secondName, String description) {
         this.firstName = firstName;
         this.secondName = secondName;

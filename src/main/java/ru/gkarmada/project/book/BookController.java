@@ -96,8 +96,15 @@ public class BookController {
 
     //method that saves changes to books
     @PostMapping(value = "/save")
-    public String saveBook(Book book)
+    public String saveBook(Book book, BindingResult result)
             throws BadResourceException, ResourceAlreadyExistsException {
+        log.debug("Received request to save edit page");
+        if (result.hasErrors())
+        {
+
+            String ret = "library/new";
+            return ret;
+        }
         bookService.save(book);
         return "redirect:/library";
     }

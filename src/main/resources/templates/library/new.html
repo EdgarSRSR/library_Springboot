@@ -29,18 +29,22 @@
                 <td>Author:</td>
 
                 <td>
+                    <div class="form-group" th:class="${#fields.hasErrors('authors')} ? 'form-group has-error' : 'form-group'">
                     <select multiple class="form-control selectpicker" data-live-search="true" th:object="${book}" th:field="*{authors}">
 
                         <option value="">Select Author</option>
                         <option th:each="author : ${authors}"
-                                th:value="${author.id}"
+                                th:value="${{author.id}}"
                                 th:text="${author.lastName}"></option>
                     </select>
+                    <p th:if="${#fields.hasErrors('authors')}" class="label label-danger" th:errors="*{authors}">Incorrect part ID</p>
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td>Genre:</td>
                 <td>
+                    <div class="form-group" th:class="${#fields.hasErrors('genres')} ? 'form-group has-error' : 'form-group'">
                     <select multiple class="form-control selectpicker" data-live-search="true" th:object="${book}"
 
                             th:field="*{genres}" path="genre.id">
@@ -50,6 +54,8 @@
                                 th:value="${genres.getId()}"
                                 th:label="${genres.name}"></option>
                     </select>
+                        <p th:if="${#fields.hasErrors('genres')}" class="label label-danger" th:errors="*{genres}">Incorrect part ID</p>
+                    </div>
                 </td>
             </tr>
             <tr>
