@@ -14,12 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +35,6 @@ import ru.gkarmada.project.genre.GenreService;
 
 
 @Controller
-@ControllerAdvice
 //@RequestMapping("/api")
 public class BookController {
 
@@ -64,7 +61,7 @@ public class BookController {
 
     // Method that fills the the Table of the Book for the admins
     @GetMapping("/library")
-    public String viewBooks(Model model, @SortDefault("title") Pageable pageable) {
+    public String viewBooks(ModelMap model, @SortDefault("title") Pageable pageable) {
 
         //
         List<Author> authors= authorService.listAll();
@@ -96,15 +93,9 @@ public class BookController {
 
     //method that saves changes to books
     @PostMapping(value = "/save")
-    public String saveBook(Book book, BindingResult result)
+    public String saveBook(@ModelAttribute("book") Book book, @ModelAttribute("authors") Author author,@ModelAttribute("genres") Genre genre)
             throws BadResourceException, ResourceAlreadyExistsException {
-        log.debug("Received request to save edit page");
-        if (result.hasErrors())
-        {
-
-            String ret = "library/new";
-            return ret;
-        }
+        bookService.listAll();
         bookService.save(book);
         return "redirect:/library";
     }
@@ -153,6 +144,14 @@ public class BookController {
         return "redirect:/library";
     }
 
+    //method to add authors to book
+    @PostMapping(value = "library/addAuthors")
+    public String addAuthors(@ModelAttribute("author") Author author, Model model)
+        throws BadResourceException, ResourceAlreadyExistsException, ResourceNotFoundException {
+        List<Author> authors= authorService.listAll();
+        model.addAttribute("authors", authors);
+        return "redirect:/author/new";
+    }
 /*
 
      // Method to create page for adding authors to book

@@ -1,7 +1,6 @@
 package ru.gkarmada.project.author;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,7 +44,9 @@ public class Author {
     private String description;
 
     @ManyToMany(mappedBy = "authors")
-    private List<Book> books;
+    private Set<Book> books;
+
+
 
 
     public Author(String firstName, String lastName, String secondName, String description) {
@@ -57,29 +58,10 @@ public class Author {
 
     // String Methods
     @Override
-    public String toString(){
+    public String toString() {
         return String.format(
-        "[ id=%d, firstName='%s', secondName='%s', lastName='%s', description='%s']",
-        id, firstName, secondName, lastName, description);
-     //         return String.format(
-     //          "%s",
-     //          firstName);
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Author author = (Author) o;
-        return Objects.equals(id, author.id);
+                "authorid=%d, firstname='%s', secondname='%s', lastname='%s', description='%s'",
+                id, firstName, secondName, lastName, description);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
-
