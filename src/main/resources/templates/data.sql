@@ -37,14 +37,24 @@ INSERT INTO books (title, author, genre, isbn, yearpub, publisher, availability,
 
 CREATE TABLE author (
   author_id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(50) NOT NULL,
-  lastname VARCHAR(50) NOT NULL,
-  secondname VARCHAR(50),
+  firstName VARCHAR(50) NOT NULL,
+  lastName VARCHAR(50) NOT NULL,
+  secondName VARCHAR(50),
   description VARCHAR(250)
   );
 
   CREATE TABLE genre (
-    genreid INT AUTO_INCREMENT PRIMARY KEY,
+    genre_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(250)
     );
+
+  INSERT INTO author (firstName, secondName, lastName, description) VALUES
+      ('Fyodor', 'Mikhailovich', 'Dostoyevsky', 'a russian author '),
+      ('John', 'johnny', 'johnson', 'he writes books'),
+      ('Lev', 'Nikolaevich', 'Tolstoy', 'writer');
+
+   INSERT INTO genre (name, description) VALUES
+       ('Non Fiction', 'it is real'),
+       ('Fiction', 'not real'),
+       ('Computer Science', 'about computers');

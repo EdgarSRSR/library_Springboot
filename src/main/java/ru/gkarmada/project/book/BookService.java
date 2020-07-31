@@ -96,16 +96,16 @@ public class BookService {
     // update book
     public void update(Book book)
             throws BadResourceException, ResourceNotFoundException {
-        if (!StringUtils.isEmpty(book.getTitle())) {
-            if (!existsById(book.getBook_id())) {
+        /*if (!StringUtils.isEmpty(book.getTitle())) {
+             (!existsById(book.getBook_id())) {
                 throw new ResourceNotFoundException("Cannot find book with id: " + book.getBook_id());
-            }
+            }*/
             bookRepository.save(book);
-        } else {
+        /*} else {
             BadResourceException exc = new BadResourceException("Failed to save book");
             exc.addErrorMessage("Book is null or empty");
             throw exc;
-        }
+        }*/
     }
 
     // delete a book by Id

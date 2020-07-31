@@ -10,62 +10,64 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 <div align="center">
     <h1>Rent and Return</h1>
-
+    <!--   voy a hacer cosas raras   -->
     <br/>
     <form action="#" th:action="@{/rentreturn}" th:object="${book}"
           method="post">
 
         <table border="0" cellpadding="10">
 
-            <tr>
+            <tr th:each="obj : ${book}">
                 <td>Book ID:</td>
-                <td><input type="number" th:field="*{book_id}"/></td>
+                <td th:text="${obj.book_id}">id</td>
             </tr>
-            <tr>
+            <tr th:each="obj : ${book}">
                 <td>Title:</td>
-                <td><input type="text" th:field="*{title}" readonly="readonly"/></td>
+                <td th:text="${obj.title}">title</td>
             </tr>
-            <tr>
+            <tr th:each="obj : ${book}">
                 <td>Author:</td>
-                <td><p type="text" th:field="*{authors}" readonly="readonly"/></td>
-
+                <td th:text="${obj.authors}">authors</td>
             </tr>
-            <tr>
+            <tr th:each="obj : ${book}">
                 <td>Genre:</td>
-                <td><p type="text" th:field="*{genres}" readonly="readonly"/></td>
+                <td th:text="${obj.genres}">genres</td>
             </tr>
-            <tr>
+            <tr th:each="obj : ${book}">
                 <td>ISBN:</td>
-                <td><input type="text" th:field="*{isbn}" readonly="readonly"/></td>
+                <td th:text="${obj.isbn}">isbn</td>
             </tr>
-            <tr>
+            <tr th:each="obj : ${book}">
                 <td>Year of Publication:</td>
-                <td><input type="text" th:field="*{published}" readonly="readonly"/></td>
+                <td th:text="${obj.published}">year publication</td>
             </tr>
-            <tr>
+            <tr th:each="obj : ${book}">
                 <td>Publisher:</td>
-                <td><input type="text" th:field="*{publisher}" readonly="readonly"/></td>
+                <td th:text="${obj.publisher}">publisher</td>
             </tr>
-            <tr>
+            <tr th:each="obj : ${book}">
                 <td>Description:</td>
-                <td><input type="text" th:field="*{description}" readonly="readonly"/></td>
+                <td th:text="${obj.description}">description</td>
             </tr>
-            <tr>
-                <td>Rent or Return:</td>
-                <td>
-                    <select class="form-control" th:field="*{availability}">
-                        <option th:value="false">Rent</option>
-                        <option th:value="true">Return</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <button type="submit">Save</button>
-                </td>
-            </tr>
-        </table>
-    </form>
+            <!--   </table>
+           <form action="#" th:action="@{/rentreturn}" th:object="${book}" method="post">
+               <table border="0" cellpadding="10">-->
+        <tr>
+            <td>Rent or Return:</td>
+            <td th:object="${book}">
+                <select class="form-control" th:field="*{availability}">
+                    <option th:value="false">Rent</option>
+                    <option th:value="true">Return</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">Save</button>
+            </td>
+        </tr>
+    </table>
+</form>
 </div>
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
