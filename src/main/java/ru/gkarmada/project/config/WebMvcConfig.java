@@ -2,7 +2,6 @@ package ru.gkarmada.project.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
@@ -14,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.dialect.springdata.SpringDataDialect;
 import ru.gkarmada.project.author.AuthorFormatter;
+import ru.gkarmada.project.genre.GenreFormatter;
 
 @Configuration
 @EnableWebMvc
@@ -58,9 +58,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired //Without autowire, this solution may not work
     private AuthorFormatter authorFormatter;
 
+    @Autowired //Without autowire, this solution may not work
+    private GenreFormatter genreFormatter;
+
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(authorFormatter);
+        registry.addFormatter(genreFormatter);
     }
 
 }

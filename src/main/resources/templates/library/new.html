@@ -46,12 +46,11 @@
                 <td>
                     <div class="form-group" th:class="${#fields.hasErrors('genres')} ? 'form-group has-error' : 'form-group'">
                     <select multiple class="form-control selectpicker" data-live-search="true" th:object="${book}"
-
-                            th:field="*{genres}" path="genre.id">
+                            th:field="*{genres}">
 
                         <option value="">Select Genre</option>
                         <option th:each="genres : ${genres}"
-                                th:value="${genres.getId()}"
+                                th:value="${{genres.Id}}"
                                 th:label="${genres.name}"></option>
                     </select>
                         <p th:if="${#fields.hasErrors('genres')}" class="label label-danger" th:errors="*{genres}">Incorrect part ID</p>
