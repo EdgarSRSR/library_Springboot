@@ -17,41 +17,38 @@
 
         <table border="0" cellpadding="10">
 
-            <tr th:each="obj : ${book}">
+            <tr>
                 <td>Book ID:</td>
-                <td th:text="${obj.book_id}">id</td>
+                <td><input type="text" th:field="${book.book_id}" readonly/></td>
             </tr>
-            <tr th:each="obj : ${book}">
+            <tr>
                 <td>Title:</td>
-                <td th:text="${obj.title}">title</td>
+                <td><input type="text" th:field="${book.title}" readonly/></td>
             </tr>
-            <tr th:each="obj : ${book}">
+            <tr>
                 <td>Author:</td>
-                <td th:text="${obj.authors}">authors</td>
+                <td><input type="text" th:field="${book.authors}" readonly/></td>
             </tr>
-            <tr th:each="obj : ${book}">
+            <tr>
                 <td>Genre:</td>
-                <td th:text="${obj.genres}">genres</td>
+                <td><input type="text" th:field="${book.genres}" readonly/></td>
             </tr>
-            <tr th:each="obj : ${book}">
+            <tr>
                 <td>ISBN:</td>
-                <td th:text="${obj.isbn}">isbn</td>
+                <td><input type="text" th:field="${book.isbn}" readonly/></td>
             </tr>
-            <tr th:each="obj : ${book}">
+            <tr>
                 <td>Year of Publication:</td>
-                <td th:text="${obj.published}">year publication</td>
+                <td><input type="text" th:field="${book.published}" readonly/></td>
             </tr>
-            <tr th:each="obj : ${book}">
+            <tr>
                 <td>Publisher:</td>
-                <td th:text="${obj.publisher}">publisher</td>
+                <td><input type="text" th:field="${book.publisher}" readonly/></td>
             </tr>
-            <tr th:each="obj : ${book}">
+            <tr>
                 <td>Description:</td>
-                <td th:text="${obj.description}">description</td>
+                <td><input type="text" th:field="${book.description}" readonly/></td>
             </tr>
-            <!--   </table>
-           <form action="#" th:action="@{/rentreturn}" th:object="${book}" method="post">
-               <table border="0" cellpadding="10">-->
         <tr>
             <td>Rent or Return:</td>
             <td th:object="${book}">
