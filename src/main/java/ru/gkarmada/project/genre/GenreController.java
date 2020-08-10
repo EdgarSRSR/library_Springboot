@@ -66,6 +66,7 @@ public class GenreController {
             //return "redirect:/genre/list";
         } catch (Exception ex) {
             model.addAttribute("error", ex);
+            redirectAttrs.addFlashAttribute("message", "A genre with an assigned author can't be deleted");
         }
         return "redirect:/genre/list";
 
