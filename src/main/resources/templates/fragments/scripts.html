@@ -96,7 +96,7 @@
         $('.deleteGenreBtn').on('click', function(event){
            $('#delete-modal').modal();
             $.get(href, function(genre){
-                $('.deleteGenreForm #id').val(genre.id);
+               $('.deleteGenreForm #id').val(genre.id);
             });
         });
     });

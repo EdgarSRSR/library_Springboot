@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.gkarmada.project.ProjectApplication;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
@@ -56,17 +57,31 @@ public class GenreController {
 
 
     // method to delete a genre
-    @RequestMapping(value={"/genre/delete"})
-    public String deleteGenre(Model model, @ModelAttribute("genre") Genre genre) {
+    @RequestMapping("/genre/delete/{id}")
+    public String deleteGenre(@PathVariable long id, Model model, RedirectAttributes redirectAttrs) {
 
         try {
+            genreService.deleteGenre(id);
+            redirectAttrs.addFlashAttribute("message", "Post was deleted");
+            //return "redirect:/genre/list";
+        } catch (Exception ex) {
+            model.addAttribute("error", ex);
+        }
+        return "redirect:/genre/list";
+
+    }
+    //@RequestMapping(value={"/genre/delete"})
+    /*public String deleteGenre(Model model, @ModelAttribute("genre") Genre genre) {
+
+        try {
+            //genreService.deleteGenre(id);
             genreService.delete(genre);
         } catch (Exception ex) {
             model.addAttribute("error", ex);
         }
             return "redirect:/genre/list";
 
-    }
+    }*/
 
     //method to update
     @PostMapping(value = {"/genre/update"})

@@ -47,6 +47,9 @@
 
     <br/><br/>
     <br/><br/>
+    <div th:if="${message}" class="alert alert-success" role="alert">
+        <p th:text="${message}">Success</p>
+    </div>
     <div>
         <table
                 class="table"
@@ -83,9 +86,11 @@
                     </button>
                 </td>
                 <td id="td-id-9" class="td-class-1" data-title="bootstrap table">
-                        <button type="button" class="btn btn-danger deleteGenreBtn" th:href="@{/genre/{id}(id=${genre.id})}">
+                    <!--<button type="button" class="btn btn-danger deleteGenreBtn"   th:action="@{'/author/delete/{id}'(id=${genre.id})}" th:attr="data-target='#modal-warning'+${genre.id }" th:href="@{/genre/{id}(id=${genre.id})}">-->
+                    <!--<button type="button" class="btn btn-danger deleteGenreBtn"  th:href="@{/genre/{id}(id=${genre.id})}">-->
+                                <a href="#" th:href="@{/genre/delete/{id}(id=${genre.id})}">
                             <i class="fas fa-trash-alt"></i>delete
-                        </button>
+                        </a>
                 </td>
             </tr>
             </tbody>

@@ -39,6 +39,11 @@ public class GenreService {
         genreRepository.deleteById(genre.getId());
     }
 
+    // Method to delete a book from the database
+    public void deleteGenre(Long id) {
+        genreRepository.deleteById(id);
+    }
+
     //  Check Id to see if genre exists
     private boolean existsById(Long genreId) {
         return genreRepository.existsById(genreId);
