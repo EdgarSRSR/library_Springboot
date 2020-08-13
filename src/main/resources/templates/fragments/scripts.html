@@ -102,10 +102,18 @@
     });
 </script>
 
-<!--message time out-->
+<!--genre delete message-->
 <script>
     $('#message').fadeIn("fast", function(){
-        $("#message").fadeOut(7000);
+        $("#message").val(genre.delete).fadeOut(7000);
+    });
+
+</script>
+
+<!--genre delete warning-->
+<script>
+    $('#warning').fadeIn("fast", function(){
+        $("#warning").val(genre.warning).fadeOut(7000);
     });
 
 </script>

@@ -62,11 +62,11 @@ public class GenreController {
 
         try {
             genreService.deleteGenre(id);
-            redirectAttrs.addFlashAttribute("message", "Post was deleted");
+            redirectAttrs.addFlashAttribute("message", "genre was deleted");
             //return "redirect:/genre/list";
         } catch (Exception ex) {
             model.addAttribute("error", ex);
-            redirectAttrs.addFlashAttribute("message", "A genre with an assigned author can't be deleted");
+            redirectAttrs.addFlashAttribute("warning", "A genre with an assigned author can't be deleted");
         }
         return "redirect:/genre/list";
 
