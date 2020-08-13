@@ -15,7 +15,7 @@
     <description>Armada spring project</description>
 
     <properties>
-        <java.version>14</java.version>
+        <java.version>11</java.version>
     </properties>
 
     <dependencies>
@@ -131,10 +131,9 @@
             <artifactId>freemarker</artifactId>
             <version>2.3.30</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-common -->
         <dependency>
             <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-common</artifactId>
+            <artifactId>keycloak-spring-boot-starter</artifactId>
             <version>11.0.0</version>
         </dependency>
 
