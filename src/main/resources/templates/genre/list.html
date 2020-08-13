@@ -15,6 +15,9 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
+    <div th:if="${message}" class="alert alert-success" id="message" role="alert">
+        <p th:text="${message}">Success</p>
+    </div>
     <h1>Genres</h1>
     <br/>
     <div>
@@ -47,9 +50,7 @@
 
     <br/><br/>
     <br/><br/>
-    <div th:if="${message}" class="alert alert-success" role="alert">
-        <p th:text="${message}">Success</p>
-    </div>
+
     <div>
         <table
                 class="table"
