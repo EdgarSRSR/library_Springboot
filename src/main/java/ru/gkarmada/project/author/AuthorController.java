@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.gkarmada.project.ProjectApplication;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
@@ -78,12 +79,14 @@ public class AuthorController {
 
     // method to delete an author
     @RequestMapping("/author/delete/{id}")
-    public String deleteAuthor(@PathVariable(name = "id") Long id, Model model) {
+    public String deleteAuthor(@PathVariable long id, Model model, RedirectAttributes redirectAttrs) {
 
         try {
         authorservice.deleteAuthor(id);
+        redirectAttrs.addFlashAttribute("authmessage", "author was deleted");
         } catch (Exception ex) {
             model.addAttribute("error", ex);
+            redirectAttrs.addFlashAttribute("authwarning", "An author with an assigned book can't be deleted");
         }
         return "redirect:/author/list";
     }
