@@ -92,13 +92,9 @@
           </button>
         </td>
         <td id="td-id-6" class="td-class-1" data-title="bootstrap table">
-          <!--<form action="#" th:action="@{'/author/delete/{id}'(id=${author
-                     .id})}" th:method="delete">
-            <input type="hidden" name="_method" value="delete"/>
-            <button type="submit" id="submitButton" class="btn btn-danger"><i class="fas fa-trash-alt"></i>delete
-            </button>
-           </form>-->
-          <button type="submit" id="submitButton" class="btn btn-danger"><a href="#" th:href="@{/author/delete/{id}(id=${author.id})}"><i class="fas fa-trash-alt"></i>delete</a>
+          <button type="submit" id="submitButton" class="btn btn-danger">
+            <a href="#" th:href="@{/author/delete/{id}(id=${author.id})}">
+              <i class="fas fa-trash-alt"></i>delete</a>
           </button>
         </td>
       </tr>

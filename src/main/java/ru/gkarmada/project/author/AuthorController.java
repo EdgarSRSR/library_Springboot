@@ -80,7 +80,7 @@ public class AuthorController {
     // method to delete an author
     @RequestMapping("/author/delete/{id}")
     public String deleteAuthor(@PathVariable long id, Model model, RedirectAttributes redirectAttrs) {
-
+        // voy a hacer cosas locas
         try {
         authorservice.deleteAuthor(id);
         redirectAttrs.addFlashAttribute("authmessage", "author was deleted");
