@@ -16,10 +16,10 @@
 
 <div class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
     <div th:if="${genmessage}" class="alert alert-success" id="genremessage" role="alert">
-        <p th:text="${genmessage}">message</p>
+        <p th:text="#{genre.delete}">message</p>
     </div>
     <div th:if="${genwarning}" class="alert alert-warning" id="genrewarning" role="alert">
-        <p th:text="${genwarning}">warning</p>
+        <p th:text="#{genre.warning}">warning</p>
     </div>
     <h1>Genres</h1>
     <br/>

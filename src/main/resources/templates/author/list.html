@@ -17,10 +17,10 @@
 <div class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
 
   <div th:if="${authmessage}" class="alert alert-success" id="authormessage" role="alert">
-    <p th:text="${authmessage}"></p>
+    <p th:text="#{author.delete}"></p>
   </div>
   <div th:if="${authwarning}" class="alert alert-warning" id="authorwarning" role="alert">
-    <p th:text="${authwarning}"></p>
+    <p th:text="#{author.warning}"></p>
   </div>
 
   <h1>list of Authors</h1>
