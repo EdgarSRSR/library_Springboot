@@ -60,7 +60,7 @@
             var href = $(this).attr('href');
             $.get(href, function(author){
                 $('.editAuthorForm #id').val(author.id);
-                $('.editAuthorForm #firstName').val(author.firsrName);
+                $('.editAuthorForm #firstName').val(author.firstName);
                 $('.editAuthorForm #lastName').val(author.lastName);
                 $('.editAuthorForm #secondName').val(author.secondName);
                 $('.editAuthorForm #description').val(author.description);

@@ -58,6 +58,7 @@ public class Book {
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Genre> genres;
 
+
     public Book(Long book_id, String title, Genre genre, String isbn, int published,
                 String publisher, Boolean availability, String description, Author authors) {
         this.book_id = book_id;
