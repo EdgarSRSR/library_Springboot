@@ -1,5 +1,6 @@
 package ru.gkarmada.project.author;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ import lombok.Setter;
 import org.springframework.core.SpringVersion;
 import ru.gkarmada.project.book.Book;
 
-@Data
+
 @Entity
 @Getter
 @Setter
@@ -43,8 +44,9 @@ public class Author {
     @Column
     private String description;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "authors")
-    private Set<Book> books;
+    Set<Book> books;
 
 
 

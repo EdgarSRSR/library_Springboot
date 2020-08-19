@@ -57,7 +57,7 @@ public class AuthorService {
     // update book
     public void update(Author author)
             throws BadResourceException, ResourceNotFoundException {
-        if (!StringUtils.isEmpty(author.getId())) {
+        if (!StringUtils.isEmpty(author.getFirstName())) {
             if (!existsById(author.getId())) {
                 throw new ResourceNotFoundException("Cannot find author with id: " + author.getId());
             }

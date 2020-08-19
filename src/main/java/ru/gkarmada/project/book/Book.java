@@ -16,7 +16,7 @@ import ru.gkarmada.project.genre.Genre;
 
 @Data
 @Entity
-@EqualsAndHashCode(exclude = "authors")
+@EqualsAndHashCode
 @Getter
 @Setter
 @NoArgsConstructor
@@ -52,7 +52,7 @@ public class Book {
       joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "bookid"),
       inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "authorid"))
   private Set<Author> authors;*/
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<Author> authors;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -60,7 +60,7 @@ public class Book {
 
 
     public Book(Long book_id, String title, Genre genre, String isbn, int published,
-                String publisher, Boolean availability, String description, Author authors) {
+                String publisher, Boolean availability, String description, Author author) {
         this.book_id = book_id;
         this.title = title;
         this.isbn = isbn;
@@ -68,8 +68,8 @@ public class Book {
         this.publisher = publisher;
         this.availability = availability;
         this.description = description;
-    /*this.authors = Stream.of(authors).collect(Collectors.toSet());
-    this.authors.forEach(x -> x.getBooks().add(this));*/
+        this.authors = Stream.of(author).collect(Collectors.toSet());
+        this.authors.forEach(x -> x.getBooks().add(this));
         this.genres = Stream.of(genre).collect(Collectors.toSet());
         this.genres.forEach(x -> x.getBooks().add(this));
     }

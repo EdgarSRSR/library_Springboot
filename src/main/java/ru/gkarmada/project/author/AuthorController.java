@@ -94,7 +94,7 @@ public class AuthorController {
     //method to update
     @PostMapping(value = "author/update")
     public String updateAuthor(@ModelAttribute("author") Author author)
-            throws BadResourceException, ResourceAlreadyExistsException, ResourceNotFoundException {
+            throws BadResourceException, ResourceNotFoundException {
         authorservice.update(author);
         return "redirect:/author/list";
     }
