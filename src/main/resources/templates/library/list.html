@@ -10,29 +10,53 @@
 
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="width:160px; height:100%; position: fixed;
+                z-index: 1; top: 0; left: 0; background-color: #111; overflow-x: hidden; padding-top: 20px; ">
+             <div class="sidebar-sticky" style="padding-top: 50px; ">
+                 <ul class="nav flex-column">
+                     <li class="nav-item">
+                         <a class="nav-link active" href="/genre/list">Genres</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="#">Books</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="/author/list">Authors</a>
+                     </li>
+                 </ul>
+            </div>
+         </nav>
 
-<div class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
-    <h1>Library</h1>
-    <h2>Rent, Return, Modify and Update Books</h2>
-    <br/>
-    <div>
-        <a href="/author/list" class="btn btn-success">authors</a>
-        <a href="/genre/list" class="btn btn-success">genres</a>
+
+         <div style="margin-left: 160px; padding: 0px 10px;">
+             <!--<div class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">-->
+             <div>
+                 <h1>Library</h1>
+                 <h2>Rent, Return, Modify and Update Books</h2>
+                 <br/>
+                 <div>
+                     <a href="/author/list" class="btn btn-success">authors</a>
+                     <a href="/genre/list" class="btn btn-success">genres</a>
+                 </div>
+                 <br/>
+                 <div class="btn-group">
+                     <a href="library/new" class="btn btn-primary newBtn"><i class="fas fa-plus-circle"></i>Add new Book</a>
+                 </div>
+
+                 <br/><br/>
+                 <br/><br/>
+                 <!--bookstable.html   -->
+                <div th:replace="library/fragments/bookstable :: bookstable"></div>
+                <br/><br/>
+
+                <br/><br/>
+            </div>
+        </div>
     </div>
-    <br/>
-    <div class="btn-group">
-        <a href="library/new" class="btn btn-primary newBtn"><i class="fas fa-plus-circle"></i>Add new Book</a>
-    </div>
-
-    <br/><br/>
-    <br/><br/>
-    <!--bookstable.html   -->
-    <div th:replace="library/fragments/bookstable :: bookstable"></div>
-    <br/><br/>
-
-    <br/><br/>
-
 </div>
+
 <div th:replace="fragments/footer :: footer"></div>
 
 </body>
