@@ -131,3 +131,38 @@
     });
 
 </script>
+
+<!--highlight navbar-->
+<script>
+
+/*$(document).ready(function() {
+    $( ".mr-auto .nav-item" ).bind( "click", function(event) {
+
+        var clickedItem = $( this );
+        $( ".mr-auto .nav-item" ).each( function() {
+           $( this ).removeClass( "active" );
+        });
+        clickedItem.addClass( "active" );
+    });
+});*/
+
+  /*var pathname = window.location.pathname,
+pages = ['genre', 'library', 'author'];
+
+$('.nav-item').each(function(i) {
+ if (pathname.includes(pages[i])) $(this).addClass('disabled');
+ else if (this.className.includes('disabled')) $(this).removeClass('disabled');
+});*/
+
+
+$(document).ready(function () {
+    var url = window.location;
+    // Will only work if string in href matches with location
+    $('ul.nav a[href="' + url + '"]').parent().addClass('disabled');
+
+    // Will also work for relative and absolute hrefs
+    $('ul.navbar-nav a').filter(function () {
+        return this.href == url;
+    }).parent().addClass('disabled').parent().parent().addClass('disabled');
+});
+</script>
