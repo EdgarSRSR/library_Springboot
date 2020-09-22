@@ -36,9 +36,9 @@
     <div class="sidebar-sticky" style="padding-top: 50px; ">
       <ul class="nav flex-column mr-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="/genre/list">Genres</a>
+          <a class="nav-link" href="/genre/list">Genres</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="/library">Books</a>
         </li>
         <li class="nav-item">
@@ -47,6 +47,18 @@
       </ul>
     </div>
   </nav>-->
-
-
+  <script type="text/javascript">
+  // Add active class to the current button (highlight it)
+  var header = document.getElementById("myDIV");
+  var btns = header.getElementsByClassName("bton");
+  for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  if (current.length > 0) {
+  current[0].className = current[0].className.replace(" active", "");
+  }
+  this.className += " active";
+  });
+  }
+  </script>
 </th:block>

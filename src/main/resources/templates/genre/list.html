@@ -114,7 +114,7 @@
 </div>
 
 <div th:replace="fragments/footer :: footer"></div>
-<script>
+<script type="text/javascript">
 // Add active class to the current button (highlight it)
 var header = document.getElementById("myDIV");
 var btns = header.getElementsByClassName("bton");
@@ -127,6 +127,9 @@ for (var i = 0; i < btns.length; i++) {
   this.className += " active";
   });
 }
+
+</script>
+
 
 
 </script>
