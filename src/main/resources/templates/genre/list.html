@@ -16,23 +16,7 @@
 <div class="container-fluid">
     <div class="row">
 
-        <!--<div th:replace="fragments/sidebar :: sidebar"></div>-->
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="width:160px; height:100%; position: fixed;
-                z-index: 1; top: 0; left: 0; background-color: #111; overflow-x: hidden; padding-top: 20px; ">
-            <div class="sidebar-sticky" style="padding-top: 50px; ">
-                <ul class="nav flex-column mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/genre/list">Genres</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/library">Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/author/list">Authors</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div th:replace="fragments/sidebar :: sidebar"></div>
 
     <div style="margin-left: 160px; padding: 0px 10px;">
         <div th:if="${genmessage}" class="alert alert-success" id="genremessage" role="alert">
@@ -130,6 +114,21 @@
 </div>
 
 <div th:replace="fragments/footer :: footer"></div>
+<script>
+// Add active class to the current button (highlight it)
+var header = document.getElementById("myDIV");
+var btns = header.getElementsByClassName("bton");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  if (current.length > 0) {
+    current[0].className = current[0].className.replace(" active", "");
+  }
+  this.className += " active";
+  });
+}
 
+
+</script>
 </body>
 </html>

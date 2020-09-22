@@ -1,9 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+
 <th:block th:fragment="sidebar">
+
+  <style>
+/* Style the buttons */
+.bton {
+  border: solid;
+  outline: dashed;
+  padding: 10px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Style the active class (and buttons on mouse-over) */
+.active, .btn:hover {
+  border: none;
+  outline: none;
+  background-color: #333;
+  color: white;
+}
+</style>
   <!-- Static sidebar -->
   <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="width:160px; height:100%; position: fixed;
+                z-index: 1; top: 0; left: 0; background-color: #111; overflow-x: hidden; padding-top: 20px; ">
+    <div class="sidebar-sticky" style="padding-top: 50px; " id="myDIV">
+      <button class="bton"><a href="/genre/list">Genres</a></button>
+      <button class="bton"><a href="/library">Books</a></button>
+      <button class="bton"><a href="/author/list">Authors</a></button>
+    </div>
+  </nav>
+  <!--<nav class="col-md-2 d-none d-md-block bg-light sidebar" style="width:160px; height:100%; position: fixed;
                 z-index: 1; top: 0; left: 0; background-color: #111; overflow-x: hidden; padding-top: 20px; ">
     <div class="sidebar-sticky" style="padding-top: 50px; ">
       <ul class="nav flex-column mr-auto">
@@ -18,6 +46,7 @@
         </li>
       </ul>
     </div>
-  </nav>
+  </nav>-->
+
 
 </th:block>
