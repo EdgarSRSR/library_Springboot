@@ -134,64 +134,16 @@
 
 <!--highlight navbar-->
 <script>
-// Add active class to the current button (highlight it)
-/*var header = document.getElementById("myDIV");
-var btns = header.getElementsByClassName("bton");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-  var current = document.getElementsByClassName("active");
-  if (current.length > 1) {
-    current[0].className = current[0].className.replace(" active", "");
-  }
-  this.className += " active";
-  });
-}*/
-/*$(document).ready(function() {
-    $( ".mr-auto .nav-item" ).bind( "click", function(event) {
 
-        var clickedItem = $( this );
-        $( ".mr-auto .nav-item" ).each( function() {
-           $( this ).removeClass( "active" );
-        });
-        clickedItem.addClass( "active" );
-    });
-});*/
 
   var pathname = window.location.pathname,
 pages = ['genre', 'library', 'author'];
 
 $('.bton').each(function(i) {
- if (pathname.includes(pages[i])) $(this).addClass('active');
- else if (this.className.includes('active')) $(this).removeClass('active');
+ if (pathname.includes(pages[i])) $(this).addClass('active').disabled = true;
+ else if (this.className.includes('active')) $(this).removeClass('active').disabled = false;
 });
 
 
-/*
-$(document).ready(function () {
-    var url = window.location;
-    // Will only work if string in href matches with location
-    $('ul.nav a[href="' + url + '"]').parent().addClass('disabled');
-
-    // Will also work for relative and absolute hrefs
-    $('ul.navbar-nav a').filter(function () {
-        return this.href == url;
-    }).parent().addClass('disabled').parent().parent().addClass('disabled');
-});*/
-
-/*
-$(function() {
-        // this will get the full URL at the address bar
-        var url = window.location.href;
-
-        // passes on every "a" tag
-        $(".topmenu a").each(function() {
-            // checks if its the same on the address bar
-            if (url == (this.href)) {
-                $(this).closest("li").addClass("active");
-                //for making parent of submenu active
-               $(this).closest("li").parent().parent().addClass("active");
-            }
-        });
-    }); */
 
 </script>
