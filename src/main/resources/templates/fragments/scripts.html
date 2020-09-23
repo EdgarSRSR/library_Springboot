@@ -134,7 +134,18 @@
 
 <!--highlight navbar-->
 <script>
-
+// Add active class to the current button (highlight it)
+/*var header = document.getElementById("myDIV");
+var btns = header.getElementsByClassName("bton");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  if (current.length > 1) {
+    current[0].className = current[0].className.replace(" active", "");
+  }
+  this.className += " active";
+  });
+}*/
 /*$(document).ready(function() {
     $( ".mr-auto .nav-item" ).bind( "click", function(event) {
 
@@ -146,13 +157,13 @@
     });
 });*/
 
-  /*var pathname = window.location.pathname,
+  var pathname = window.location.pathname,
 pages = ['genre', 'library', 'author'];
 
-$('.nav-item').each(function(i) {
- if (pathname.includes(pages[i])) $(this).addClass('disabled');
- else if (this.className.includes('disabled')) $(this).removeClass('disabled');
-});*/
+$('.bton').each(function(i) {
+ if (pathname.includes(pages[i])) $(this).addClass('active');
+ else if (this.className.includes('active')) $(this).removeClass('active');
+});
 
 
 /*
