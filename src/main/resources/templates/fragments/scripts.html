@@ -136,13 +136,13 @@
 <script>
 
 
-  var pathname = window.location.pathname,
-pages = ['genre', 'library', 'author'];
+    var pathname = window.location.pathname,
+    pages = ['genre', 'library', 'author'];
 
-$('.bton').each(function(i) {
- if (pathname.includes(pages[i])) $(this).addClass('active').disabled = true;
- else if (this.className.includes('active')) $(this).removeClass('active').disabled = false;
-});
+    $('.bton').each(function(i) {
+    if (pathname.includes(pages[i])) $(this).addClass('active');
+    else if (this.className.includes('active')) $(this).removeClass('active');
+    });
 
 
 
