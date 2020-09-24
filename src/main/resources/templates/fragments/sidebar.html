@@ -1,37 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-
 <th:block th:fragment="sidebar">
-
-  <style>
-/* Style the buttons */
-.bton {
-  border: solid;
-  outline: solid;
-  padding: 10px 16px;
-  background-color: #f1f1f1;
-  cursor: pointer;
-}
-
-/* Style the active class (and buttons on mouse-over) */
-.active, .btn:hover {
-  border: none;
-  outline: none;
-  background-color: #333;
-  color: white;
-  pointer-events: none;
-  cursor: default;
-}
-</style>
-  <!-- Static sidebar -->
-  <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="width:160px; height:100%; position: fixed;
-                z-index: 1; top: 0; left: 0; background-color: #111; overflow-x: hidden; padding-top: 20px; ">
-    <div class="sidebar-sticky" style="padding-top: 50px; " id="myDIV">
-      <button class="bton" id="btnGen" ><a href="/genre/list">Genres</a></button>
-      <button class="bton" id="btnLib"><a href="/library">Books</a></button>
-      <button class="bton" id="btnAuth"><a href="/author/list">Authors</a></button>
+    <div class="btn-group btn-group-vertical" role="group">
+        <a href="/genre/list" class="btn btn-light sidebar-btn">Genres</a>
+        <a href="/library" class="btn btn-light sidebar-btn">Books</a>
+        <a href="/author/list" class="btn btn-light sidebar-btn">Authors</a>
     </div>
-  </nav>
-
 </th:block>

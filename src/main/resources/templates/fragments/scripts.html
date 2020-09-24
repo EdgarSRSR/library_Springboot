@@ -109,41 +109,33 @@
     });
 
 </script>
-<!--author delete message-->
+
 <script>
+// author delete message
     $('#authormessage').fadeIn("fast", function(){
         $("#authormessage").fadeOut(7000);
     });
 
-</script>
-
-<!--genre delete warning-->
-<script>
+// genre delete warning
     $('#genrewarning').fadeIn("fast", function(){
         $("#genrewarning").fadeOut(7000);
     });
 
-</script>
-<!--author delete warning-->
-<script>
+// author delete warning
     $('#authorwarning').fadeIn("fast", function(){
         $("#authorwarning").fadeOut(7000);
     });
 
-</script>
-
-<!--highlight navbar-->
-<script>
-
-
+// highlight sidebar
     var pathname = window.location.pathname,
     pages = ['genre', 'library', 'author'];
 
-    $('.bton').each(function(i) {
-    if (pathname.includes(pages[i])) $(this).addClass('active');
-    else if (this.className.includes('active')) $(this).removeClass('active');
+    $('.sidebar-btn').each(function(i) {
+    if (pathname.includes(pages[i])) {
+        $(this).addClass('active disabled btn-secondary');
+        $(this).removeClass('btn-light');
+    }
+    else if (this.className.includes('active')) $(this).removeClass('active disabled btn-secondary btn-light');
     });
-
-
 
 </script>
