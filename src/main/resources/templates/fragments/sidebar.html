@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<th:block th:fragment="sidebar">
-    <div class="btn-group btn-group-vertical" role="group">
+<th:block th:fragment="sidebar" >
+    <nav style="width:160px; height:100%; position: fixed;
+                z-index: 1; top: 0; left: 0;  overflow-x: hidden; padding-top: 50px; ">
+    <div class="btn-group btn-group-vertical" role="group" style="width:160px;">
         <a href="/genre/list" class="btn btn-light sidebar-btn">Genres</a>
         <a href="/library" class="btn btn-light sidebar-btn">Books</a>
         <a href="/author/list" class="btn btn-light sidebar-btn">Authors</a>
     </div>
+    </nav>
 </th:block>
