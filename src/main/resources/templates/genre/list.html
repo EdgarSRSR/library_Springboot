@@ -13,10 +13,9 @@
 
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
+<div th:replace="fragments/sidebar :: sidebar"></div>
 <div class="container-fluid">
     <div class="row">
-
-        <div th:replace="fragments/sidebar :: sidebar"></div>
 
     <div style="margin-left: 160px; padding: 0px 10px;">
         <div th:if="${genmessage}" class="alert alert-success" id="genremessage" role="alert">
