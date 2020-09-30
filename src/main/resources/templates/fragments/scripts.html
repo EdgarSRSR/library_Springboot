@@ -26,30 +26,7 @@
 
 </script>
 
-<!--Add Authors to Book -->
-<script>
-    $(document).ready(function(){
-      $(".addAuthorsBtn").on('click', function(event){
-        $("#addAuthors").modal();
-      });
-    });
-</script>
 
-<!--Add Genres to Book -->
-<script>
-    $(document).ready(function(){
-        $('.addGenresBtn').on('click', function(event){
-            //prevents redirection to blank page with JSON-Task-Object
-            event.preventDefault();
-            $('.addGenresForm #id').val('');
-            $('.addGenresForm #firstName').val('');
-            $('.addGenresForm #lastName').val('');
-            $('.addGenresForm #secondName').val('');
-            $('.addGenresForm #description').val('');
-            $('.addGenresForm #newAuthorModal').modal();
-        });
-    });
-</script>
 
 <!-- edit author modal-->
 <script>
