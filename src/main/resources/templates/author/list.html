@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
 
 <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
 <head>
-  <div th:replace="fragments/header :: header"></div>
-  <title>Authors</title>
+    <div th:replace="fragments/header :: header"></div>
+    <title>Authors</title>
 
 </head>
 
@@ -13,63 +13,109 @@
 
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
+<div th:replace="fragments/sidebar :: sidebar"></div>
 
-<div  class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
-  <h1>list of Authors</h1>
-  <br/>
-  <div>
-    <a href="/library" class="btn btn-success">Books</a>
-    <a href="/genre/list" class="btn btn-success">genres</a>
-  </div>
-  <br/>
-  <div class="btn-group">
-    <a href="/author/new" class="btn btn-primary">Add New Author</a>
-  </div>
+<div class="container-fluid">
+    <div class="row">
 
-  <br/><br/>
-  <br/><br/>
-  <div>
-    <table
-        id="table"
-        data-toolbar="#toolbar"
-        data-toggle="table"
-        data-search="true"
-        data-show-columns="true"
-        data-show-pagination-switch="true"
-        data-pagination="true"
-        data-show-extended-pagination="true"
-        data-pagination-loop="true"
-        data-id-field="id"
-        data-page-list="[3, 5, 10, all]"
-        data-response-handler="responseHandler">
-      <thead>
-      <tr>
-        <th data-sortable="true" scope="col">Name</th>
-        <th data-sortable="true" scope="col">Last Name</th>
-        <th data-sortable="true" scope="col">Second Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Update</th>
-        <th scope="col">Remove</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table" data-object='{"key": "value"}' th:each="author: ${listAuthors}">
-        <td id="td-id-1" class="td-class-1" data-title="bootstrap table" th:text="${author.name}">Name</td>
-        <td id="td-id-2" class="td-class-1" data-title="bootstrap table" th:text="${author.lastname}">LastName</td>
-        <td id="td-id-3" class="td-class-1" data-title="bootstrap table" th:text="${author.secondname}">SecondName</td>
-        <td id="td-id-4" class="td-class-1" data-title="bootstrap table" th:text="${author.description}">Description</td>
-        <td id="td-id-8" class="td-class-1" data-title="bootstrap table"><a th:href="@{'/author/update/' + ${author.authorid}}">Update</a></td>
-        <td id="td-id-9" class="td-class-1" data-title="bootstrap table"> <a th:href="@{'/delete_author/' + ${author.authorid}}">Delete</a></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <br/><br/>
+        <div style="margin-left: 160px; padding: 0px 10px;">
 
-  <br/><br/>
+            <div th:if="${authmessage}" class="alert alert-success" id="authormessage" role="alert">
+                <p th:text="#{author.delete}"></p>
+            </div>
+            <div th:if="${authwarning}" class="alert alert-warning" id="authorwarning" role="alert">
+                <p th:text="#{author.warning}"></p>
+            </div>
 
+            <h1>list of Authors</h1>
+            <br/>
+            <div>
+                <a href="/library" class="btn btn-success">Books</a>
+                <a href="/genre/list" class="btn btn-success">genres</a>
+            </div>
+            <br/>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-primary newAuthorBtn">
+                            <i class="fas fa-plus-circle"></i>New Author
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <th:block th:include="author/newModal"></th:block>
+                </div>
+                <div class="row">
+                    <th:block th:include="author/editModal"></th:block>
+                </div>
+
+                <br/><br/>
+                <br/><br/>
+                <div>
+                    <table
+                            id="table"
+                            data-toolbar="#toolbar"
+                            data-toggle="table"
+                            data-search="true"
+                            data-show-columns="true"
+                            data-show-pagination-switch="true"
+                            data-pagination="true"
+                            data-show-extended-pagination="true"
+                            data-pagination-loop="true"
+                            data-id-field="id"
+                            data-page-list="[3, 5, 10, all]"
+                            data-response-handler="responseHandler">
+                        <thead>
+                        <tr>
+                            <th data-sortable="true" scope="col">Name</th>
+                            <th data-sortable="true" scope="col">Last Name</th>
+                            <th data-sortable="true" scope="col">Second Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table"
+                            data-object='{"key": "value"}' th:each="author: ${listAuthors}">
+                            <td id="td-id-1" class="td-class-1" data-title="bootstrap table"
+                                th:text="${author.firstName}">
+                                Name
+                            </td>
+                            <td id="td-id-2" class="td-class-1" data-title="bootstrap table"
+                                th:text="${author.lastName}">LastName
+                            </td>
+                            <td id="td-id-3" class="td-class-1" data-title="bootstrap table"
+                                th:text="${author.secondName}">SecondNamebnmn
+                            </td>
+                            <td id="td-id-4" class="td-class-1" data-title="bootstrap table"
+                                th:text="${author.description}">Description
+                            </td>
+                            <td id="td-id-5" class="td-class-1" data-title="bootstrap table">
+                                <button type="button" class="btn btn-info editAuthorBtn"
+                                        th:href="@{/author/{id}(id=${author.id})}">
+                                    <i class="fas fa-pencil-alt"></i>edit
+                                </button>
+                            </td>
+                            <td id="td-id-6" class="td-class-1" data-title="bootstrap table">
+                                <button type="submit" id="submitButton" class="btn btn-danger">
+                                    <a href="#" th:href="@{/author/delete/{id}(id=${author.id})}">
+                                        <i class="fas fa-trash-alt"></i>delete</a>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br/><br/>
+
+                <br/><br/>
+            </div>
+        </div>
+    </div>
 </div>
-<div th:replace="fragments/footer :: footer" ></div>
-
+<div th:replace="fragments/footer :: footer"></div>
+<script type="text/javascript">
+</script>
 </body>
 </html>

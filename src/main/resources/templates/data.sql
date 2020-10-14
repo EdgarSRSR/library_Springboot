@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
-  userid INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT AUTO_INCREMENT PRIMARY KEY,
   fio VARCHAR(50) NOT NULL,
   telephone VARCHAR(50),
   jobpos VARCHAR(250) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS books;
 
 CREATE TABLE books (
-    bookid INT AUTO_INCREMENT  PRIMARY KEY,
+    book_id INT AUTO_INCREMENT  PRIMARY KEY,
     title VARCHAR(60) NOT NULL,
     author VARCHAR(50) NOT NULL,
     genre VARCHAR(50) NOT NULL,
@@ -36,19 +36,25 @@ INSERT INTO books (title, author, genre, isbn, yearpub, publisher, availability,
     ('Pride and Prejudice', 'Jane Austen', 'Fiction', '888-0-89919-593-4', '1978', 'Books Inc.', false, 'a book');
 
 CREATE TABLE author (
-  authorid INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(50) NOT NULL,
-  lastname VARCHAR(50) NOT NULL,
-  secondname VARCHAR(50),
+  author_id INT AUTO_INCREMENT PRIMARY KEY,
+  firstName VARCHAR(50) NOT NULL,
+  lastName VARCHAR(50) NOT NULL,
+  secondName VARCHAR(50),
   description VARCHAR(250)
   );
 
   CREATE TABLE genre (
-    genreid INT AUTO_INCREMENT PRIMARY KEY,
+    genre_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(250)
     );
 
+  INSERT INTO author (firstName, secondName, lastName, description) VALUES
+      ('Fyodor', 'Mikhailovich', 'Dostoyevsky', 'a russian author '),
+      ('John', 'johnny', 'johnson', 'he writes books'),
+      ('Lev', 'Nikolaevich', 'Tolstoy', 'writer');
 
-
-
+   INSERT INTO genre (name, description) VALUES
+       ('Non Fiction', 'it is real'),
+       ('Fiction', 'not real'),
+       ('Computer Science', 'about computers');

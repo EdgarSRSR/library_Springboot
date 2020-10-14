@@ -1,23 +1,27 @@
-<!-- currently this html file is not active since its function is replaced by newmodal.html -->
+<!-- currently this html file is not active since its function is replaced by editmodal.html -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"></div>
-    <title>New Genre</title>
+    <title>Edit Genre</title>
 </head>
 <body>
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
 <div align="center">
-    <h1>New Genre</h1>
+    <h1>Edit Genre</h1>
 
     <br/>
-    <form action="#" th:action="@{/genre/new}" th:object="${genre}"
+    <form action="#" th:action="@{/genre/update}" th:object="${genre}"
           method="post">
 
         <table border="0" cellpadding="10">
 
+            <tr>
+                <td>Author ID:</td>
+                <td><input type="number" th:field="*{id}" readonly="readonly"/></td>
+            </tr>
             <tr>
                 <td>Name:</td>
                 <td><input type="text" th:field="*{name}"/></td>

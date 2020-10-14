@@ -4,8 +4,8 @@
 
 <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
 <head>
-  <div th:replace="fragments/header :: header"></div>
-  <title>Genres</title>
+    <div th:replace="fragments/header :: header"></div>
+    <title>Genres</title>
 
 </head>
 
@@ -13,59 +13,112 @@
 
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
+<div th:replace="fragments/sidebar :: sidebar"></div>
+<div class="container-fluid">
+    <div class="row">
 
-<div  class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
-  <h1>list of Genre</h1>
-  <br/>
-  <div>
-    <a href="/library" class="btn btn-success">Books</a>
-    <a href="/author/list" class="btn btn-success">Authors</a>
-  </div>
-  <br/>
-  <div class="btn-group">
-    <a href="/genre/new" class="btn btn-primary">Add New Genre</a>
-  </div>
+        <div style="margin-left: 160px; padding: 0px 10px;">
+            <div th:if="${genmessage}" class="alert alert-success" id="genremessage" role="alert">
+                <p th:text="#{genre.delete}">message</p>
+            </div>
+            <div th:if="${genwarning}" class="alert alert-warning" id="genrewarning" role="alert">
+                <p th:text="#{genre.warning}">warning</p>
+            </div>
+            <h1>Genres</h1>
+            <br/>
+            <div>
+                <a href="/library" class="btn btn-success">Books</a>
+                <a href="/author/list" class="btn btn-success">Authors</a>
+            </div>
+            <br/>
 
-  <br/><br/>
-  <br/><br/>
-  <div>
-    <table
-        id="table"
-        data-toolbar="#toolbar"
-        data-toggle="table"
-        data-search="true"
-        data-show-columns="true"
-        data-show-pagination-switch="true"
-        data-pagination="true"
-        data-show-extended-pagination="true"
-        data-pagination-loop="true"
-        data-id-field="id"
-        data-page-list="[3, 5, 10, all]"
-        data-response-handler="responseHandler">
-      <thead>
-      <tr>
-        <th data-sortable="true" scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Update</th>
-        <th scope="col">Remove</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table" data-object='{"key": "value"}' th:each="genre: ${listGenres}">
-        <td id="td-id-1" class="td-class-1" data-title="bootstrap table" th:text="${genre.name}">Name</td>
-        <td id="td-id-4" class="td-class-1" data-title="bootstrap table" th:text="${genre.description}">Description</td>
-        <td id="td-id-8" class="td-class-1" data-title="bootstrap table"><a th:href="@{'/genre/update/' + ${genre.genreid}}">Update</a></td>
-        <td id="td-id-9" class="td-class-1" data-title="bootstrap table"> <a th:href="@{'/delete_genre/' + ${genre.genreid}}">Delete</a></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <br/><br/>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-primary newGenreBtn">
+                            <i class="fas fa-plus-circle"></i>New genre
+                        </button>
+                    </div>
+                </div>
 
-  <br/><br/>
+                <div class="row">
+                    <th:block th:include="genre/newModal"></th:block>
+                </div>
 
+                <div class="row">
+                    <th:block th:include="genre/editModal"></th:block>
+                </div>
+                <div class="row">
+                    <th:block th:include="genre/deleteModal"></th:block>
+                </div>
+            </div>
+
+
+            <br/><br/>
+            <br/><br/>
+
+            <div>
+                <table
+                    class="table"
+                    id="table"
+                    data-toolbar="#toolbar"
+                    data-toggle="table"
+                    data-search="true"
+                    data-show-columns="true"
+                    data-show-pagination-switch="true"
+                    data-pagination="true"
+                    data-show-extended-pagination="true"
+                    data-pagination-loop="true"
+                    data-id-field="id"
+                    data-page-list="[3, 5, 10, all]"
+                    data-response-handler="responseHandler">
+                    <thead>
+                    <tr>
+                        <th data-sortable="true" scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table"
+                        data-object='{"key": "value"}'
+                        th:each="genre: ${listGenres}">
+                        <td id="td-id-1" class="td-class-1" data-title="bootstrap table"
+                            th:text="${genre.name}">Name
+                        </td>
+                        <td id="td-id-4" class="td-class-1" data-title="bootstrap table"
+                            th:text="${genre.description}">
+                            Description
+                        </td>
+                        <td id="td-id-8" class="td-class-1" data-title="bootstrap table">
+                            <button type="button" class="btn btn-info editGenreBtn"
+                                    th:href="@{/genre/{id}(id=${genre.id})}">
+                                <i class="fas fa-pencil-alt"></i>edit
+                            </button>
+                        </td>
+                        <td id="td-id-9" class="td-class-1" data-title="bootstrap table">
+                            <!--<button type="button" class="btn btn-danger deleteGenreBtn"   th:action="@{'/author/delete/{id}'(id=${genre.id})}" th:attr="data-target='#modal-warning'+${genre.id }" th:href="@{/genre/{id}(id=${genre.id})}">-->
+                            <!--<button type="button" class="btn btn-danger deleteGenreBtn"  th:href="@{/genre/{id}(id=${genre.id})}">-->
+                            <a href="#" th:href="@{/genre/delete/{id}(id=${genre.id})}">
+                                <i class="fas fa-trash-alt"></i>delete
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br/><br/>
+
+            <br/><br/>
+
+        </div>
+    </div>
 </div>
-<div th:replace="fragments/footer :: footer" ></div>
 
+<div th:replace="fragments/footer :: footer"></div>
+<script type="text/javascript">
+</script>
 </body>
 </html>
