@@ -26,30 +26,7 @@
 
 </script>
 
-<!--Add Authors to Book -->
-<script>
-    $(document).ready(function(){
-      $(".addAuthorsBtn").on('click', function(event){
-        $("#addAuthors").modal();
-      });
-    });
-</script>
 
-<!--Add Genres to Book -->
-<script>
-    $(document).ready(function(){
-        $('.addGenresBtn').on('click', function(event){
-            //prevents redirection to blank page with JSON-Task-Object
-            event.preventDefault();
-            $('.addGenresForm #id').val('');
-            $('.addGenresForm #firstName').val('');
-            $('.addGenresForm #lastName').val('');
-            $('.addGenresForm #secondName').val('');
-            $('.addGenresForm #description').val('');
-            $('.addGenresForm #newAuthorModal').modal();
-        });
-    });
-</script>
 
 <!-- edit author modal-->
 <script>
@@ -109,25 +86,34 @@
     });
 
 </script>
-<!--author delete message-->
+
 <script>
+// author delete message
     $('#authormessage').fadeIn("fast", function(){
         $("#authormessage").fadeOut(7000);
     });
 
-</script>
-
-<!--genre delete warning-->
-<script>
+// genre delete warning
     $('#genrewarning').fadeIn("fast", function(){
         $("#genrewarning").fadeOut(7000);
+
     });
 
-</script>
-<!--author delete warning-->
-<script>
+// author delete warning
     $('#authorwarning').fadeIn("fast", function(){
         $("#authorwarning").fadeOut(7000);
+    });
+
+// highlight sidebar
+    var pathname = window.location.pathname,
+    pages = ['genre', 'library', 'author'];
+
+    $('.sidebar-btn').each(function(i) {
+    if (pathname.includes(pages[i])) {
+        $(this).addClass('active disabled btn-secondary');
+        $(this).removeClass('btn-light');
+    }
+    else if (this.className.includes('active')) $(this).removeClass('active disabled btn-secondary btn-light');
     });
 
 </script>

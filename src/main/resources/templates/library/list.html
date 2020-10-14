@@ -10,30 +10,42 @@
 
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
+<div th:replace="fragments/sidebar :: sidebar"></div>
+<div class="container-fluid">
+    <div class="row">
 
-<div class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
-    <h1>Library</h1>
-    <h2>Rent, Return, Modify and Update Books</h2>
-    <br/>
-    <div>
-        <a href="/author/list" class="btn btn-success">authors</a>
-        <a href="/genre/list" class="btn btn-success">genres</a>
+
+
+        <div style="margin-left: 160px; padding: 0px 10px;">
+            <!--<div class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">-->
+            <div>
+                <h1>Library</h1>
+                <h2>Rent, Return, Modify and Update Books</h2>
+                <br/>
+                <div>
+                    <a href="/author/list" class="btn btn-success">authors</a>
+                    <a href="/genre/list" class="btn btn-success">genres</a>
+                </div>
+                <br/>
+                <div class="btn-group">
+                    <a href="library/new" class="btn btn-primary newBtn"><i
+                        class="fas fa-plus-circle"></i>Add new Book</a>
+                </div>
+
+                <br/><br/>
+                <br/><br/>
+                <!--bookstable.html   -->
+                <div th:replace="library/fragments/bookstable :: bookstable"></div>
+                <br/><br/>
+
+                <br/><br/>
+            </div>
+        </div>
     </div>
-    <br/>
-    <div class="btn-group">
-        <a href="library/new" class="btn btn-primary newBtn"><i class="fas fa-plus-circle"></i>Add new Book</a>
-    </div>
-
-    <br/><br/>
-    <br/><br/>
-    <!--bookstable.html   -->
-    <div th:replace="library/fragments/bookstable :: bookstable"></div>
-    <br/><br/>
-
-    <br/><br/>
-
 </div>
-<div th:replace="fragments/footer :: footer"></div>
 
+<div th:replace="fragments/footer :: footer"></div>
+<script type="text/javascript">
+</script>
 </body>
 </html>

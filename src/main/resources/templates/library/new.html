@@ -93,11 +93,8 @@
 <br/><br/>
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
-<script>
-$(document).ready(function(){
-    $('[data-toggle="popover"]').popover();
-});
+<!-- javascript for library -->
+<th:block th:include="library/fragments/scripts"></th:block>
 
-</script>
 </body>
 </html>
