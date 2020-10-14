@@ -1,100 +1,99 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://thymeleaf.org">
 <head>
-    <div th:replace="fragments/header :: header"></div>
-    <title>New Book</title>
+  <div th:replace="fragments/header :: header"></div>
+  <title>New Book</title>
 </head>
 <body>
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
 <div align="center">
-    <h1>New Book</h1>
-    <!--<div class="row">
-        <th:block th:include="library/fragments/authorsModal"></th:block>
-    </div>
-    <div class="row">
-        <th:block th:include="library/fragments/genresModal"></th:block>
-    </div>-->
-    <br/>
-    <form action="#" th:action="@{/save}" th:object="${book}"
-          method="post">
+  <h1>New Book</h1>
+  <br />
+  <form action="#" th:action="@{/save}" th:object="${book}"
+        method="post">
 
-        <table border="0" cellpadding="10">
-            <tr>
-                <td>Title:</td>
-                <td><input type="text" th:field="*{title}"/></td>
-            </tr>
-            <tr>
-                <td>Author:</td>
-                <td>
-                    <div class="form-group" th:class="${#fields.hasErrors('authors')} ? 'form-group has-error' : 'form-group'">
-                    <select multiple class="form-control selectpicker" data-live-search="true" th:object="${book}"
-                            th:field="*{authors}" >
+    <table border="0" cellpadding="10">
+      <tr>
+        <td>Title:</td>
+        <td><input type="text" th:field="*{title}" /></td>
+      </tr>
+      <tr>
+        <td>Author:</td>
+        <!--<td><input type="text" th:field="*{author}" /></td>-->
+        <!--<td>
+          <div>
+              <form method="post" class="form-inline">
+                <div class="col-lg-6" th:object="${authors}">
+                  <select class="form-control-sm">
 
-                        <option value="">Select Author</option>
-                        <option th:each="authors : ${authors}"
-                                th:value="${{authors.Id}}"
-                                th:label="${authors.lastName}"></option>
-                    </select>
-                        <p th:if="${#fields.hasErrors('authors')}" class="label label-danger" th:errors="*{authors}">Incorrect part ID</p>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Genre:</td>
-                <td>
-                    <div class="form-group" th:class="${#fields.hasErrors('genres')} ? 'form-group has-error' : 'form-group'">
-                    <select multiple class="form-control selectpicker" data-live-search="true" th:object="${book}"
-                            th:field="*{genres}">
+                    <option>Select Author</option>
+                    <option th:each="authors : ${listAuthors}"
+                            th:value="${authors.lastname}"
+                            th:text="${authors.name}+' : '+${authors.lastname}"></option>
+                  </select>
+                </div>
+                <a href="/author/new" class="btn btn-success">Add new Author</a>
+              </form>
+            </div>
+        </td>-->
+      </tr>
+      <tr>
+        <td>Genre:</td>
+        <!--<td><input type="text" th:field="*{genre}" /></td>-->
+        <!--<form action="form-inline">
+          <td><input type="text" th:field="*{genre}" /></td>
+        </form>-->
+        <td>
+          <div class="col-lg-6" th:object="${genres}">
+            <select class="form-control-sm">
 
-                        <option value="">Select Genre</option>
-                        <option th:each="genres : ${genres}"
-                                th:value="${{genres.Id}}"
-                                th:label="${genres.name}"></option>
-                    </select>
-                        <p th:if="${#fields.hasErrors('genres')}" class="label label-danger" th:errors="*{genres}">Incorrect part ID</p>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>ISBN:</td>
-                <td><input type="text" th:object="${book}" th:field="*{isbn}"/></td>
-            </tr>
-            <tr>
-                <td>Year of Publication:</td>
-                <td><input type="number" th:field="*{published}"/></td>
-            </tr>
-            <tr>
-                <td>Publisher:</td>
-                <td><input type="text" th:field="*{publisher}"/></td>
-            </tr>
-            <tr>
-                <td>Availability:</td>
-                <td>
-                    <select class="form-control" th:field="*{availability}">
-                        <option th:value="false">False</option>
-                        <option th:value="true">True</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Description:</td>
-                <td><input type="text" th:field="*{description}"/></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <button type="submit">Save</button>
-                </td>
-            </tr>
-        </table>
-    </form>
+              <option>Select Genre</option>
+              <option th:each="genre : ${listGenres}"
+                      th:value="${genre.name}"
+                      th:text="${authors.name}"></option>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>ISBN:</td>
+        <td><input type="text" th:field="*{isbn}" /></td>
+      </tr>
+      <tr>
+        <td>Year of Publication:</td>
+        <td><input type="number" th:field="*{yearpub}" /></td>
+      </tr>
+      <tr>
+        <td>Publisher:</td>
+        <td><input type="text" th:field="*{publisher}" /></td>
+      </tr>
+      <tr>
+        <td>Availability:</td>
+        <td>
+          <select class="form-control" th:field="*{availability}">
+            <option th:value="false" >False</option>
+            <option th:value="true" >True</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><input type="text" th:field="*{description}" /></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button type="submit">Save</button> </td>
+      </tr>
+    </table>
+  </form>
 </div>
-<br/><br/>
 <!-- Footer -->
-<div th:replace="fragments/footer :: footer"></div>
-<!-- javascript for library -->
-<th:block th:include="library/fragments/scripts"></th:block>
-
+<div th:replace="fragments/footer :: footer" ></div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
 </body>
 </html>

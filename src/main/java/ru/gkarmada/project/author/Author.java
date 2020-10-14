@@ -1,6 +1,5 @@
 package ru.gkarmada.project.author;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
@@ -9,61 +8,52 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.validation.constraints.NotEmpty;
-
+import javax.persistence.Table;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.core.SpringVersion;
 import ru.gkarmada.project.book.Book;
 
-
+@Data
 @Entity
+@Table(name="author")
+// lombok implementation
 @Getter
 @Setter
 @NoArgsConstructor
 public class Author {
 
-    @Id
-    @Column(name = "author_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "authorid")
+  Long authorid;
+  @Column(name = "name")
+  String name;
+  @Column(name = "lastname")
+  String lastname;
+  @Column(name = "secondname")
+  String secondname;
+  @Column(name = "description")
+  String description;
 
-    @Column
-    @NotEmpty
-    private String firstName;
+  @ManyToMany(mappedBy = "authors")
+  private List<Book> books;
 
-    @Column
-    @NotEmpty
-    private String lastName;
+  public  Author(String name, String lastname, String secondname, String description){
+    this.name = name;
+    this.secondname = secondname;
+    this.lastname = lastname;
+    this.description = description;
+  }
 
-    @Column
-    private String secondName;
+  // String Methods
+  @Override
+  public String toString(){
+    return String.format(
+        "[ authorid=%d, name='%s', secondname='%s', lastname='%s', description='%s']",
+        authorid, name, secondname, lastname, description);
+  }
 
-    @Column
-    private String description;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "authors")
-    Set<Book> books;
-
-
-
-
-    public Author(String firstName, String lastName, String secondName, String description) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.lastName = lastName;
-        this.description = description;
-    }
-
-    // String Methods
-    @Override
-    public String toString() {
-        return String.format(
-                "authorid=%d, firstname='%s', secondname='%s', lastname='%s', description='%s'",
-                id, firstName, secondName, lastName, description);
-    }
 
 }

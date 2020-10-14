@@ -3,35 +3,27 @@
       xmlns:th="http://thymeleaf.org">
 <head>
   <div th:replace="fragments/header :: header"></div>
-  <title>Update Author</title>
+  <title>Update Genre</title>
 </head>
 <body>
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
 <div align="center">
-  <h1>Update Author</h1>
+  <h1>Update Genre</h1>
 
   <br />
-  <form action="#" th:action="@{/author/update}" th:object="${author}"
+  <form action="#" th:action="@{/genre/update}" th:object="${genre}"
         method="post">
 
     <table border="0" cellpadding="10">
 
       <tr>
         <td>Author ID:</td>
-        <td><input type="number" th:field="*{authorid}" readonly="readonly" /></td>
+        <td><input type="number" th:field="*{genreid}" readonly="readonly" /></td>
       </tr>
       <tr>
         <td>Name:</td>
         <td><input type="text" th:field="*{name}"  /></td>
-      </tr>
-      <tr>
-        <td>Last Name</td>
-        <td><input type="text" th:field="*{lastname}" /></td>
-      </tr>
-      <tr>
-        <td>Second Name</td>
-        <td><input type="text" th:field="*{secondname}" /></td>
       </tr>
       <tr>
         <td>Description:</td>
