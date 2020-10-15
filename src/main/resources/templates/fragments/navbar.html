@@ -4,7 +4,7 @@
 <th:block th:fragment="navbar">
     <!-- Static navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index: 2">
-        <a class="navbar-brand" href="/">Project</a>
+        <a class="navbar-brand" href="/"><span th:text="#{navbar.proyect}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,10 +13,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/library}">Books</a>
+                    <a class="nav-link" th:href="@{/library}"><span th:text="#{navbar.library}"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/users}">Users</a>
+                    <a class="nav-link" th:href="@{/users}"><span th:text="#{navbar.users}"></a>
                 </li>
             </ul>
             <ul class="navbar-nav justify-content-end">
