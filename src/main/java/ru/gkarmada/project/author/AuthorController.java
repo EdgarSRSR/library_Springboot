@@ -5,8 +5,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +42,7 @@ public class AuthorController {
 
     // Method that fills the the Table of the Author for the admins
     @GetMapping("/author/list")
-    public String viewAuthors(Model model) {
+    public String viewAuthors(ModelMap model,  @SortDefault("firstName") Pageable pageable) {
         //
         //List<Author> listAuthors = authorservice.listAll();
         List<Author> listAuthors = authorservice.listAll();
@@ -47,8 +50,9 @@ public class AuthorController {
             log.info(author.toString());
         }
         //
+        model.addAttribute("authors", authorservice.find(pageable));
         //model.addAttribute("authors", book.getAuthors());
-        model.addAttribute("listAuthors", listAuthors);
+        //model.addAttribute("listAuthors", listAuthors);
         return "author/list";
     }
 

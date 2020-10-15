@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml">
+
+<th:block th:fragment="authortable">
+
+    <table  class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th data-sortable="true" scope="col"><a class="sorted" sd:pagination-sort="firstName" ><span th:text="#{author.firstName}" /></a></th>
+            <th data-sortable="true" scope="col"><a class="sorted" sd:pagination-sort="secondName" ><span th:text="#{author.secondName}" /></a></th>
+            <th data-sortable="true" scope="col"><a class="sorted" sd:pagination-sort="lastName" ><span th:text="#{author.lastName}" /></a></th>
+            <th scope="col"><a class="sorted" sd:pagination-sort="description" ><span th:text="#{author.description}" /></a></th>
+            <th scope="col"><span th:text="#{author.edit}" /></th>
+            <th scope="col"><span th:text="#{author.remove}" /></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table" data-object='{"key": "value"}'
+            th:each="author: ${authors}">
+            <td id="td-id-1" class="td-class-1" data-title="bootstrap table" th:text="${author.firstName}">Name</td>
+            <td id="td-id-3" class="td-class-1" data-title="bootstrap table" th:text="${author.secondName}">Second Name</td>
+            <td id="td-id-2" class="td-class-1" data-title="bootstrap table" th:text="${author.lastName}">Last Name</td>
+            <td id="td-id-8" class="td-class-1" data-title="bootstrap table" th:text="${author.description}">Description</td>
+            <td id="td-id-9" class="td-class-1" data-title="bootstrap table">
+                <button type="button" class="btn btn-info editAuthorBtn"
+                        th:href="@{/author/{id}(id=${author.id})}">
+                <i class="fas fa-pencil-alt"></i>edit</button></td>
+            <td id="td-id-10" class="td-class-1" data-title="bootstrap table">
+                <button type="submit" id="submitButton" class="btn btn-danger">
+                    <a href="#" th:href="@{/author/delete/{id}(id=${author.id})}">
+                        <i class="fas fa-trash-alt"></i>delete</a>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-sm-6">
+            <div sd:pagination-summary="">info</div>
+        </div>
+        <div class="col-sm-6">
+            <nav class="pull-right">
+                <ul class="pagination" sd:pagination-split="7" sd:pagination="full">
+                    <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</th:block>
