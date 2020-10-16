@@ -6,8 +6,11 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,12 +37,12 @@ public class GenreController {
 
     // Method that fills the the Table of the Author for the admins
     @GetMapping("genre/list")
-    public String viewGenre(Model model) {
+    public String viewGenre(ModelMap model,  @SortDefault("name") Pageable pageable) {
         List<Genre> listGenres = genreService.listAll();
         for (Genre genre : genreRepository.findAll()) {
             log.info(genre.toString());
         }
-        model.addAttribute("listGenres", listGenres);
+        model.addAttribute("genres", genreService.find(pageable));
         return "genre/list";
     }
 

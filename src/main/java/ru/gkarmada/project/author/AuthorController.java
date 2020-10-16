@@ -58,8 +58,6 @@ public class AuthorController {
 
 
     //method that saves changes to author
-
-    //method that saves changes to genre
     @PostMapping(value = {"author/save", "/author"})
     public String saveAuthor(@ModelAttribute("author") Author author)
         throws BadResourceException, ResourceAlreadyExistsException {

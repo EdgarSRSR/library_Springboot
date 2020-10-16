@@ -26,9 +26,6 @@
             <div th:if="${authwarning}" class="alert alert-warning" id="authorwarning" role="alert">
                 <p th:text="#{author.warning}"></p>
             </div>
-
-            <h1>list of Authors</h1>
-            <br/>
             <br/>
             <div class="container-fluid">
                 <div class="row">
@@ -44,12 +41,9 @@
                 <div class="row">
                     <th:block th:include="author/editModal"></th:block>
                 </div>
-
-                <br/><br/>
                 <br/><br/>
                 <div>
                     <div th:replace="author/fragments/authortable :: authortable"></div>
-
                 </div>
                 <br/><br/>
                 <br/><br/>
