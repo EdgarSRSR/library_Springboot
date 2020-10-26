@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>11</java.version>
+        <keycloak.version>11.0.2</keycloak.version>
     </properties>
 
     <dependencies>
@@ -140,6 +141,17 @@
 
 
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.keycloak.bom</groupId>
+                <artifactId>keycloak-adapter-bom</artifactId>
+                <version>11.0.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
 
