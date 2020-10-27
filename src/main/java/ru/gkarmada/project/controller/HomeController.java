@@ -23,7 +23,7 @@ public class HomeController {
     @GetMapping(path = "/logout")
     public String logout(HttpServletRequest request) throws ServletException {
         request.logout();
-        return "/";
+        return "index";
     }
 
 }

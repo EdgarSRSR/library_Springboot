@@ -10,12 +10,12 @@
     <th data-sortable="true" scope="col"><a class="sorted" sd:pagination-sort="authors" ><span th:text="#{book.author}" /></a></th>
     <th data-sortable="true" scope="col"><a class="sorted" sd:pagination-sort="genres" ><span th:text="#{book.genre}" /></a></th>
     <th scope="col">ISBN</th>
-    <th scope="col">Year of Publication</th>
-    <th scope="col">Publisher</th>
-    <th data-sortable="true" scope="col">Availability</th>
+    <th scope="col"><span th:text="#{book.published}" /></th>
+    <th scope="col"><span th:text="#{book.publisher}" /></th>
+    <th data-sortable="true" scope="col"><span th:text="#{book.availability}" /></th>
     <th scope="col"><a class="sorted" sd:pagination-sort="description" ><span th:text="#{book.description}" /></a></th>
-    <th scope="col">Rent and Return</th>
-    <th scope="col">Remove</th>
+    <th scope="col"><span th:text="#{book.rentreturn}" /></th>
+    <th scope="col"><span th:text="#{book.remove}" /></th>
 </tr>
 </thead>
 <tbody>
