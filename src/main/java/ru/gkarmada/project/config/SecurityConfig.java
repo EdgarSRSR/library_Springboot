@@ -2,9 +2,11 @@ package ru.gkarmada.project.config;
 
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
+import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
+import org.keycloak.adapters.springsecurity.management.HttpSessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -26,16 +28,23 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
 @EnableWebSecurity
+@KeycloakConfiguration
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
 class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
     /**
      * Registers the KeycloakAuthenticationProvider with the authentication manager.
      */
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        SimpleAuthorityMapper grantedAuthorityMapper = new SimpleAuthorityMapper();
+        grantedAuthorityMapper.setPrefix("ROLE_");
+
+
         KeycloakAuthenticationProvider keycloakAuthenticationProvider = keycloakAuthenticationProvider();
-        keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
+        keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(grantedAuthorityMapper);
+        //keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
         auth.authenticationProvider(keycloakAuthenticationProvider);
     }
 
@@ -53,6 +62,13 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
     }
 
+    @Bean
+    @Override
+    @ConditionalOnMissingBean(HttpSessionManager.class)
+    protected HttpSessionManager httpSessionManager() {
+        return new HttpSessionManager();
+    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception
@@ -60,7 +76,9 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         super.configure(http);
         http
             .authorizeRequests()
-            .antMatchers("/library*").hasRole("user")
+            .antMatchers("/library*").hasAnyRole("user", "admin")
+            .antMatchers("/genre*").hasRole("admin")
+            .antMatchers("/author*").hasRole("admin")
             .anyRequest().permitAll();
     }
 
