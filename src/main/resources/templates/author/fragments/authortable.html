@@ -21,14 +21,14 @@
             <td id="td-id-3" class="td-class-1" data-title="bootstrap table" th:text="${author.secondName}">Second Name</td>
             <td id="td-id-2" class="td-class-1" data-title="bootstrap table" th:text="${author.lastName}">Last Name</td>
             <td id="td-id-8" class="td-class-1" data-title="bootstrap table" th:text="${author.description}">Description</td>
-            <td id="td-id-9" class="td-class-1" data-title="bootstrap table">
-                <button type="button" class="btn btn-info editAuthorBtn"
+            <td id="td-id-9" class="td-class-1" data-title="bootstrap table" style="text-align:center">
+                <button type="button"  class="btn btn-info editAuthorBtn"
                         th:href="@{/author/{id}(id=${author.id})}">
-                <i class="fas fa-pencil-alt"></i>edit</button></td>
+                <i class="fas fa-pencil-alt"></i></button></td>
             <td id="td-id-10" class="td-class-1" data-title="bootstrap table">
                 <button type="submit" id="submitButton" class="btn btn-danger">
                     <a href="#" th:href="@{/author/delete/{id}(id=${author.id})}">
-                        <i class="fas fa-trash-alt"></i>delete</a>
+                        <i class="fas fa-trash-alt" style="color:white"></i></a>
                 </button>
             </td>
         </tr>

@@ -36,8 +36,10 @@
     </td>
     <td id="td-id-9" class="td-class-1" data-title="bootstrap table"><a
             th:href="@{'/library/rent/' + ${book.book_id}}">Rent</a></td>
-    <td id="td-id-10" class="td-class-1" data-title="bootstrap table"><a
-            th:href="@{'/delete/' + ${book.book_id}}"   />Delete</a>
+    <td id="td-id-10" class="td-class-1" data-title="bootstrap table">
+        <button type="submit" id="submitButton" class="btn btn-danger">
+        <a th:href="@{'/delete/' + ${book.book_id}}"   /><i class="fas fa-trash-alt" style="color:white"></i></a>
+        </button>
     </td>
 </tr>
 </tbody>

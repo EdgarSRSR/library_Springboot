@@ -15,14 +15,14 @@
             th:each="genre: ${genres}">
             <td id="td-id-1" class="td-class-1" data-title="bootstrap table" th:text="${genre.name}">Name</td>
             <td id="td-id-8" class="td-class-1" data-title="bootstrap table" th:text="${genre.description}">Description</td>
-            <td id="td-id-9" class="td-class-1" data-title="bootstrap table">
+            <td id="td-id-9" class="td-class-1" data-title="bootstrap table" style="text-align:center">
                 <button type="button" class="btn btn-info editGenreBtn"
                         th:href="@{/genre/{id}(id=${genre.id})}">
-                    <i class="fas fa-pencil-alt"></i>edit</button></td>
+                    <i class="fas fa-pencil-alt"></i></button></td>
             <td id="td-id-10" class="td-class-1" data-title="bootstrap table">
                 <button type="submit" id="submitButton" class="btn btn-danger">
                     <a href="#" th:href="@{/genre/delete/{id}(id=${genre.id})}">
-                        <i class="fas fa-trash-alt"></i>delete</a>
+                        <i class="fas fa-trash-alt" style="color:white"></i></a>
                 </button>
             </td>
         </tr>
