@@ -43,7 +43,7 @@ public class UsersController {
     log.info(String.valueOf(listUsers));
     //usersservice.listAll().forEach(users -> log.info("{}", usersservice));*/
     model.addAttribute("listUsers", listUsers);
-    return "users";
+    return "user/users";
   }
   // new employees
   @RequestMapping("/new_user")

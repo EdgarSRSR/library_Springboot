@@ -11,7 +11,7 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <div  class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">
-  <h1>Users</h1>
+  <h1><span th:text="#{user}" /></h1>
   <br/><br/>
   <div class="btn-group">
     <a href="/new_user" class="btn btn-success">Add New User</a>
@@ -20,30 +20,33 @@
   <table class="table   ">
     <thead>
     <tr>
-      <th scope="col">User ID</th>
-      <th scope="col">Full Name</th>
-      <th scope="col">telephone</th>
-      <th scope="col">Position</th>
-      <th scope="col">Department</th>
-      <th scope="col">Email</th>
-      <th scope="col">Admin Rights</th>
+      <th scope="col"><span th:text="#{user.userfirstname}" /></th>
+      <th scope="col"><span th:text="#{user.userlastname}" /></th>
+      <th scope="col"><span th:text="#{user.userfirstname}" /></th>
+      <th scope="col"><span th:text="#{user.telephone}" /></th>
+      <th scope="col"><span th:text="#{user.email}" /></th>
+      <th scope="col"><span th:text="#{user.roles}" /></th>
+      <th scope="col"><span th:text="#{genre.edit}" /></th>
+      <th scope="col"><span th:text="#{genre.remove}" /></th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="user : ${listUsers}">
-      <td th:text="${user.userid}">User ID</td>
-      <td th:text="${user.fio}">Full Name</td>
+      <td th:text="${user.userfirstname}">First Name</td>
+      <td th:text="${user.userlastname}">Last Name</td>
+      <td th:text="${user.usersecondname}">Second Name</td>
       <td th:text="${user.telephone}">Telephone</td>
-      <td th:text="${user.jobpos}">Position</td>
-      <td th:text="${user.department}">Department</td>
       <td th:text="${user.email}">Email</td>
-      <td th:text="${user.admin}">Admin Rights</td>
+      <td th:text="${user.roles}">Roles</td>
       <td>
         <a th:href="@{'/edit_user/' + ${user.userid}}">Edit</a>
-        &nbsp;&nbsp;&nbsp;
-        <a th:href="@{'/delete_user/' + ${user.userid}}">Delete</a>
       </td>
-
+      <td id="td-id-10" class="td-class-1" data-title="bootstrap table">
+        <button type="submit" id="submitButton" class="btn btn-danger">
+          <a href="#" th:href="@{/user/delete/{id}(id=${user.userid})}">
+            <i class="fas fa-trash-alt" style="color:white"></i></a>
+        </button>
+      </td>
     </tbody>
   </table>
 
