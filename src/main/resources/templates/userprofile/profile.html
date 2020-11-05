@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <div th:replace="fragments/header :: header"></div>
-    <title>Author</title>
+    <title>Profile</title>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
                                     <div class="profile-img">
                                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
                                         <div class="file btn btn-lg btn-primary">
-                                            Change Photo
+                                            <span th:text="#{profile.changephoto}" />
                                             <input type="file" name="file"/>
                                         </div>
                                     </div>
@@ -44,13 +44,15 @@
                                         </h5>
                                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><span th:text="#{profile.information}" /></a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+
+                                    <button type="button"  class="btn btn-info profile-edit-btn">
+                                        <i class="fas fa-pencil-alt"></i></button>
                                 </div>
                             </div>
                             <div class="row">
@@ -59,7 +61,7 @@
                                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label>User Id</label>
+                                                    <label><span th:text="#{user.id}" /></label>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p>Kshiti123</p>
@@ -67,7 +69,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label>First Name</label>
+                                                    <label><span th:text="#{user.userfirstname}"></label>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p>Kshiti</p>
@@ -75,15 +77,16 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label>Second Name</label>
+                                                    <label><span th:text="#{user.usersecondname}" /></label>
                                                 </div>
+
                                                 <div class="col-md-6">
                                                     <p> Vladimirovna</p>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label>Last Name</label>
+                                                    <label><span th:text="#{user.userlastname}" /></label>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p> Ghelani</p>
@@ -91,7 +94,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label>Email</label>
+                                                    <label><span th:text="#{user.telephone}" /></label>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p>kshitighelani@gmail.com</p>
@@ -99,7 +102,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label>Telephone</label>
+                                                    <label><span th:text="#{user.email}" /></label>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p>123 456 7890</p>
@@ -107,7 +110,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label>Roles</label>
+                                                    <label><span th:text="#{user.roles}" /></label>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p>User</p>
