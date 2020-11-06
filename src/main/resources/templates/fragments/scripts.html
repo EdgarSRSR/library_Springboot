@@ -1,0 +1,119 @@
+<!--new genre Modal-->
+<script>
+    $(document).ready(function(){
+        $('.newGenreBtn').on('click', function(event){
+            $('.newGenreForm #id').val('');
+            $('.newGenreForm #name').val('');
+            $('.newGenreForm #description').val('');
+            $('.newGenreForm #newGenreModal').modal();
+        });
+    });
+
+</script>
+
+<!--new Author Modal-->
+<script>
+    $(document).ready(function(){
+        $('.newAuthorBtn').on('click', function(event){
+            $('.newAuthorForm #id').val('');
+            $('.newAuthorForm #firstName').val('');
+            $('.newAuthorForm #lastName').val('');
+            $('.newAuthorForm #secondName').val('');
+            $('.newAuthorForm #description').val('');
+            $('.newAuthorForm #newAuthorModal').modal();
+        });
+    });
+
+</script>
+
+
+
+<!-- edit author modal-->
+<script>
+    $(document).ready(function(){
+        $('.editAuthorBtn').on('click', function(event){
+            //prevents redirection to blank page with JSON-Task-Object
+            event.preventDefault();
+            var href = $(this).attr('href');
+            $.get(href, function(author){
+                $('.editAuthorForm #id').val(author.id);
+                $('.editAuthorForm #firstName').val(author.firstName);
+                $('.editAuthorForm #lastName').val(author.lastName);
+                $('.editAuthorForm #secondName').val(author.secondName);
+                $('.editAuthorForm #description').val(author.description);
+                $('.editAuthorForm #editModal').modal();
+            });
+        });
+    });
+
+</script>
+
+
+<!-- edit genre modal-->
+<script>
+    $(document).ready(function(){
+        $('.editGenreBtn').on('click', function(event){
+            //prevents redirection to blank page with JSON-Task-Object
+            event.preventDefault();
+            var href = $(this).attr('href');
+            $.get(href, function(genre){
+                $('.editGenreForm #id').val(genre.id);
+                $('.editGenreForm #name').val(genre.name);
+                $('.editGenreForm #description').val(genre.description);
+                $('.editGenreForm #editModal').modal();
+            });
+        });
+    });
+
+</script>
+
+<!--error Genre Modal-->
+<script>
+    $(document).ready(function(){
+        $('.deleteGenreBtn').on('click', function(event){
+           $('#delete-modal').modal();
+            $.get(href, function(genre){
+               $('.deleteGenreForm #id').val(genre.id);
+            });
+        });
+    });
+</script>
+
+<!--genre delete message-->
+<script>
+    $('#genremessage').fadeIn("fast", function(){
+        $("#genremessage").fadeOut(7000);
+    });
+
+</script>
+
+<script>
+// author delete message
+    $('#authormessage').fadeIn("fast", function(){
+        $("#authormessage").fadeOut(7000);
+    });
+
+// genre delete warning
+    $('#genrewarning').fadeIn("fast", function(){
+        $("#genrewarning").fadeOut(7000);
+
+    });
+
+// author delete warning
+    $('#authorwarning').fadeIn("fast", function(){
+        $("#authorwarning").fadeOut(7000);
+    });
+
+// highlight sidebar
+    var pathname = window.location.pathname,
+    pages = ['genre', 'library', 'author'];
+
+    $('.sidebar-btn').each(function(i) {
+    if (pathname.includes(pages[i])) {
+        $(this).addClass('active disabled btn-secondary');
+        $(this).removeClass('btn-light');
+    }
+    else if (this.className.includes('active')) $(this).removeClass('active disabled btn-secondary btn-light');
+    });
+
+</script>

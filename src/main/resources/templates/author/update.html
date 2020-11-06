@@ -1,3 +1,4 @@
+<!-- currently this html file is not active since its function is replaced by editmodal.html -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://thymeleaf.org">
@@ -19,19 +20,19 @@
 
       <tr>
         <td>Author ID:</td>
-        <td><input type="number" th:field="*{authorid}" readonly="readonly" /></td>
+        <td><input type="number" th:field="*{id}" readonly="readonly" /></td>
       </tr>
       <tr>
         <td>Name:</td>
-        <td><input type="text" th:field="*{name}"  /></td>
+        <td><input type="text" th:field="*{firstName}"  /></td>
       </tr>
       <tr>
         <td>Last Name</td>
-        <td><input type="text" th:field="*{lastname}" /></td>
+        <td><input type="text" th:field="*{lastName}" /></td>
       </tr>
       <tr>
         <td>Second Name</td>
-        <td><input type="text" th:field="*{secondname}" /></td>
+        <td><input type="text" th:field="*{secondName}" /></td>
       </tr>
       <tr>
         <td>Description:</td>
