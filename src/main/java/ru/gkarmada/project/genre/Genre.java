@@ -1,46 +1,50 @@
 package ru.gkarmada.project.genre;
 
-import java.util.HashSet;
+import ru.gkarmada.project.book.Book;
+
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import lombok.Data;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.gkarmada.project.book.Book;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Data
-// lombok implementation
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
 public class Genre {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  Long genreid;
-  String name;
-  String description;
-  @ManyToMany(mappedBy = "genres")
-  private Set<Book> books = new HashSet<>();
+    @Id
+    @Column(name = "genre_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotEmpty
+    private String name;
+
+    @NotEmpty
+    private String description;
+
+    // TODO: use JsonManagedReference, JsonBackReference to allow books list of the genre in json
+    @JsonIgnore
+    @ManyToMany(mappedBy = "genres")
+    Set<Book> books;
 
 
-  public Genre(String name, String description) {
-    this.name = name;
-    this.description = description;
-  }
+    public Genre(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
-  // String Methods
-  @Override
-  public String toString(){
-    return String.format(
-        "[ genreid=%d, name='%s', description='%s']",
-        genreid, name, description);
-  }
+
+    @Override
+    public String toString() {
+        return String.format(
+            "id=%d, name='%s', description='%s'",
+            id, name, description);
+    }
+
 
 }
