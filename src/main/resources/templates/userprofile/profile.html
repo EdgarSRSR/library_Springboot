@@ -64,7 +64,15 @@
                                                     <label><span th:text="#{user.id}" /></label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>Kshiti123</p>
+                                                    <p> <span th:text="${id}">--id--</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Username:</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><span th:text="${username}">--User name--</span></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -72,7 +80,7 @@
                                                     <label><span th:text="#{user.userfirstname}"></label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>Kshiti</p>
+                                                    <p><span th:text="${name}">--name--</span></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -89,7 +97,7 @@
                                                     <label><span th:text="#{user.userlastname}" /></label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p> Ghelani</p>
+                                                    <p><span th:text="${lastname}">--last name--</span></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -97,7 +105,7 @@
                                                     <label><span th:text="#{user.telephone}" /></label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>kshitighelani@gmail.com</p>
+                                                    <p>789 567 45</p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -105,7 +113,7 @@
                                                     <label><span th:text="#{user.email}" /></label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>123 456 7890</p>
+                                                    <p><span th:text="${email}">--email--</span></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -113,7 +121,7 @@
                                                     <label><span th:text="#{user.roles}" /></label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>User</p>
+                                                    <p>code</p>
                                                 </div>
                                             </div>
                                             <div class="row">

@@ -27,4 +27,30 @@ public class UserDataService {
     return user;
   }
 
+  /*
+  @GetMapping(value = "/public", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Map<String, String> handlePublicRequest() {
+    return Collections.singletonMap("message", "public access");
+  }*/
+/*
+  @Autowired
+  private HttpServletRequest request;
+  Principal user = request.getUserPrincipal();
+ mqMessage.setUserName(user.getName());
+  Principal user = request.getUserPrincipal();
+  mqMessage.setUserName(user.getName());
+  KeycloakAuthenticationToken token = (KeycloakAuthenticationToken) request.getUserPrincipal();
+  KeycloakPrincipal principal=(KeycloakPrincipal)token.getPrincipal();
+  KeycloakSecurityContext session = principal.getKeycloakSecurityContext();
+  AccessToken accessToken = session.getToken();
+  username = accessToken.getPreferredUsername();
+  emailID = accessToken.getEmail();
+  lastname = accessToken.getFamilyName();
+  firstname = accessToken.getGivenName();
+  realmName = accessToken.getIssuer();
+  Access realmAccess = accessToken.getRealmAccess();
+  roles = realmAccess.getRoles();
+*/
+
+
 }
