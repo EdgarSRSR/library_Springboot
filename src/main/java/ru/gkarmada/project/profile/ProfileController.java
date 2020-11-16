@@ -49,21 +49,13 @@ public class ProfileController {
     String dob = "";
     String email = "";
     String name = "";
+    String username = "";
     String lastname = "";
     String id= "";
     String telephone = "";
     String secondname = "";
     String role = "";
-    // gets data from principal
-    //role = String.valueOf(request.getUserPrincipal());
-    // returns boolean asking looking for admin role of user
-    //role = String.valueOf(request.isUserInRole("admin"));
-    // request checks if the user is assigned admin if true the role is "admin" if false the role is "user"
-    if (request.isUserInRole("admin")){
-      role = "admin";
-    } else {
-      role = "user";
-    }
+    String clientId = "project";
 
 
     if (principal instanceof KeycloakPrincipal) {
@@ -74,10 +66,12 @@ public class ProfileController {
 
       email = String.valueOf(token.getEmail());
       name = String.valueOf(token.getGivenName());
+      username = String.valueOf(token.getName());
       lastname = String.valueOf(token.getFamilyName());
       id = String.valueOf(token.getId());
       telephone = String.valueOf(token.getPhoneNumber());
       secondname = String.valueOf(token.getMiddleName());
+      role = String.valueOf(kPrincipal.getKeycloakSecurityContext().getToken().getResourceAccess(clientId).getRoles());
 
       if (customClaims.containsKey("DOB")) {
         dob = String.valueOf(customClaims.get("DOB"));
@@ -92,6 +86,7 @@ public class ProfileController {
     model.addAttribute("id", id);
     model.addAttribute("telephone", telephone);
     model.addAttribute("secondname", secondname);
+    model.addAttribute("username", username);
     model.addAttribute("role", role);
     model.addAttribute("dob", dob);
     return "/userprofile/profile";
