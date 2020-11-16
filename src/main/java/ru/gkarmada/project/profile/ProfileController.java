@@ -53,6 +53,18 @@ public class ProfileController {
     String id= "";
     String telephone = "";
     String secondname = "";
+    String role = "";
+    // gets data from principal
+    //role = String.valueOf(request.getUserPrincipal());
+    // returns boolean asking looking for admin role of user
+    //role = String.valueOf(request.isUserInRole("admin"));
+    // request checks if the user is assigned admin if true the role is "admin" if false the role is "user"
+    if (request.isUserInRole("admin")){
+      role = "admin";
+    } else {
+      role = "user";
+    }
+
 
     if (principal instanceof KeycloakPrincipal) {
       KeycloakPrincipal kPrincipal = (KeycloakPrincipal) principal;
@@ -80,6 +92,7 @@ public class ProfileController {
     model.addAttribute("id", id);
     model.addAttribute("telephone", telephone);
     model.addAttribute("secondname", secondname);
+    model.addAttribute("role", role);
     model.addAttribute("dob", dob);
     return "/userprofile/profile";
   }
