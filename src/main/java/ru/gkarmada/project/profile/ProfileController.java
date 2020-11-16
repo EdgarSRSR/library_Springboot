@@ -39,17 +39,20 @@ public class ProfileController {
   }*/
 
   // how to create custom attributes for users and retrieve them from keycloak https://www.baeldung.com/keycloak-custom-user-attributes
+ // https://stackoverflow.com/questions/32678883/keycloak-retrieve-custom-attributes-to-keycloakprincipal
   @GetMapping(path = "/profile")
   public String getUserInfo(Model model) {
     KeycloakAuthenticationToken authentication = (KeycloakAuthenticationToken)
         SecurityContextHolder.getContext().getAuthentication();
 
     Principal principal = (Principal) authentication.getPrincipal();
-    String dob="";
-    String email="";
-    String name="";
-    String lastname="";
+    String dob = "";
+    String email = "";
+    String name = "";
+    String lastname = "";
     String id= "";
+    String telephone = "";
+    String secondname = "";
 
     if (principal instanceof KeycloakPrincipal) {
       KeycloakPrincipal kPrincipal = (KeycloakPrincipal) principal;
@@ -61,6 +64,8 @@ public class ProfileController {
       name = String.valueOf(token.getGivenName());
       lastname = String.valueOf(token.getFamilyName());
       id = String.valueOf(token.getId());
+      telephone = String.valueOf(token.getPhoneNumber());
+      secondname = String.valueOf(token.getMiddleName());
 
       if (customClaims.containsKey("DOB")) {
         dob = String.valueOf(customClaims.get("DOB"));
@@ -73,6 +78,8 @@ public class ProfileController {
     model.addAttribute("name", name);
     model.addAttribute("lastname", lastname);
     model.addAttribute("id", id);
+    model.addAttribute("telephone", telephone);
+    model.addAttribute("secondname", secondname);
     model.addAttribute("dob", dob);
     return "/userprofile/profile";
   }
