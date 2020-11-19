@@ -9,13 +9,14 @@ import org.springframework.stereotype.Repository;
 public interface UsersRepository extends JpaRepository<User, Long> {
 
   // Creates methods to get information from the users by the full name
-  List<User> findByfio (String fio);
+  List<User> findByUserfirstname (String userfirstname);
 
   // Creates methods to get information from the users by the email
   User findByEmail(String email);
 
   // Creates methods to get information from the users  by the id
   User findByUserid(Long id);
+
 
   // Creates methods to save a new user to the database
   User save(User user);
