@@ -10,46 +10,50 @@
 
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
-<div th:replace="fragments/sidebar :: sidebar"></div>
 <div class="container-fluid">
     <div class="row">
+        <div class="col-2">
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+        </div>
+        <div class="col-10">
+                <div th:if="${genmessage}" class="alert alert-success" id="genremessage" role="alert">
+                    <p th:text="#{genre.delete}">message</p>
+                </div>
+                <div th:if="${genwarning}" class="alert alert-warning" id="genrewarning" role="alert">
+                    <p th:text="#{genre.warning}">warning</p>
+                </div>
+                <br/>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-success newGenreBtn">
+                                <i class="fas fa-plus-circle"></i><span th:text="#{genre.add}" />
+                            </button>
+                        </div>
+                    </div>
 
-        <div style="margin-left: 160px; padding: 0px 10px;">
-            <div th:if="${genmessage}" class="alert alert-success" id="genremessage" role="alert">
-                <p th:text="#{genre.delete}">message</p>
-            </div>
-            <div th:if="${genwarning}" class="alert alert-warning" id="genrewarning" role="alert">
-                <p th:text="#{genre.warning}">warning</p>
-            </div>
-            <br/>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <button class="btn btn-success newGenreBtn">
-                            <i class="fas fa-plus-circle"></i><span th:text="#{genre.add}" />
-                        </button>
+                    <div class="row">
+                        <th:block th:include="genre/newModal"></th:block>
+                    </div>
+
+                    <div class="row">
+                        <th:block th:include="genre/editModal"></th:block>
+                    </div>
+                    <div class="row">
+                        <th:block th:include="genre/deleteModal"></th:block>
                     </div>
                 </div>
+                <br/><br/>
+                <div>
+                    <div th:replace="genre/fragments/genretable :: genretable"></div>
+                </div>
+                <br/><br/>
+                <br/><br/>
 
-                <div class="row">
-                    <th:block th:include="genre/newModal"></th:block>
-                </div>
-
-                <div class="row">
-                    <th:block th:include="genre/editModal"></th:block>
-                </div>
-                <div class="row">
-                    <th:block th:include="genre/deleteModal"></th:block>
-                </div>
             </div>
-            <br/><br/>
-            <div>
-                <div th:replace="genre/fragments/genretable :: genretable"></div>
-            </div>
-            <br/><br/>
-            <br/><br/>
 
         </div>
+
     </div>
 </div>
 
