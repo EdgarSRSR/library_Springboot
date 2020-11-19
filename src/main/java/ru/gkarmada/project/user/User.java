@@ -24,31 +24,31 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name= "userid")
   private Long userid;
-  private String fio;
+  private String userfirstname;
+  private String userlastname;
+  private String usersecondname;
   private String telephone;
-  private String jobpos;
-  private String department;
   private String email;
-  private Boolean admin;
+  private String roles;
 
 
-  public User(Long userid, String fio, String telephone, String jobpos, String department,
-      String email,Boolean admin){
+  public User(Long userid, String userfirstname, String userlastname, String usersecondname, String telephone,
+      String email,String roles){
     this.userid = userid;
-    this.fio = fio;
+    this.userfirstname = userfirstname;
+    this.userlastname = userlastname;
+    this.usersecondname = usersecondname;
     this.telephone = telephone;
-    this.jobpos = jobpos;
-    this.department = department;
     this.email = email;
-    this.admin = admin;
+    this.roles = roles;
   }
 
   // String Methods
   @Override
   public String toString(){
     return String.format(
-        "[ userid=%d, fio='%s', telephone='%s', jobpos='%s', department='%s', email='%s', admin='%b']",
-        userid, fio, telephone, jobpos, department, email, admin);
+        "[ userid=%d, userfirstname='%s',userlastname='%s',usersecondname='%s', telephone='%s', email='%s', roles='%s']",
+        userid, userfirstname, telephone,  email, roles);
   }
 
 }

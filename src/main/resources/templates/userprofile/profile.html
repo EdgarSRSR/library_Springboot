@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <div th:replace="fragments/header :: header"></div>
+    <title>Profile</title>
+</head>
+
+<body>
+
+<!--navbar.html   -->
+<div th:replace="fragments/navbar :: navbar"></div>
+<div th:replace="fragments/sidebar :: sidebar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div style="margin-left: 160px; padding: 0px 10px;">
+
+            <div th:if="${authmessage}" class="alert alert-success" id="authormessage" role="alert">
+                <p th:text="#{author.delete}"></p>
+            </div>
+            <div th:if="${authwarning}" class="alert alert-warning" id="authorwarning" role="alert">
+                <p th:text="#{author.warning}"></p>
+            </div>
+            <br/>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="container emp-profile">
+                        <form method="post">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="profile-img">
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                                        <div class="file btn btn-lg btn-primary">
+                                            <span th:text="#{profile.changephoto}" />
+                                            <input type="file" name="file"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="profile-head">
+                                        <h5>
+                                            <span th:text="${username}">--username--</span>
+                                        </h5>
+                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><span th:text="#{profile.information}" /></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+
+                                    <a href="https://keycloak.gkarmada.ru/auth/realms/armada/account/">
+                                    <button type="button"  class="btn btn-info profile-edit-btn">
+                                        <i class="fas fa-pencil-alt"></i></button></a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="tab-content profile-tab" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label><span th:text="#{user.id}" /></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p> <span th:text="${id}">--id--</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Username:</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><span th:text="${username}">--User name--</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label><span th:text="#{user.userfirstname}"></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><span th:text="${name}">--name--</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label><span th:text="#{user.usersecondname}" /></label>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <p><span th:text="${secondname}">--secondname--</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label><span th:text="#{user.userlastname}" /></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><span th:text="${lastname}">--last name--</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label><span th:text="#{user.telephone}" /></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><span th:text="${telephone}">--telephone--</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label><span th:text="#{user.email}" /></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><span th:text="${email}">--email--</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label><span th:text="#{user.roles}" /></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><span th:text="${role}">--role--</span></p>
+                                                </div>
+                                            </div>
+                                        <!--<div class="row">
+                                                <div class="col-md-6">
+                                                    <label><span th:text="#{account}" /></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><a href="https://keycloak.gkarmada.ru/auth/realms/armada/account/">keycloack user account</a></p>
+                                                </div>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
