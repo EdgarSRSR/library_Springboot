@@ -82,5 +82,4 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
             .anyRequest().permitAll();
     }
 
-
 }

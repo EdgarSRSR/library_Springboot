@@ -112,6 +112,4 @@ public class GenreController {
         return genreService.findById(genreId);
     }
 
-
-
 }
