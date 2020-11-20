@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="layout :: headerFragment">
+<head>
+  <div th:replace="fragments/header :: header"></div>
+</head>
 </head>
 <body>
 <div class="container">
@@ -12,11 +14,11 @@
 
     <h2>Users</h2>
     <div class="well">
-      <b>Enter the intranet: </b><a th:href="@{/user}">customers</a>
+      <b>Enter the intranet: </b><a th:href="@{/library}">library</a>
     </div>
   </div>
-  <div id="pagefoot" th:include="layout :: footerFragment">Footer
-  </div>
+  <!-- Footer -->
+    <div th:replace="fragments/footer :: footer" ></div>
 </div>
 <!-- container -->
 

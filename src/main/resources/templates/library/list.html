@@ -3,7 +3,6 @@
 <head>
     <div th:replace="fragments/header :: header"></div>
     <title>Library</title>
-
 </head>
 
 <body>
@@ -20,30 +19,28 @@
         <div class="col-10">
 
             <!-- <div style="margin-left: 160px; padding: 0px 10px;">-->
-                 <!--<div class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">-->
-                <div>
+            <!--<div class="mx-auto" style="margin-left: 160px; padding: 0px 10px;">-->
+            <div>
 
-                    <br/>
-                    <div class="btn-group">
-                        <a href="library/new" class="btn btn-success newBtn"><i
-                            class="fas fa-plus-circle"></i><span th:text="#{book.add}" /></a>
-                    </div>
-                    <br/><br/>
-                    <!--bookstable.html   -->
-                    <div th:replace="library/fragments/bookstable :: bookstable"></div>
-                    <br/><br/>
-
-                    <br/><br/>
+                <br/>
+                <div class="btn-group">
+                    <a href="library/new" class="btn btn-success newBtn"><i
+                            class="fas fa-plus-circle"></i><span th:text="#{book.add}"/></a>
                 </div>
-            </div>
+                <br/><br/>
+                <!--bookstable.html   -->
+                <div th:replace="library/fragments/bookstable :: bookstable"></div>
+                <br/><br/>
 
+                <br/><br/>
+            </div>
         </div>
 
     </div>
+
+</div>
 </div>
 
 <div th:replace="fragments/footer :: footer"></div>
-<script type="text/javascript">
-</script>
 </body>
 </html>

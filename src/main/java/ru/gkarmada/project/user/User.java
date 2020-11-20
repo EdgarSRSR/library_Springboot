@@ -22,7 +22,7 @@ public class User {
   // User object gets the information from the database
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name= "userid")
+
   private Long userid;
   private String userfirstname;
   private String userlastname;

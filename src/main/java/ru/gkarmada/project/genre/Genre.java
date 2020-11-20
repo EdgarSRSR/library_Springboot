@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,26 +24,32 @@ import ru.gkarmada.project.book.Book;
 @Entity
 public class Genre {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  Long genreid;
-  String name;
-  String description;
-  @ManyToMany(mappedBy = "genres")
-  private Set<Book> books = new HashSet<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+
+    @NotEmpty
+    String name;
+
+    @NotEmpty
+    String description;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "genres")
+    private Set<Book> books = new HashSet<>();
 
 
-  public Genre(String name, String description) {
-    this.name = name;
-    this.description = description;
-  }
+    public Genre(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
-  // String Methods
-  @Override
-  public String toString(){
-    return String.format(
-        "[ genreid=%d, name='%s', description='%s']",
-        genreid, name, description);
-  }
+    // String Methods
+    @Override
+    public String toString() {
+        return String.format(
+                "[ genreid=%d, name='%s', description='%s']",
+                id, name, description);
+    }
 
 }
