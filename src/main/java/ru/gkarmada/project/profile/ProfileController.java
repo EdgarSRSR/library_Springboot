@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.KeycloakSecurityContext;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
@@ -17,7 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import ru.gkarmada.project.genre.GenreService;
+import ru.gkarmada.project.user.User;
 
 @Controller
 public class ProfileController {
@@ -90,6 +93,19 @@ public class ProfileController {
     model.addAttribute("role", role);
     model.addAttribute("dob", dob);
     return "/userprofile/profile";
+  }
+
+  @ModelAttribute("loggedinuser")
+  public User globalUserObject(Model model) {
+    // Add all null check and authentication check before using. Because this is global
+    KeycloakAuthenticationToken authentication = (KeycloakAuthenticationToken)
+        SecurityContextHolder.getContext().getAuthentication();
+
+    Principal principal = (Principal) authentication.getPrincipal();
+    model.addAttribute("loggedinuser", authentication.getName());
+    // Create User pojo class
+    User user = new User(authentication.getName());
+    return user;
   }
 
 

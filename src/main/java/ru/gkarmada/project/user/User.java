@@ -51,4 +51,7 @@ public class User {
         userid, userfirstname, telephone,  email, roles);
   }
 
+  public User(String name) {
+  }
+
 }

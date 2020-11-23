@@ -2,8 +2,10 @@ package ru.gkarmada.project.book;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.Principal;
 import java.util.List;
 
+import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -40,6 +43,7 @@ import ru.gkarmada.project.genre.Genre;
 import ru.gkarmada.project.genre.GenreService;
 
 import javax.validation.Valid;
+import ru.gkarmada.project.user.User;
 
 @Controller
 //@RequestMapping("/api")
@@ -153,6 +157,19 @@ public class BookController {
     public String deleteBook(@PathVariable(name = "bookid") Long bookid) {
         bookService.delete(bookid);
         return "redirect:/library";
+    }
+
+    @ModelAttribute("loggedinuser")
+    public User globalUserObject(Model model) {
+        // Add all null check and authentication check before using. Because this is global
+        KeycloakAuthenticationToken authentication = (KeycloakAuthenticationToken)
+            SecurityContextHolder.getContext().getAuthentication();
+
+        Principal principal = (Principal) authentication.getPrincipal();
+        model.addAttribute("loggedinuser", authentication.getName());
+        // Create User pojo class
+        User user = new User(authentication.getName());
+        return user;
     }
 
 }

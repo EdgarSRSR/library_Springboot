@@ -1,12 +1,15 @@
 package ru.gkarmada.project.author;
 
+import java.security.Principal;
 import java.util.List;
 
+import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.SortDefault;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -23,6 +26,7 @@ import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
 import ru.gkarmada.project.exception.ResourceNotFoundException;
 import ru.gkarmada.project.genre.Genre;
+import ru.gkarmada.project.user.User;
 
 @Controller
 public class AuthorController {
@@ -118,6 +122,19 @@ public class AuthorController {
     @ResponseBody
     public Author findAuthor(@PathVariable("id") Long id) throws ResourceNotFoundException {
         return authorservice.getAuthor(id);
+    }
+
+    @ModelAttribute("loggedinuser")
+    public User globalUserObject(Model model) {
+        // Add all null check and authentication check before using. Because this is global
+        KeycloakAuthenticationToken authentication = (KeycloakAuthenticationToken)
+            SecurityContextHolder.getContext().getAuthentication();
+
+        Principal principal = (Principal) authentication.getPrincipal();
+        model.addAttribute("loggedinuser", authentication.getName());
+        // Create User pojo class
+        User user = new User(authentication.getName());
+        return user;
     }
 
 }
