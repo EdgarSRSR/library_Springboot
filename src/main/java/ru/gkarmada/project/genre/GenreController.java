@@ -116,17 +116,5 @@ public class GenreController {
         return genreService.findById(genreId);
     }
 
-    @ModelAttribute("loggedinuser")
-    public User globalUserObject(Model model) {
-        // Add all null check and authentication check before using. Because this is global
-        KeycloakAuthenticationToken authentication = (KeycloakAuthenticationToken)
-            SecurityContextHolder.getContext().getAuthentication();
-
-        Principal principal = (Principal) authentication.getPrincipal();
-        model.addAttribute("loggedinuser", authentication.getName());
-        // Create User pojo class
-        User user = new User(authentication.getName());
-        return user;
-    }
 
 }

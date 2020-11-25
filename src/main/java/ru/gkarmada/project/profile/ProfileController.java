@@ -95,6 +95,7 @@ public class ProfileController {
     return "/userprofile/profile";
   }
 
+  /*
   @ModelAttribute("loggedinuser")
   public User globalUserObject(Model model) {
     // Add all null check and authentication check before using. Because this is global
@@ -109,7 +110,7 @@ public class ProfileController {
   }
 
 
-/* controller to get user data from keycloack
+ controller to get user data from keycloack
   @GetMapping(value = "/userinfo", produces = MediaType.APPLICATION_JSON_VALUE)
   public UserData handleUserInfoRequest(Principal principal) {
     System.out.println("principal "+principal);

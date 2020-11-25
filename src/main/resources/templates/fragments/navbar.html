@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <th:block th:fragment="navbar">
     <!-- Static navbar -->
@@ -20,10 +20,15 @@
                 <li class="nav-item">
                     <span th:text="#{navbar.greet}"><span th:text="${username}">--username--' '</span>
                 </li>
-                <div align="right"  th:if="${loggedinuser != null}">
+                <!--
+                  <div align="right"  th:if="${loggedinuser != null}">
                     <div
                          th:text="', ' + ${loggedinuser} + '!'">
                     </div>
+                </div>
+                  -->
+                <div sec:authorize="isAuthenticated()">
+                    , <span sec:authentication="name">Username</span>!
                 </div>
             </ul>
             <ul class="navbar-nav justify-content-end">
