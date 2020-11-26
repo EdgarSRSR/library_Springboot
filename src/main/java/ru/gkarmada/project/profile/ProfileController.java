@@ -57,6 +57,7 @@ public class ProfileController {
     String id= "";
     String telephone = "";
     String secondname = "";
+    String givenusername = "";
     String role = "";
     String clientId = "project";
 
@@ -69,6 +70,7 @@ public class ProfileController {
 
       email = String.valueOf(token.getEmail());
       name = String.valueOf(token.getGivenName());
+      givenusername = String.valueOf(token.getPreferredUsername());
       username = String.valueOf(token.getName());
       lastname = String.valueOf(token.getFamilyName());
       id = String.valueOf(token.getId());
@@ -85,6 +87,7 @@ public class ProfileController {
     model.addAttribute("email", email);
     model.addAttribute("username", principal.getName());
     model.addAttribute("name", name);
+    model.addAttribute("givenusername", givenusername);
     model.addAttribute("lastname", lastname);
     model.addAttribute("id", id);
     model.addAttribute("telephone", telephone);
