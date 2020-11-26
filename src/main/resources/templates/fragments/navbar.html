@@ -13,26 +13,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <div sec:authorize="isFullyAuthenticated()">
+                    <div sec:authorize="hasRole('user')">
                         <a class="nav-link" th:href="@{/library}"><span th:text="#{navbar.library}"></a>
                     </div>
                 </li>
             </ul>
-            <ul class="navbar-nav justify">
-                <li class="nav-item">
-                    <span th:text="#{navbar.greet}"><span th:text="${username}">--username--' '</span>
-                </li>
-                <!--
-                  <div align="right"  th:if="${loggedinuser != null}">
-                    <div
-                         th:text="', ' + ${loggedinuser} + '!'">
+            <div sec:authorize="isFullyAuthenticated()">
+                <ul class="navbar-nav justify">
+                    <li class="nav-item">
+                        <span th:text="#{navbar.greet}"><span th:text="${username}">--username--' '</span>
+                    </li>
+                    <!--
+                      <div align="right"  th:if="${loggedinuser != null}">
+                        <div
+                             th:text="', ' + ${loggedinuser} + '!'">
+                        </div>
                     </div>
-                </div>
-                  -->
-                <div sec:authorize="isFullyAuthenticated()">
-                    , <span sec:authentication="name">Username</span>!
-                </div>
-            </ul>
+                      -->
+
+                        , <span sec:authentication property="principal.userlastname">Username</spansec:authentication>!
+                    </div>
+                </ul>
+            </div>
             <ul class="navbar-nav justify-content-end">
                 <li class="nav-item">
                     <div sec:authorize="!isFullyAuthenticated()">
