@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.KeycloakSecurityContext;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
@@ -17,7 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import ru.gkarmada.project.genre.GenreService;
+import ru.gkarmada.project.user.User;
 
 @Controller
 public class ProfileController {
@@ -54,6 +57,7 @@ public class ProfileController {
     String id= "";
     String telephone = "";
     String secondname = "";
+    String givenusername = "";
     String role = "";
     String clientId = "project";
 
@@ -66,6 +70,7 @@ public class ProfileController {
 
       email = String.valueOf(token.getEmail());
       name = String.valueOf(token.getGivenName());
+      givenusername = String.valueOf(token.getPreferredUsername());
       username = String.valueOf(token.getName());
       lastname = String.valueOf(token.getFamilyName());
       id = String.valueOf(token.getId());
@@ -76,12 +81,14 @@ public class ProfileController {
       if (customClaims.containsKey("DOB")) {
         dob = String.valueOf(customClaims.get("DOB"));
       }
-
+    }else {
+      return "/index";
     }
 
     model.addAttribute("email", email);
     model.addAttribute("username", principal.getName());
     model.addAttribute("name", name);
+    model.addAttribute("givenusername", givenusername);
     model.addAttribute("lastname", lastname);
     model.addAttribute("id", id);
     model.addAttribute("telephone", telephone);
@@ -92,8 +99,22 @@ public class ProfileController {
     return "/userprofile/profile";
   }
 
+  /*
+  @ModelAttribute("loggedinuser")
+  public User globalUserObject(Model model) {
+    // Add all null check and authentication check before using. Because this is global
+    KeycloakAuthenticationToken authentication = (KeycloakAuthenticationToken)
+        SecurityContextHolder.getContext().getAuthentication();
 
-/* controller to get user data from keycloack
+    Principal principal = (Principal) authentication.getPrincipal();
+    model.addAttribute("loggedinuser", authentication.getName());
+    // Create User pojo class
+    User user = new User(authentication.getName());
+    return user;
+  }
+
+
+ controller to get user data from keycloack
   @GetMapping(value = "/userinfo", produces = MediaType.APPLICATION_JSON_VALUE)
   public UserData handleUserInfoRequest(Principal principal) {
     System.out.println("principal "+principal);

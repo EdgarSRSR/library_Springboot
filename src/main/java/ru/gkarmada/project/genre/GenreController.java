@@ -1,13 +1,16 @@
 package ru.gkarmada.project.genre;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
+import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.SortDefault;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -19,6 +22,7 @@ import ru.gkarmada.project.ProjectApplication;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
 import ru.gkarmada.project.exception.ResourceNotFoundException;
+import ru.gkarmada.project.user.User;
 
 @Controller
 public class GenreController {
@@ -111,5 +115,6 @@ public class GenreController {
     public Genre findGenre(@PathVariable("id") Long genreId) throws ResourceNotFoundException {
         return genreService.findById(genreId);
     }
+
 
 }
