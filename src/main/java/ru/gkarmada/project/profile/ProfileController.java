@@ -81,7 +81,8 @@ public class ProfileController {
       if (customClaims.containsKey("DOB")) {
         dob = String.valueOf(customClaims.get("DOB"));
       }
-
+    }else {
+      return "/index";
     }
 
     model.addAttribute("email", email);
