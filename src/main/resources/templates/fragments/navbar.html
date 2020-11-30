@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <th:block th:fragment="navbar">
     <!-- Static navbar -->
@@ -13,22 +13,46 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/library}"><span th:text="#{navbar.library}"></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/users}"><span th:text="#{navbar.users}"></a>
-                </li>
-            </ul>
-            <ul class="navbar-nav justify-content-end">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false"><span th:text="#{account}"><span class="caret"></span></a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" th:href="@{/profile}"><span th:text="#{profile}"></a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/logout"><span th:text="#{sidebar.logout}"></a>
+                    <div sec:authorize="hasRole('user')">
+                        <a class="nav-link" th:href="@{/library}"><span th:text="#{navbar.library}"></a>
                     </div>
                 </li>
+            </ul>
+            <div sec:authorize="isFullyAuthenticated()">
+                <ul class="navbar-nav justify">
+                    <li class="nav-item">
+                        <span th:text="#{navbar.greet}"><span th:text="${username}">--username--' '</span>
+                    </li>
+                    <!--
+                      <div align="right"  th:if="${loggedinuser != null}">
+                        <div
+                             th:text="', ' + ${loggedinuser} + '!'">
+                        </div>
+                    </div>
+                      -->
+
+                        , <span sec:authentication="name">Username</span>!
+                    </div>
+                </ul>
+            </div>
+            <ul class="navbar-nav justify-content-end">
+                <li class="nav-item">
+                    <div sec:authorize="!isFullyAuthenticated()">
+                        <a class="nav-link" th:href="@{/library}"><span th:text="#{navbar.login}"></a>
+                    </div>
+                </li>
+                <div sec:authorize="isFullyAuthenticated()">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false"><span th:text="#{account}"><span class="caret"></span></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" th:href="@{/profile}"><span th:text="#{profile}"></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout"><span th:text="#{sidebar.logout}"></a>
+                        </div>
+                    </li>
+                </div>
+
             </ul>
         </div>
 
