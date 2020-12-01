@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-md-2">
 
-                                        <a href="https://keycloak.gkarmada.ru/auth/realms/armada/account/">
+                                        <a target="_blank" rel="noopener noreferrer" href="https://keycloak.gkarmada.ru/auth/realms/armada/account/">
                                             <button type="button"  class="btn btn-info profile-edit-btn">
                                                 <i class="fas fa-pencil-alt"></i></button></a>
                                     </div>
@@ -72,10 +72,10 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <label>Username:</label>
+                                                        <label><span th:text="#{user.name}" /></label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p><span th:text="${username}">--User name--</span></p>
+                                                        <p><span th:text="${givenusername}">--User name--</span></p>
                                                     </div>
                                                 </div>
                                                 <div class="row">

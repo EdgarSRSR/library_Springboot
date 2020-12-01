@@ -32,7 +32,7 @@ public class User {
   private String roles;
 
 
-  public User(Long userid, String userfirstname, String userlastname, String usersecondname, String telephone,
+  /*public User(Long userid, String userfirstname, String userlastname, String usersecondname, String telephone,
       String email,String roles){
     this.userid = userid;
     this.userfirstname = userfirstname;
@@ -41,7 +41,7 @@ public class User {
     this.telephone = telephone;
     this.email = email;
     this.roles = roles;
-  }
+  }*/
 
   // String Methods
   @Override
@@ -49,6 +49,10 @@ public class User {
     return String.format(
         "[ userid=%d, userfirstname='%s',userlastname='%s',usersecondname='%s', telephone='%s', email='%s', roles='%s']",
         userid, userfirstname, telephone,  email, roles);
+  }
+
+  public User(String name) {
+    this.userfirstname = name;
   }
 
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="fragments/header :: header"></div>
+</head>
+
+<body>
+<div class="text-center">
+    <h2> <span th:text="#{logout}"></h2>
+    <div class="btn-group">
+        <a th:href="@{/index}"class="btn btn-success"><i
+            class="fas "></i><span th:text="#{logout.gotomain}"></a>
+    </div>
+</div>
