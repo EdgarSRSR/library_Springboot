@@ -34,7 +34,6 @@ public class Genre {
     @NotEmpty
     String name;
 
-    @NotEmpty
     String description;
 
     @JsonIgnore
