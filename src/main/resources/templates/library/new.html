@@ -70,11 +70,11 @@
         </tr>
 
         <tr>
-          <td th:text="#{book.availability}">Availability:</td>
+          <td th:text="#{book.available}">Availability:</td>
           <td>
             <select class="form-control" th:field="*{available}">
-              <option th:value="false" >False</option>
-              <option th:value="true" >True</option>
+              <option th:value="false" ><span th:text="#{nonavailable}" /></option>
+              <option th:value="true" ><span th:text="#{available}" /></option>
             </select>
           </td>
         </tr>

@@ -9,7 +9,7 @@
 <!--navbar.html   -->
 <div th:replace="fragments/navbar :: navbar"></div>
 <div align="center">
-  <h1>Rent and Return</h1>
+  <h1><span th:text="#{book.rentandreturn}" /></h1>
 
   <br />
   <form action="#" th:action="@{/rentreturn}" th:object="${book}"
@@ -19,48 +19,39 @@
 
       <tr>
         <td>Book ID:</td>
-        <td><input type="number" th:field="*{bookid}" /></td>
+        <td><input type="number" th:field="*{id}" /></td>
       </tr>
       <tr>
-        <td>Title:</td>
+        <td th:text="#{book.title}"></td>
         <td><input type="text" th:field="*{title}" readonly="readonly" /></td>
       </tr>
       <tr>
-        <td>Author:</td>
-        <!--<td><input type="text" th:field="*{author}" readonly="readonly" /></td>-->
-
-      </tr>
-      <tr>
-        <td>Genre:</td>
-        <!--<td><input type="text" th:field="*{genre}" readonly="readonly" /></td>-->
-      </tr>
-      <tr>
-        <td>ISBN:</td>
+        <td th:text="#{book.isbn}"></td>
         <td><input type="text" th:field="*{isbn}" readonly="readonly"/></td>
       </tr>
       <tr>
-        <td>Year of Publication:</td>
+        <td th:text="#{book.published}"></td>
         <td><input type="text" th:field="*{published}" readonly="readonly"/></td>
       </tr>
       <tr>
-        <td>Publisher:</td>
+        <td th:text="#{book.publisher}"></td>
         <td><input type="text" th:field="*{publisher}" readonly="readonly"/></td>
       </tr>
       <tr>
-        <td>Description:</td>
+        <td th:text="#{book.description}">Description:</td>
         <td><input type="text" th:field="*{description}" readonly="readonly"/></td>
       </tr>
       <tr>
-        <td>Rent or Return:</td>
+        <td><span th:text="#{book.rentorreturn}" /></td>
         <td>
-          <select class="form-control" th:field="*{availability}">
-            <option th:value="false" >Rent</option>
-            <option th:value="true" >Return</option>
+          <select class="form-control" th:field="*{available}">
+            <option th:value="false" ><span th:text="#{rent}" /></option>
+            <option th:value="true" ><span th:text="#{return}" /></option>
           </select>
         </td>
       </tr>
       <tr>
-        <td colspan="2"><button type="submit">Save</button> </td>
+        <td colspan="2"><button type="submit"><span th:text="#{save}" /></button> </td>
       </tr>
     </table>
   </form>

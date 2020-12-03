@@ -51,7 +51,7 @@ public class Book {
     private Set<Genre> genres;
 
     public Book(Long bookid, String title, Genre genre, String isbn, int published,
-                String publisher, Boolean availability, String description, Author authors) {
+                String publisher, Boolean available, String description, Author authors) {
         this.id = bookid;
         this.title = title;
         //this.author = author;
@@ -59,7 +59,7 @@ public class Book {
         this.isbn = isbn;
         this.published = published;
         this.publisher = publisher;
-        this.available = availability;
+        this.available = available;
         this.description = description;
     /*this.authors = Stream.of(authors).collect(Collectors.toSet());
     this.authors.forEach(x -> x.getBooks().add(this));*/
@@ -71,7 +71,7 @@ public class Book {
     @Override
     public String toString() {
         return String.format(
-                "[ id=%d, title='%s', authors='%s', genres='%s', isbn='%s', published='%d', publisher='%s', availability='%b', publisher='%s']",
+                "[ id=%d, title='%s', authors='%s', genres='%s', isbn='%s', published='%d', publisher='%s', available='%b', publisher='%s']",
                 id, title, authors, genres, isbn, published, publisher, available, description);
     }
 
