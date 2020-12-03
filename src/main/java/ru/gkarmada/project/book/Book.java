@@ -44,22 +44,22 @@ public class Book {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Author> authors;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "book_genre",
             joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"))
     private Set<Genre> genres;
 
-    public Book(Long bookid, String title, Genre genre, String isbn, int yearpub,
-                String publisher, Boolean availability, String description, Author authors) {
+    public Book(Long bookid, String title, Genre genre, String isbn, int published,
+                String publisher, Boolean available, String description, Author authors) {
         this.id = bookid;
         this.title = title;
         //this.author = author;
         //this.genre = genre;
         this.isbn = isbn;
-        this.published = yearpub;
+        this.published = published;
         this.publisher = publisher;
-        this.available = availability;
+        this.available = available;
         this.description = description;
     /*this.authors = Stream.of(authors).collect(Collectors.toSet());
     this.authors.forEach(x -> x.getBooks().add(this));*/
@@ -71,7 +71,7 @@ public class Book {
     @Override
     public String toString() {
         return String.format(
-                "[ bookid=%d, title='%s', authors='%s', genres='%s', isbn='%s', yearpub='%d', publisher='%s', availability='%b', publisher='%s']",
+                "[ id=%d, title='%s', authors='%s', genres='%s', isbn='%s', published='%d', publisher='%s', available='%b', publisher='%s']",
                 id, title, authors, genres, isbn, published, publisher, available, description);
     }
 

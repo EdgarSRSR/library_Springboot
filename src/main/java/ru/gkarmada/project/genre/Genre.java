@@ -2,11 +2,13 @@ package ru.gkarmada.project.genre;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,11 +19,12 @@ import lombok.Setter;
 import ru.gkarmada.project.book.Book;
 
 @Data
+@Entity
+@Table(name = "genre")
 // lombok implementation
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
 public class Genre {
 
     @Id
@@ -31,12 +34,11 @@ public class Genre {
     @NotEmpty
     String name;
 
-    @NotEmpty
     String description;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "genres")
-    private Set<Book> books = new HashSet<>();
+    private List<Book> books;
 
 
     public Genre(String name, String description) {
