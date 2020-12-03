@@ -15,7 +15,7 @@
             <th scope="col">ISBN</th>
             <th scope="col"><span th:text="#{book.published}"/></th>
             <th scope="col"><span th:text="#{book.publisher}"/></th>
-            <th data-sortable="true" scope="col"><span th:text="#{book.availability}"/></th>
+            <th data-sortable="true" scope="col"><span th:text="#{book.available}"/></th>
             <th scope="col"><a class="sorted" sd:pagination-sort="description"><span th:text="#{book.description}"/></a>
             </th>
             <th scope="col"><span th:text="#{book.rentreturn}"/></th>
@@ -33,16 +33,16 @@
                 Publication
             </td>
             <td id="td-id-6" class="td-class-1" data-title="bootstrap table" th:text="${book.publisher}">Publisher</td>
-            <td id="td-id-7" class="td-class-1" data-title="bootstrap table" th:text="${book.availability}">
+            <td id="td-id-7" class="td-class-1" data-title="bootstrap table" th:text="${book.available}">
                 Availability
             </td>
             <td id="td-id-8" class="td-class-1" data-title="bootstrap table" th:text="${book.description}">Description
             </td>
             <td id="td-id-9" class="td-class-1" data-title="bootstrap table"><a
-                    th:href="@{'/library/rent/' + ${book.book_id}}">Rent</a></td>
+                    th:href="@{'/library/rent/' + ${book.id}}"><span th:text="#{book.rentorreturn}" /></a></td>
             <td id="td-id-10" class="td-class-1" data-title="bootstrap table">
                 <button type="submit" id="submitButton" class="btn btn-danger">
-                    <a th:href="@{'/delete/' + ${book.book_id}}"/><i class="fas fa-trash-alt"
+                    <a th:href="@{'/delete/' + ${book.id}}"/><i class="fas fa-trash-alt"
                                                                      style="color:white"></i></a>
                 </button>
             </td>
