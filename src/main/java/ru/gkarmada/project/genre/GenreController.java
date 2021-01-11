@@ -1,20 +1,17 @@
 package ru.gkarmada.project.genre;
 
-import java.security.Principal;
 import java.util.List;
 
-import javax.validation.Valid;
-import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
+import javax.servlet.http.HttpServletRequest;
+import org.keycloak.KeycloakSecurityContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.SortDefault;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -22,7 +19,6 @@ import ru.gkarmada.project.ProjectApplication;
 import ru.gkarmada.project.exception.BadResourceException;
 import ru.gkarmada.project.exception.ResourceAlreadyExistsException;
 import ru.gkarmada.project.exception.ResourceNotFoundException;
-import ru.gkarmada.project.user.User;
 
 @Controller
 public class GenreController {
@@ -32,8 +28,10 @@ public class GenreController {
 
     private final GenreRepository genreRepository;
 
-    GenreController(GenreRepository genreRepository) {
+    @Autowired
+    GenreController(GenreRepository genreRepository, HttpServletRequest request) {
         this.genreRepository = genreRepository;
+        this.request = request;
     }
 
     // get logger to log to the console
@@ -46,6 +44,8 @@ public class GenreController {
         for (Genre genre : genreRepository.findAll()) {
             log.info(genre.toString());
         }
+
+
         model.addAttribute("genres", genreService.find(pageable));
         return "genre/list";
     }
@@ -114,6 +114,17 @@ public class GenreController {
     @ResponseBody
     public Genre findGenre(@PathVariable("id") Long genreId) throws ResourceNotFoundException {
         return genreService.findById(genreId);
+    }
+
+    private final HttpServletRequest request;
+
+
+    private void configCommonAttributes(Model model) {
+        model.addAttribute("name", getKeycloakSecurityContext().getIdToken().getGivenName());
+    }
+
+    private KeycloakSecurityContext getKeycloakSecurityContext() {
+        return (KeycloakSecurityContext) request.getAttribute(KeycloakSecurityContext.class.getName());
     }
 
 
