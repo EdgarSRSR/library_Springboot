@@ -45,7 +45,6 @@ public class AuthorController {
     final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
 
     // Method that fills the the Table of the Author for the admins
-    @Secured("ROLE_ADMIN")
     @GetMapping("/author/list")
     public String viewAuthors(ModelMap model,  @SortDefault("firstName") Pageable pageable) {
         //

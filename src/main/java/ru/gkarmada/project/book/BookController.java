@@ -71,7 +71,6 @@ public class BookController {
     final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
 
     // Method that fills the the Table of the Book for the admins
-    @Secured({"ROLE_USER","ROLE_ADMIN"})
     @GetMapping("/library")
     public String viewBooks(ModelMap model, @SortDefault("title") Pageable pageable) {
 

@@ -26,13 +26,13 @@ public class HomeController {
     public String home() {
 
         // get logger to log to the console
-        final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
+        //final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        /*Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         Set<String> roles = authentication.getAuthorities().stream()
             .map(r -> r.getAuthority()).collect(Collectors.toSet());
-        log.info(String.valueOf(roles));
+        log.info(String.valueOf(roles));*/
 
         return "index";
     }

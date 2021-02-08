@@ -38,7 +38,6 @@ public class GenreController {
     final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
 
     // Method that fills the the Table of the Author for the admins
-    @Secured("ROLE_ADMIN")
     @GetMapping("genre/list")
     public String viewGenre(ModelMap model,  @SortDefault("name") Pageable pageable) {
         List<Genre> listGenres = genreService.listAll();
