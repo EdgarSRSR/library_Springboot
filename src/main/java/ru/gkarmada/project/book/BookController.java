@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 import java.security.Principal;
 import java.util.List;
 
-import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,6 +71,7 @@ public class BookController {
     final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
 
     // Method that fills the the Table of the Book for the admins
+    @Secured({"ROLE_USER","ROLE_ADMIN"})
     @GetMapping("/library")
     public String viewBooks(ModelMap model, @SortDefault("title") Pageable pageable) {
 

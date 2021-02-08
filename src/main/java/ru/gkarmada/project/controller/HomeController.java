@@ -5,7 +5,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import org.keycloak.KeycloakSecurityContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class HomeController {
 
     // got to index
     @RequestMapping(value = {"/", "/index"})
-    public String home(Model model) {
+    public String home() {
 
         // get logger to log to the console
         final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
@@ -39,11 +38,11 @@ public class HomeController {
     }
 
     // log out
-    @GetMapping(path = "/logout")
+    /*@GetMapping(path = "/logout")
     public String logout(HttpServletRequest request) throws ServletException {
         request.logout();
         return "logout";
-    }
+    }*/
 
 
 

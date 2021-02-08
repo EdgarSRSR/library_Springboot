@@ -12,11 +12,12 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <div sec:authorize="hasRole('user')">
                         <a class="nav-link" th:href="@{/library}"><span th:text="#{navbar.library}"></a>
                     </div>
-                </li>
+                </li>-->
+                <a class="nav-link" th:href="@{/library}"><span th:text="#{navbar.library}"></a>
             </ul>
             <div sec:authorize="isFullyAuthenticated()">
                 <ul class="navbar-nav justify">

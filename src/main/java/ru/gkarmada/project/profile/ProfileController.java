@@ -6,11 +6,6 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
-import org.keycloak.KeycloakPrincipal;
-import org.keycloak.KeycloakSecurityContext;
-import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
-import org.keycloak.representations.AccessToken;
-import org.keycloak.representations.IDToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,10 +20,10 @@ import ru.gkarmada.project.user.User;
 @Controller
 public class ProfileController {
 
-  @Autowired
-  private UserDataService UserDataService;
+  //@Autowired
+  //private UserDataService UserDataService;
 
-  private @Autowired HttpServletRequest request;
+  //private @Autowired HttpServletRequest request;
 
   // log out
   /*
@@ -43,7 +38,7 @@ public class ProfileController {
 
   // how to create custom attributes for users and retrieve them from keycloak https://www.baeldung.com/keycloak-custom-user-attributes
  // https://stackoverflow.com/questions/32678883/keycloak-retrieve-custom-attributes-to-keycloakprincipal
-  @GetMapping(path = "/profile")
+  /*@GetMapping(path = "/profile")
   public String getUserInfo(Model model) {
     KeycloakAuthenticationToken authentication = (KeycloakAuthenticationToken)
         SecurityContextHolder.getContext().getAuthentication();
@@ -97,7 +92,7 @@ public class ProfileController {
     model.addAttribute("role", role);
     model.addAttribute("dob", dob);
     return "/userprofile/profile";
-  }
+  }*/
 
   /*
   @ModelAttribute("loggedinuser")

@@ -3,12 +3,12 @@ package ru.gkarmada.project.genre;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import org.keycloak.KeycloakSecurityContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.SortDefault;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -38,6 +38,7 @@ public class GenreController {
     final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
 
     // Method that fills the the Table of the Author for the admins
+    @Secured("ROLE_ADMIN")
     @GetMapping("genre/list")
     public String viewGenre(ModelMap model,  @SortDefault("name") Pageable pageable) {
         List<Genre> listGenres = genreService.listAll();
@@ -119,13 +120,7 @@ public class GenreController {
     private final HttpServletRequest request;
 
 
-    private void configCommonAttributes(Model model) {
-        model.addAttribute("name", getKeycloakSecurityContext().getIdToken().getGivenName());
-    }
 
-    private KeycloakSecurityContext getKeycloakSecurityContext() {
-        return (KeycloakSecurityContext) request.getAttribute(KeycloakSecurityContext.class.getName());
-    }
 
 
 }

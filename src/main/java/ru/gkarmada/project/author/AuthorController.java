@@ -3,12 +3,12 @@ package ru.gkarmada.project.author;
 import java.security.Principal;
 import java.util.List;
 
-import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.SortDefault;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,6 +45,7 @@ public class AuthorController {
     final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
 
     // Method that fills the the Table of the Author for the admins
+    @Secured("ROLE_ADMIN")
     @GetMapping("/author/list")
     public String viewAuthors(ModelMap model,  @SortDefault("firstName") Pageable pageable) {
         //
