@@ -26,7 +26,7 @@ public class HomeController {
     public String home() {
 
         // get logger to log to the console
-        //final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
+        final Logger log = LoggerFactory.getLogger(ProjectApplication.class.getName());
 
         /*Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
