@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -19,12 +21,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     auth
         .inMemoryAuthentication()
           .withUser("user")
-          .password("{noop}user1234")
+          .password(passwordEncoder().encode("user1234"))
           .roles("USER")
         .and()
           .withUser("admin")
-          .password("{noop}admin1234")
+          .password(passwordEncoder().encode("admin1234"))
           .roles("ADMIN");
+  }
+
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
   }
 
   @Override
