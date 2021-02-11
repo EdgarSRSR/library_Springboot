@@ -26,15 +26,13 @@ public class ProfileController {
   //private @Autowired HttpServletRequest request;
 
   // log out
-  /*
+
   @GetMapping(path = "/profile")
   public String logout(ModelMap model,HttpServletRequest request) throws ServletException {
     request.logout();
 
-    //UserData user = UserDataService .handleUserInfoRequest();
-    //  model.addAttribute("user", user);
     return "/userprofile/profile";
-  }*/
+  }
 
   // how to create custom attributes for users and retrieve them from keycloak https://www.baeldung.com/keycloak-custom-user-attributes
  // https://stackoverflow.com/questions/32678883/keycloak-retrieve-custom-attributes-to-keycloakprincipal

@@ -43,6 +43,13 @@ public class HomeController {
         request.logout();
         return "logout";
     }*/
+    /*
+    @GetMapping("/login")
+    public String viewLoginPage() {
+        // custom logic before showing login page...
+
+        return "login";
+    }*/
 
 
 
