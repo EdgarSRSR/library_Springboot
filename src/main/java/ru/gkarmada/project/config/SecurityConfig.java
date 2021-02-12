@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -46,14 +48,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           .hasRole("ADMIN")
           .antMatchers("/author/list")
           .hasRole("ADMIN")
-          .antMatchers("/profile")
+          .antMatchers("profile")
           .fullyAuthenticated()
           .anyRequest()
           .authenticated()
           .and()
         .formLogin()
-          .and()
-        .logout().permitAll();
+        .loginPage("/login")
+        .permitAll()
+        .and()
+        .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+        .logoutSuccessUrl("/logout.done").deleteCookies("JSESSIONID")
+        .invalidateHttpSession(true);
   }
   //this method allows static resources to be neglected by spring security
   @Override

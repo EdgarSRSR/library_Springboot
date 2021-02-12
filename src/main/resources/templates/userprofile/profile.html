@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <div th:replace="fragments/header :: header"></div>
     <title>Profile</title>
@@ -67,7 +67,7 @@
                                                          <label><span th:text="#{user.id}" /></label>
                                                      </div>
                                                      <div class="col-md-6">
-                                                         <p> <span th:text="${id}">--id--</span></p>
+                                                         <p> <span>--id--</span></p>
                                                      </div>
                                                  </div>
                                                  <div class="row">
@@ -75,7 +75,7 @@
                                                          <label><span th:text="#{user.name}" /></label>
                                                      </div>
                                                      <div class="col-md-6">
-                                                         <p><span>--User name--</span></p>
+                                                         <p><span>--username--</span></p>
                                                      </div>
                                                  </div>
                                                  <div class="row">
@@ -88,7 +88,7 @@
                                                  </div>
                                                  <div class="row">
                                                      <div class="col-md-6">
-                                                         <label><span th:text="#{user.usersecondname}" /></label>
+                                                         <label><span th:text="#{user.usersecondname}" /><span>--name--</span></label>
                                                      </div>
 
                                                      <div class="col-md-6">
@@ -125,6 +125,16 @@
                                                      </div>
                                                      <div class="col-md-6">
                                                          <p><span>--role--</span></p>
+                                                     </div>
+                                                 </div>
+                                                 <div class="row">
+                                                     <div class="col-md-6">
+                                                         <label><span th:text="#{user.name}" /></label>
+                                                     </div>
+                                                     <div class="col-md-6">
+                                                         <div sec:authorize="isAuthenticated()">
+                                                             Authenticated as <span sec:authentication="name"><span>--name--</span></span></div>
+
                                                      </div>
                                                  </div>
                                              </div>
